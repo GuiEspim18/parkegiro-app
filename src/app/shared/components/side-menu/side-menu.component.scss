@@ -1,0 +1,50 @@
+@import "/src/assets/css/main.scss";
+
+.side-menu-body {
+    height: 100vh;
+    width: 94px;
+    background: $blue_1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    .logo {
+        padding: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .icon-div {
+        padding: 20px 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: none;
+        background: transparent;
+        width: 80%;
+        margin: 0 auto;
+        transition: 0.5s;
+
+        &:hover {
+            background: $light_hover;
+        }
+
+        mat-icon {
+            width: 1.5rem;
+        }
+    }
+
+    .navs {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        flex: 1;
+    }
+}
+
+mat-divider {
+    width: 80%;
+    margin: 0 auto;
+    background: $light_grey;
+}

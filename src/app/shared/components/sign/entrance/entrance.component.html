@@ -1,0 +1,5 @@
+<div class="entrance-header">
+    <h2>Pátio: {{entrance.length}}/25 vagas ocupadas</h2>
+    <app-dark-button [text]="'Adicionar'" (click)="openDialog()"></app-dark-button>
+</div>
+<app-entrance-card *ngFor="let item of entrance" [model]="item.model" [sign]="item.sign" [entrance]="item.entrance" (getOutVehicle)="getOutEvent($event)"></app-entrance-card>

@@ -1,0 +1,40 @@
+@import "/src/assets/css/main.scss";
+
+.notifications {
+    width: 270px;
+    height: 300px;
+    overflow-y: auto;
+
+    .header {
+        border-bottom: solid 1px $dark_blue;
+        padding: 5px;
+
+        h4 {
+            color: $dark_blue;
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+    }
+
+    .notification-content {
+
+        .notification-body {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+
+            h4 {
+                margin: 0;
+                font-size: 1rem;
+                font-weight: 500;
+            }
+
+            p {
+                margin: 0;
+                font-size: 0.9rem;
+            }
+        }
+    }
+}

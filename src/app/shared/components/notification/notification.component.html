@@ -1,0 +1,25 @@
+<div class="notifications" (click)="$event.stopPropagation();">
+    <div class="header">
+        <h4>Notifications</h4>
+    </div>
+    <div class="notification-content">
+        <mat-list>
+            <div *ngFor="let item of notifications">
+                <mat-list-item>
+                    <div class="notification-body">
+                        <div>
+                            <h4>{{item.title}}</h4>
+                            <p>{{item.content}}</p>
+                        </div>
+                        <div>
+                            <button mat-icon-button>
+                                <mat-icon svgIcon="delete"></mat-icon>
+                            </button>
+                        </div>
+                    </div>
+                </mat-list-item>
+                <mat-divider></mat-divider>
+            </div>
+        </mat-list>
+    </div>
+</div>

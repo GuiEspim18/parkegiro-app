@@ -1,0 +1,21 @@
+<div class="card-parking">
+    <app-light-card>
+        <div class="card-content">
+            <div class="card-data">
+                <h2 class="light-card-title">{{model}}</h2>
+                <mat-divider></mat-divider>
+                <div class="parking-data">
+                    <div class="sign">
+                        <h3>Placa:</h3>
+                        <p>{{sign}}</p>
+                    </div>
+                    <div class="entrance">
+                        <h3>{{entrance !== undefined ? 'Entrada' : 'Saída'}}:</h3>
+                        <p>{{entrance !== undefined ? entrance : exit}}</p>
+                    </div>
+                </div>
+            </div>
+            <app-dark-button text="Ver mais"></app-dark-button>
+        </div>
+    </app-light-card>
+</div>

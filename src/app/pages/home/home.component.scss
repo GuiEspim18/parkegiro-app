@@ -1,0 +1,42 @@
+@import "/src/assets/css/main.scss";
+
+.main-title {
+    color: $dark_blue;
+    font-size: 35px;
+    padding: 10px 0px;
+}
+
+.content {
+    overflow-y: auto;
+    height: 83%;
+
+    .home-divider {
+        margin: 20px 0px;
+        background: $dark_blue;
+    }
+
+    h2 {
+        font-size: 30px;
+        color: $dark_blue;
+        font-weight: 400;
+    }
+
+    .section-title{
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .section-content {
+        display: flex;
+        justify-content: space-between;
+        padding-bottom: 20px;
+        flex-wrap: wrap;
+
+        app-distributed-columns-charts {
+            width: 100%;
+            max-width: 800px;
+        }
+    }
+}
+

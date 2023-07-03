@@ -1,0 +1,47 @@
+<app-page-header [icon]="'page-home'" [title]="'Home'"></app-page-header>
+<section class="content">
+    <div class="content-scroll">
+        <div class="parking-name">
+            <h1 class="main-title">WM Valet</h1>
+        </div>
+        <div class="parks">
+            <app-home-parking-card [title]="'Pátio'" [spaces]="'25 vagas livres'"
+                [occuped]="'18 vagas ocupadas'"></app-home-parking-card>
+        </div>
+        <mat-divider class="home-divider"></mat-divider>
+        <div class="car-signs">
+            <h2>Entradas</h2>
+            <div>
+                <app-home-light-card *ngFor="let item of entrance" [model]="item.model" [sign]="item.sign"
+                    [entrance]="item.entrance"></app-home-light-card>
+            </div>
+        </div>
+        <mat-divider class="home-divider"></mat-divider>
+        <div class="car-signs">
+            <h2>Saídas</h2>
+            <div>
+                <app-home-light-card *ngFor="let item of exit" [model]="item.model" [sign]="item.sign"
+                    [exit]="item.exit"></app-home-light-card>
+            </div>
+        </div>
+        <mat-divider class="home-divider"></mat-divider>
+        <div>
+            <h2>Rendimento diário</h2>
+            <div>
+                <app-home-performance-card [performance]="'R$: 1812,00'"
+                    [previous]="'R$: 1800,00'"></app-home-performance-card>
+            </div>
+        </div>
+        <mat-divider class="home-divider"></mat-divider>
+        <div>
+            <div class="section-title">
+                <h2>Dashboard</h2>
+                <app-dark-button text="Ver mais"></app-dark-button>
+            </div>
+            <div class="section-content">
+                <app-radial-bar-chart [percent]="77" [label]="'Quantidade de vagas ocupadas este mês'"></app-radial-bar-chart>
+                <app-distributed-columns-charts [label]="'Desempenho financeiro nos ultimos 5 meses'"></app-distributed-columns-charts>
+            </div>
+        </div>
+    </div>
+</section>

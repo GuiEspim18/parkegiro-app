@@ -1,0 +1,13 @@
+@import "/src/assets/css/main.scss";
+
+.entrance-header {
+    padding: 10px 0px;
+    display: flex;
+    justify-content: space-between;
+
+    h2 {
+        font-size: 1.3rem;
+        color: $dark_blue;
+        font-weight: 500;
+    }
+}

@@ -1,0 +1,16 @@
+@import "/src/assets/css/main.scss";
+
+button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 180px;
+    height: 30px;
+    background: $background_1;
+
+    p {
+        margin: 0;
+        font-size: 15px;
+        color: $dark_blue;
+    }
+}

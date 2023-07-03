@@ -1,0 +1,18 @@
+<header>
+    <div class="content-header">
+        <div class="user-info">
+            <button mat-icon-button [matMenuTriggerFor]="menu">
+                <mat-icon svgIcon="bell" matBadge="5" matBadgeColor="warn"></mat-icon>
+            </button>
+            <div class="user-name">
+                <h4>Pedro Santos</h4>
+                <p>WM Vallet</p>
+            </div>
+            <div class="user-image">
+            </div>
+        </div>
+    </div>
+</header>
+<mat-menu #menu="matMenu" class="menu">
+    <app-notification></app-notification>
+</mat-menu>

@@ -1,0 +1,16 @@
+@import "/src/assets/css/main.scss";
+
+h4 {
+    color: $dark_blue !important;
+}
+
+.content {
+    overflow-y: auto;
+    height: 83%;
+}
+
+
+::ng-deep .mat-tab-group.mat-primary .mat-ink-bar,
+.mat-tab-nav-bar.mat-primary .mat-ink-bar {
+    background-color: $dark_blue;
+}

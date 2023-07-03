@@ -1,0 +1,25 @@
+<div class="card-parking">
+    <app-light-card>
+        <div class="card-content">
+            <div class="card-data">
+                <h2 class="light-card-title">{{model}}</h2>
+                <mat-divider></mat-divider>
+                <div class="parking-data">
+                    <div class="sign">
+                        <h3>Placa:</h3>
+                        <p>{{sign}}</p>
+                    </div>
+                    <div class="departure">
+                        <h3>Saída:</h3>
+                        <p>{{departure}}</p>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="button-card">
+                    <app-dark-button text="Excluir"></app-dark-button>
+                </div>
+            </div>
+        </div>
+    </app-light-card>
+</div>

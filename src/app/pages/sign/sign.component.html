@@ -1,0 +1,23 @@
+<app-page-header [icon]="'page-vehicles'" [title]="'Placas'"></app-page-header>
+<section class="content">
+    <div class="content-scroll">
+        <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start">
+            <mat-tab label="First">
+                <ng-template mat-tab-label>
+                    <h4>Entradas</h4>
+                </ng-template>
+                <div class="inside-content">
+                    <app-entrance (getOut)="getOut($event)"></app-entrance>
+                </div>
+            </mat-tab>
+            <mat-tab label="Second">
+                <ng-template mat-tab-label>
+                    <h4>Saídas</h4>
+                </ng-template>
+                <div class="inside-content">
+                    <app-departure [departure]="departure"></app-departure>
+                </div>
+            </mat-tab>
+        </mat-tab-group>
+    </div>
+</section>

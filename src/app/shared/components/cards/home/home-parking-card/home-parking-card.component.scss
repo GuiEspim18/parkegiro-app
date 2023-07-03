@@ -1,0 +1,33 @@
+@import "/src/assets/css/main.scss";
+
+app-dark-card {
+    h2 {
+        font-size: 1.8rem;
+        font-weight: 400;
+        margin: 0;
+    }
+
+    mat-divider {
+        background: $background_1;
+    }
+
+    .card-content {
+        display: flex;
+        justify-content: space-between;
+
+        .parking-data {
+            width: 30%;
+            margin-top: 20px;
+
+            h3 {
+                margin: 5px 0;
+                font-size: 1.5rem;
+                font-weight: 300;
+            }
+        }
+
+        app-light-button  {
+            margin-top: 20px;
+        }
+    }
+}

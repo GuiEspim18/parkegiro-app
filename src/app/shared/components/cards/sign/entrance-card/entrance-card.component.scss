@@ -1,0 +1,65 @@
+@import "/src/assets/css/main.scss";
+
+.card-parking {
+    margin: 20px 0px;
+}
+
+app-light-card {
+    .light-card-title {
+        color: $dark_blue;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+        font-weight: 400;
+        margin: 3px 0px;
+    }
+
+    mat-divider {
+        background: $dark_blue;
+    }
+
+    .card-content {
+        display: flex;
+        justify-content: space-between;
+
+        .card-data {
+            width: 80%;
+        }
+
+        .parking-data {
+            width: 40%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 20px;
+
+            h3 {
+                margin: 0px;
+                font-size: 1.3rem;
+                font-weight: 400;
+
+                color: $dark_blue;
+            }
+
+            p {
+                margin: 0px 3px;
+                font-size: 1.3rem;
+
+                color: $dark_blue;
+            }
+
+            .sign,
+            .entrance {
+                display: flex;
+                align-items: center;
+                margin: 3px 0px;
+            }
+        }
+    }
+}
+
+
+.button-card {
+    margin-bottom: 20px;
+}

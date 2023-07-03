@@ -1,0 +1,19 @@
+<section class="side-menu-body">
+    <div class="logo">
+        <img src="../../../../assets/img/logo/logo.svg" alt="">
+    </div>
+    <mat-divider></mat-divider>
+    <div class="navs">
+        <nav>
+            <button mat-button *ngFor="let item of icons" class="icon-div" routerLink="{{item.path}}">
+                <mat-icon svgIcon="{{item.icon}}"></mat-icon>
+            </button>
+        </nav>
+        <div class="config-div">
+            <mat-divider></mat-divider>
+            <button mat-button class="icon-div">
+                <mat-icon svgIcon="config"></mat-icon>
+            </button>
+        </div>
+    </div>
+</section>
