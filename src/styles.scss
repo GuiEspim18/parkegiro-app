@@ -50,14 +50,14 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;}
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: #f1f1f1; 
+  background: $background_1; 
 }
  
 /* Handle */
 ::-webkit-scrollbar-thumb {
   background: $blue_1; 
   border-radius: 10px;
-  border: 3px solid #f0f0f0;
+  border: 3px solid $background_1;
 }
 
 /* Handle on hover */

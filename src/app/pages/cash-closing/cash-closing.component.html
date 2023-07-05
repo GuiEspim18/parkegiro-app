@@ -1,0 +1,8 @@
+<app-page-header [icon]="'page-dollar'" [title]="'Fechamento de caixa'"></app-page-header>
+<section class="content">
+    <div class="content-scroll">
+        <div class="expansion-panel-div" *ngFor="let item of performance">
+            <app-expansion-panel [value]="item.value" [day]="item.day"></app-expansion-panel>
+        </div>
+    </div>
+</section>

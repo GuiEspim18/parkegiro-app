@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';
 import { SignComponent } from './pages/sign/sign.component';
-import { PerformanceComponent } from './pages/performance/performance.component';
+import { CashClosingComponent } from './pages/cash-closing/cash-closing.component';
 
 const routes: Routes = [
   {
@@ -29,11 +29,11 @@ const routes: Routes = [
     ]
   },
   {
-    path: "performance",
+    path: "cash-closing",
     children: [
       {
         path: "",
-        component: PerformanceComponent
+        component: CashClosingComponent
       }
     ]
   }

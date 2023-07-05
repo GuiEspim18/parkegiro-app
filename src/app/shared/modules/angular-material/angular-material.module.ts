@@ -22,6 +22,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatListModule } from '@angular/material/list';
 import { MatTabsModule } from '@angular/material/tabs';
+import {MatTableModule} from '@angular/material/table';
 
 const materialModules: Array<any> = [
   CommonModule,
@@ -46,7 +47,8 @@ const materialModules: Array<any> = [
   MatNativeDateModule,
   MatBadgeModule,
   MatListModule,
-  MatTabsModule
+  MatTabsModule,
+  MatTableModule
 ]
 
 @NgModule({
