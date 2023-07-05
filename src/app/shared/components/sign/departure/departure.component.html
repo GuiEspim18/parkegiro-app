@@ -1,1 +1,5 @@
-<app-departure-card *ngFor="let item of departure" [model]="item.model" [sign]="item.sign" [departure]="item.departure"></app-departure-card>
+<app-departure-card *ngFor="let item of departure" [model]="item.model" [sign]="item.sign" [departure]="item.departure" (delete)="delete($event)"></app-departure-card>
+<div *ngIf="departure.length === 0" class="no-departure-length">
+    <mat-icon svgIcon="ghost"></mat-icon>
+    <h1>Nenhum carro saiu do pátio!</h1>
+</div>

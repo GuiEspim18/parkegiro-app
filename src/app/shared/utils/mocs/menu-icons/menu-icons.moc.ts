@@ -9,7 +9,7 @@ export const menuIcons: Array<any> = [
     },
     {
         icon: "dollar",
-        path: "/"
+        path: "/performance"
     },
     {
         icon: "dashboard",

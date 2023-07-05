@@ -10,7 +10,7 @@ export class HomeComponent implements OnInit {
   public entrance: any = [
     {
       model: "Pegeout 308 - Pérola",
-      sign: "GBR-9F90",
+      sign: "ABC-1D23",
       entrance: "18:00"
     },
     {

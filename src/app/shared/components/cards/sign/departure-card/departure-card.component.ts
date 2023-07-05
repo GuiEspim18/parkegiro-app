@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-departure-card',
@@ -13,9 +13,18 @@ export class DepartureCardComponent implements OnInit {
   @Input() public sign: string;
   @Input() public departure: string;
 
+  @Output() public delete: EventEmitter<any> = new EventEmitter()
+
+
   constructor() { }
 
+
   ngOnInit(): void {
+  }
+
+
+  public deleteDeparture(value: any): void {
+    this.delete.emit(value)
   }
 
 }

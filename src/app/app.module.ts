@@ -29,6 +29,10 @@ import { AddSignDialogComponent } from './shared/components/dialog/sign/add-sign
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DialogHeaderComponent } from './shared/components/dialog/dialog-header/dialog-header.component';
 import { IConfig, NgxMaskModule } from 'ngx-mask';
+import { PerformanceComponent } from './pages/performance/performance.component';
+import { ExpansionPanelComponent } from './shared/components/performance/expansion-panel/expansion-panel.component';
+import { PdfButtonComponent } from './shared/components/buttons/pdf-button/pdf-button.component';
+import { ExcelButtonComponent } from './shared/components/buttons/excel-button/excel-button.component';
 
 const maskConfig: Partial<IConfig> = {
   validation: false,
@@ -57,7 +61,11 @@ const maskConfig: Partial<IConfig> = {
     EntranceCardComponent,
     DepartureCardComponent,
     AddSignDialogComponent,
-    DialogHeaderComponent
+    DialogHeaderComponent,
+    PerformanceComponent,
+    ExpansionPanelComponent,
+    PdfButtonComponent,
+    ExcelButtonComponent
   ],
   imports: [
     BrowserModule,

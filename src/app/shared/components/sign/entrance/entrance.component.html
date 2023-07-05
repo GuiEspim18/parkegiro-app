@@ -3,3 +3,7 @@
     <app-dark-button [text]="'Adicionar'" (click)="openDialog()"></app-dark-button>
 </div>
 <app-entrance-card *ngFor="let item of entrance" [model]="item.model" [sign]="item.sign" [entrance]="item.entrance" (getOutVehicle)="getOutEvent($event)"></app-entrance-card>
+<div *ngIf="entrance.length === 0" class="no-entrance-length">
+    <mat-icon svgIcon="ghost"></mat-icon>
+    <h1>Nenhum carro no pátio!</h1>
+</div>

@@ -1,0 +1,49 @@
+@import "/src/assets/css/main.scss";
+
+.panel-descrition {
+    display: flex;
+    align-items: center;
+
+    h3 {
+        font-size: 1.3rem;
+        color: $background_1;
+        font-weight: 500;
+        margin: 0;
+    }
+
+    p {
+        font-size: 1.3rem;
+        color: $background_1;
+        margin: 0;
+    }
+}
+
+::ng-deep .mat-expanded {
+    background: $blue_2 !important;
+}
+
+mat-expansion-panel-header {
+    background: $blue_2;
+    transition: 0.3s;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+}
+
+mat-expansion-panel-header:hover {
+    background: $blue_1 !important;
+}
+
+::ng-deep .mat-expansion-indicator::after {
+    color: $background_1;
+    width: 5px;
+    height: 5px;
+}
+
+::ng-deep .mat-expansion-indicator {
+    display: flex;
+    align-items: center;
+}
+
+::ng-deep .mat-expansion-panel-body {
+    background: $light_grey;
+} 

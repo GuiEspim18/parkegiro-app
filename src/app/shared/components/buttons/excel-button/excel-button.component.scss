@@ -1,0 +1,21 @@
+@import "/src/assets/css/main.scss";
+
+button {
+    background: $excel;
+    width: 160px;
+
+    div {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 100%;
+        width: 100%;
+
+        p {
+            margin: 0;
+            font-size: 1rem;
+            color: $background_1;
+        }
+
+    }
+}

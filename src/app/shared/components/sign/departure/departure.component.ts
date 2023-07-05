@@ -16,4 +16,14 @@ export class DepartureComponent implements OnInit {
   ngOnInit(): void {
   }
 
+
+  public delete(event: any): void {
+    const index: number = this.departure.findIndex((element: any) => {
+      return element.sign === event
+    });
+    if (index !== -1) {
+      this.departure.splice(index, 1);
+    }
+  }
+
 }

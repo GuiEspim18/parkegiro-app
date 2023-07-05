@@ -11,3 +11,21 @@
         font-weight: 500;
     }
 }
+
+.no-entrance-length {
+    width: 100%;
+    height: 350px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    h1 {
+        color: $light_grey;
+    }
+
+    mat-icon {
+        width: 100px;
+        height: 100px;
+    }
+}
