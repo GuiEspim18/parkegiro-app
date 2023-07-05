@@ -13,7 +13,7 @@ export const menuIcons: Array<any> = [
     },
     {
         icon: "dashboard",
-        path: "/"
+        path: "/dash-board"
     },
     {
         icon: "users",

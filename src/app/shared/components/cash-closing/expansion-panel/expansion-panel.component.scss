@@ -24,7 +24,7 @@
     padding: 10px 0px;
 
     .button {
-        margin: 0px 10px;
+        margin-left: 10px;
     }
 
     .table {
@@ -108,22 +108,22 @@ mat-expansion-panel-header:hover {
     border: 3px solid $light_grey;
 }
 
-.mat-column-veiculo {
+.mat-column-model {
     width: 20%;
 }
 
-.mat-column-placa {
+.mat-column-sign {
     width: 20%;
 }
 
-.mat-column-entrada {
+.mat-column-entrance {
     width: 20%;
 }
 
-.mat-column-saida {
+.mat-column-departure {
     width: 20%;
 }
 
-.mat-column-valor {
+.mat-column-value {
     width: 20%;
 }

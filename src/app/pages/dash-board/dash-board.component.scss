@@ -1,0 +1,19 @@
+@import "/src/assets/css/main.scss";
+
+.content {
+    overflow-y: auto;
+    height: 83%;
+
+    .section-content {
+        display: flex;
+        justify-content: space-between;
+        padding-bottom: 20px;
+        flex-wrap: wrap;
+
+        app-distributed-columns-charts, app-basic-bar-chart {
+            width: 100%;
+            max-width: 800px;
+        }
+    }
+
+}

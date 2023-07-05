@@ -23,34 +23,11 @@
                       The actual rendered columns are set as a property on the row definition" -->
 
                 <!-- Position Column -->
-                <ng-container matColumnDef="veiculo">
-                    <th mat-header-cell *matHeaderCellDef> Veículo </th>
-                    <td mat-cell *matCellDef="let element"> {{element.model}} </td>
+                <ng-container *ngFor="let item of displayedColumns" matColumnDef="{{item}}">
+                    <th mat-header-cell *matHeaderCellDef> {{item}} </th>
+                    <td mat-cell *matCellDef="let element"> {{returnElement(element, item)}} </td>
                 </ng-container>
 
-                <!-- Name Column -->
-                <ng-container matColumnDef="placa">
-                    <th mat-header-cell *matHeaderCellDef> Placa </th>
-                    <td mat-cell *matCellDef="let element"> {{element.sign}} </td>
-                </ng-container>
-
-                <!-- Weight Column -->
-                <ng-container matColumnDef="entrada">
-                    <th mat-header-cell *matHeaderCellDef> Entrada </th>
-                    <td mat-cell *matCellDef="let element"> {{element.entrance}} </td>
-                </ng-container>
-
-                <!-- Symbol Column -->
-                <ng-container matColumnDef="saida">
-                    <th mat-header-cell *matHeaderCellDef> Saída </th>
-                    <td mat-cell *matCellDef="let element"> {{element.departure}} </td>
-                </ng-container>
-
-                <!-- Symbol Column -->
-                <ng-container matColumnDef="valor">
-                    <th mat-header-cell *matHeaderCellDef> Valor </th>
-                    <td mat-cell *matCellDef="let element"> {{element.value}} </td>
-                </ng-container>
 
                 <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                 <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>

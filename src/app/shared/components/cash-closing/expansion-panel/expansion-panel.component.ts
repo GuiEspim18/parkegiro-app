@@ -59,12 +59,17 @@ export class ExpansionPanelComponent implements OnInit {
     },
   ];
 
-  public displayedColumns: Array<string> = ['veiculo', 'placa', 'entrada', 'saida', 'valor'];
+  public displayedColumns: Array<string> = ['model', 'sign', 'entrance', 'departure', 'value'];
 
 
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+
+  public returnElement(value: any, element: string): any {
+    return value[`${element}`]
   }
 
 }

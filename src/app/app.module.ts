@@ -33,6 +33,9 @@ import { ExpansionPanelComponent } from './shared/components/cash-closing/expans
 import { PdfButtonComponent } from './shared/components/buttons/pdf-button/pdf-button.component';
 import { ExcelButtonComponent } from './shared/components/buttons/excel-button/excel-button.component';
 import { CashClosingComponent } from './pages/cash-closing/cash-closing.component';
+import { DashBoardComponent } from './pages/dash-board/dash-board.component';
+import { BasicBarChartComponent } from './shared/components/charts/basic-bar-chart/basic-bar-chart.component';
+import { SimpleDonutChartComponent } from './shared/components/charts/simple-donut-chart/simple-donut-chart.component';
 
 const maskConfig: Partial<IConfig> = {
   validation: false,
@@ -65,7 +68,10 @@ const maskConfig: Partial<IConfig> = {
     ExpansionPanelComponent,
     PdfButtonComponent,
     ExcelButtonComponent,
-    CashClosingComponent
+    CashClosingComponent,
+    DashBoardComponent,
+    BasicBarChartComponent,
+    SimpleDonutChartComponent
   ],
   imports: [
     BrowserModule,
