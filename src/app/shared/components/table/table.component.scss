@@ -1,0 +1,41 @@
+@import "/src/assets/css/main.scss";
+
+table {
+    width: 100%;
+    border-radius: 5px;
+    overflow: hidden !important;
+
+    .mat-header-row {
+        background: $blue_2;
+        height: 40px;
+
+        th {
+            color: $background_1;
+            font-size: 1rem;
+            font-weight: 400;
+            text-align: center;
+        }
+    }
+
+    .mat-row {
+        height: 40px;
+
+        .mat-cell {
+            color: $dark_blue;
+            font-size: 1rem;
+            text-align: center;
+
+            p {
+                margin: 0;
+            }
+        }
+    }
+
+    .mat-row:nth-child(even) {
+        background-color: $light_grey2;
+    }
+
+    .mat-row:nth-child(odd) {
+        background-color: $background_1;
+    }
+}

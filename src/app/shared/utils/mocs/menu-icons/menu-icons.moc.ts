@@ -17,7 +17,7 @@ export const menuIcons: Array<any> = [
     },
     {
         icon: "users",
-        path: "/"
+        path: "/users"
     },
     {
         icon: "profile",

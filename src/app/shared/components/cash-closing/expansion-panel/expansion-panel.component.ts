@@ -59,7 +59,28 @@ export class ExpansionPanelComponent implements OnInit {
     },
   ];
 
-  public displayedColumns: Array<string> = ['model', 'sign', 'entrance', 'departure', 'value'];
+  public displayedColumns: Array<any> = [
+    {
+      type: 'model',
+      name: 'Veículo'
+    }, 
+    {
+      type: 'sign',
+      name: 'Placa'
+    }, 
+    {
+      type: 'entrance',
+      name: 'Entrada'
+    }, 
+    {
+      type: 'departure',
+      name: 'Saída'
+    }, 
+    {
+      type: 'value',
+      name: 'Valor'
+    }
+  ];
 
 
   constructor() { }

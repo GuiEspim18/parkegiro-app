@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, AfterViewInit } from '@angular/core';
 import * as ApexCharts from 'apexcharts';
 
 @Component({
@@ -6,15 +6,16 @@ import * as ApexCharts from 'apexcharts';
   templateUrl: './distributed-columns-charts.component.html',
   styleUrls: ['./distributed-columns-charts.component.scss']
 })
-export class DistributedColumnsChartsComponent implements OnInit {
+export class DistributedColumnsChartsComponent implements AfterViewInit {
 
   /* Vars */
 
   @Input() public label: string;
+  @Input() public chartName: string = "distributed-columns-chart";
 
   constructor() { }
 
-  ngOnInit(): void {
+  ngAfterViewInit(): void {
     this.distributedCharts();
   }
 
@@ -22,7 +23,7 @@ export class DistributedColumnsChartsComponent implements OnInit {
     const options: any = {
       series: [
         {
-          data: [21, 22, 10, 28, 16],
+          data: [221, 322, 410, 128, 216],
         }
       ],
       chart: {
@@ -95,7 +96,7 @@ export class DistributedColumnsChartsComponent implements OnInit {
       },
     };
 
-    const chart: ApexCharts = new ApexCharts(document.querySelector("#column-chart"), options);
+    const chart: ApexCharts = new ApexCharts(document.querySelector(`#${this.chartName}`), options);
     chart.render();
   }
 

@@ -2,12 +2,12 @@
 <section class="content">
     <div class="content-scroll">
         <div class="section-content">
-            <app-radial-bar-chart [percent]="77" [label]="'Quantidade de vagas ocupadas este mês'"></app-radial-bar-chart>
-            <app-distributed-columns-charts [label]="'Desempenho financeiro nos ultimos 5 meses'"></app-distributed-columns-charts>
+            <app-radial-bar-chart [chartName]="'dashboard-radial-bar-chart'" [percent]="77" [label]="'Quantidade de vagas ocupadas este mês'"></app-radial-bar-chart>
+            <app-distributed-columns-charts [chartName]="'dashboard-distributed-columns-chart'" [label]="'Desempenho financeiro nos ultimos 5 meses'"></app-distributed-columns-charts>
         </div>
         <div class="section-content">
-            <app-basic-bar-chart [label]="'Previsão de veículos para os próximos 5 meses'"></app-basic-bar-chart>
-            <app-simple-donut-chart [label]="'Previsão de lucro para os próximos 5 meses'"></app-simple-donut-chart>
+            <app-basic-bar-chart [chartName]="'dashboard-basic-bar-chart'" [label]="'Previsão de veículos para os próximos 5 meses'"></app-basic-bar-chart>
+            <app-simple-donut-chart [chartName]="'dashboard-simple-donut-chart'" [label]="'Previsão de lucro para os próximos 5 meses'"></app-simple-donut-chart>
         </div>
     </div>
 </section>

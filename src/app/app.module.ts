@@ -36,6 +36,8 @@ import { CashClosingComponent } from './pages/cash-closing/cash-closing.componen
 import { DashBoardComponent } from './pages/dash-board/dash-board.component';
 import { BasicBarChartComponent } from './shared/components/charts/basic-bar-chart/basic-bar-chart.component';
 import { SimpleDonutChartComponent } from './shared/components/charts/simple-donut-chart/simple-donut-chart.component';
+import { UsersComponent } from './pages/users/users.component';
+import { TableComponent } from './shared/components/table/table.component';
 
 const maskConfig: Partial<IConfig> = {
   validation: false,
@@ -71,7 +73,9 @@ const maskConfig: Partial<IConfig> = {
     CashClosingComponent,
     DashBoardComponent,
     BasicBarChartComponent,
-    SimpleDonutChartComponent
+    SimpleDonutChartComponent,
+    UsersComponent,
+    TableComponent
   ],
   imports: [
     BrowserModule,

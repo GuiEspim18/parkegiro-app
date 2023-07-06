@@ -4,6 +4,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { SignComponent } from './pages/sign/sign.component';
 import { CashClosingComponent } from './pages/cash-closing/cash-closing.component';
 import { DashBoardComponent } from './pages/dash-board/dash-board.component';
+import { UsersComponent } from './pages/users/users.component';
 
 const routes: Routes = [
   {
@@ -44,6 +45,15 @@ const routes: Routes = [
       {
         path: "",
         component: DashBoardComponent
+      }
+    ]
+  },
+  {
+    path: "users",
+    children: [
+      {
+        path: "",
+        component: UsersComponent
       }
     ]
   },

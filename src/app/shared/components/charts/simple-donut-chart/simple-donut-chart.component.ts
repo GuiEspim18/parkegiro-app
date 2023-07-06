@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, AfterViewInit } from '@angular/core';
 import * as ApexCharts from 'apexcharts';
 
 @Component({
@@ -6,15 +6,16 @@ import * as ApexCharts from 'apexcharts';
   templateUrl: './simple-donut-chart.component.html',
   styleUrls: ['./simple-donut-chart.component.scss']
 })
-export class SimpleDonutChartComponent implements OnInit {
+export class SimpleDonutChartComponent implements AfterViewInit {
 
   /* Vars */
 
   @Input() public label: string;
+  @Input() public chartName: string = "simple-donut-chart";
 
   constructor() { }
 
-  ngOnInit(): void {
+  ngAfterViewInit(): void {
     this.distributedCharts();
   }
 
@@ -58,7 +59,7 @@ export class SimpleDonutChartComponent implements OnInit {
     };
 
 
-    const chart: ApexCharts = new ApexCharts(document.querySelector("#simple-donut-chart"), options);
+    const chart: ApexCharts = new ApexCharts(document.querySelector(`#${this.chartName}`), options);
     chart.render();
   }
 

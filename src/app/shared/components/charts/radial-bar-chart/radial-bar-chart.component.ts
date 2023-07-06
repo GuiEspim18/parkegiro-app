@@ -1,17 +1,18 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, AfterViewInit } from '@angular/core';
 import * as ApexCharts from 'apexcharts';
 
 @Component({
   selector: 'app-radial-bar-chart',
   templateUrl: './radial-bar-chart.component.html',
-  styleUrls: ['./radial-bar-chart.component.scss']
+  styleUrls: ['./radial-bar-chart.component.scss'],
 })
-export class ReadialBarChartComponent implements OnInit {
+export class ReadialBarChartComponent implements AfterViewInit {
 
   /* Vars */
 
   @Input() public percent: number;
   @Input() public label: string;
+  @Input() public chartName: string = "radial-bar-chart";
 
 
   /* Contructor */
@@ -21,7 +22,7 @@ export class ReadialBarChartComponent implements OnInit {
 
   /* On init */
 
-  public ngOnInit(): void {
+  public ngAfterViewInit(): void {
     this.donutChart();
   }
 
@@ -31,7 +32,7 @@ export class ReadialBarChartComponent implements OnInit {
   private donutChart(): void {
     const toPercent: string = `${this.percent}%`;
     const options: any = {
-      series: [this.percent],
+      series: [Number(this.percent)],
       chart: {
         height: 350,
         type: 'radialBar',
@@ -67,7 +68,7 @@ export class ReadialBarChartComponent implements OnInit {
       },
       labels: [toPercent],
     };
-    const chart: ApexCharts = new ApexCharts(document.querySelector("#chart"), options);
+    const chart: ApexCharts = new ApexCharts(document.querySelector(`#${this.chartName}`), options);
     chart.render();
   }
 

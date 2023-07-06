@@ -1,0 +1,17 @@
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <ng-container *ngFor="let item of displayedColumns" matColumnDef="{{item.type}}">
+        <th mat-header-cell *matHeaderCellDef> {{item.name}} </th>
+        <td mat-cell *matCellDef="let element"> 
+            <p *ngIf="item.type !== 'actions'">
+                {{returnElement(element, item.type)}} 
+            </p>
+            <div *ngIf="item.type === 'actions'">
+                <button mat-icon-button *ngFor="let icon of element.actions" (click)="action(icon, element)">
+                    <mat-icon svgIcon="{{icon}}"></mat-icon> 
+                </button>
+            </div>
+        </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="formatedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: formatedColumns;"></tr>
+</table>

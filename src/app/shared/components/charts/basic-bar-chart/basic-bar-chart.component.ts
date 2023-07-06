@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, AfterViewInit } from '@angular/core';
 import * as ApexCharts from 'apexcharts';
 
 @Component({
@@ -6,23 +6,25 @@ import * as ApexCharts from 'apexcharts';
   templateUrl: './basic-bar-chart.component.html',
   styleUrls: ['./basic-bar-chart.component.scss']
 })
-export class BasicBarChartComponent implements OnInit {
+export class BasicBarChartComponent implements AfterViewInit {
 
   /* Vars */
 
   @Input() public label: string;
+  @Input() public chartName: string = "basic-bar-chart";
 
 
-  constructor() { }
+  constructor() { 
+  }
 
-  ngOnInit(): void {
+  ngAfterViewInit(): void {
     this.distributedCharts();
   }
 
   private distributedCharts(): void {
     const options: any = {
       series: [{
-        data: [400, 430, 448, 470, 425]
+        data: [75, 80, 62, 70, 52]
       }],
       colors: [
         "#195A97",
@@ -88,7 +90,7 @@ export class BasicBarChartComponent implements OnInit {
       }
     };
 
-    const chart: ApexCharts = new ApexCharts(document.querySelector("#basic-column-chart"), options);
+    const chart: ApexCharts = new ApexCharts(document.querySelector(`#${this.chartName}`), options);
     chart.render();
   }
 

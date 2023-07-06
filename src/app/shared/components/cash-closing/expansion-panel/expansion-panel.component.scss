@@ -32,42 +32,6 @@
     }
 }
 
-table {
-    width: 100%;
-    border-radius: 5px;
-    overflow: hidden !important;
-
-    .mat-header-row {
-        background: $blue_2;
-        height: 40px;
-
-        th {
-            color: $background_1;
-            font-size: 1rem;
-            font-weight: 400;
-            text-align: center;
-        }
-    }
-
-    .mat-row {
-        height: 40px;
-
-        .mat-cell {
-            color: $dark_blue;
-            font-size: 1rem;
-            text-align: center;
-        }
-    }
-
-    .mat-row:nth-child(even) {
-        background-color: $light_grey2;
-    }
-
-    .mat-row:nth-child(odd) {
-        background-color: $background_1;
-    }
-}
-
 ::ng-deep .mat-expanded {
     background: $blue_2 !important;
 }
@@ -108,22 +72,30 @@ mat-expansion-panel-header:hover {
     border: 3px solid $light_grey;
 }
 
-.mat-column-model {
-    width: 20%;
-}
+app-table {
 
-.mat-column-sign {
-    width: 20%;
-}
+    .mat-table {
 
-.mat-column-entrance {
-    width: 20%;
-}
+        .mat-column-model {
+            width: 20%;
+        }
+    
+        .mat-column-sign {
+            width: 20%;
+        }
+    
+        .mat-column-entrance {
+            width: 20%;
+        }
+    
+        .mat-column-departure {
+            width: 20%;
+        }
+    
+        .mat-column-value {
+            width: 20%;
+        }
+        
+    }
 
-.mat-column-departure {
-    width: 20%;
-}
-
-.mat-column-value {
-    width: 20%;
 }
