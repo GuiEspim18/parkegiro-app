@@ -10,16 +10,21 @@
     background-attachment: fixed;
     background-size: cover;
     background-repeat: no-repeat;
-    flex: 1;  
-}
-
-.main-content {
-    max-width: 1290px;
-    height: 619px;
-    max-height: 619px;
-    border-radius: 10px;
-    box-shadow: 4px, 4px $shadow;
-    margin: 0 auto;
-    background: $background_1;
+    flex: 1; 
     overflow: hidden;
+    box-sizing: border-box;
+
+    .header {
+        padding: 10px;
+    }
+    
+    .main-content {
+        max-width: 1290px;
+        height: 630px;
+        border-radius: 10px;
+        box-shadow: 4px 4px 4px $shadow;
+        margin: 0 auto;
+        background: $background_1;
+        overflow: hidden;
+    }
 }

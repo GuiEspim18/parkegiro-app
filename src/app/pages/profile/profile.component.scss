@@ -1,0 +1,85 @@
+@import "/src/assets/css/main.scss";
+
+.content {
+    overflow-y: auto;
+    height: 83%;
+
+    form {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        margin-top: 10px;
+
+        .input-div {
+            width: 33%;
+            overflow: hidden;
+            margin: 0px 2px;
+        }
+
+        .submit-div {
+            width: 100%;
+            display: flex;
+            justify-content: flex-end;
+        } 
+    }
+
+    .user-photo-div {
+        background: $blue_2;
+        width: 100%;
+        padding: 15px 20px;
+        border-radius: 5px;
+        box-sizing: border-box;
+        display: flex;
+        align-items: center;
+
+        .user-photo {
+            width: 120px;
+            height: 120px;
+            background: $background_1;
+            border-radius: 120px;
+            border: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.3s;
+
+            mat-icon {
+                width: 3rem;
+                height: 3rem;
+            }
+
+            &:hover {
+                background: $light_grey2;
+            }
+        }
+
+        .user-data {
+            margin-left: 30px;
+
+            h2 {
+                margin: 0;
+                color: $background_1;
+                font-size: 2rem;
+            }
+    
+            h3 {
+                margin: 0;
+                color: $background_1;
+                font-size: 1.2rem;
+            }
+        }
+
+    }
+
+    .main-title {
+        padding: 20px 0px;
+        border-bottom: solid 1px $dark_blue;
+
+        h1 {
+            font-size: 2.5rem;
+            color: $dark_blue;
+            font-weight: 400;
+            margin: 0;
+        }
+    }
+}

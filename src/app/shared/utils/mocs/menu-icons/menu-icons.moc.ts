@@ -21,6 +21,6 @@ export const menuIcons: Array<any> = [
     },
     {
         icon: "profile",
-        path: "/"
+        path: "/profile"
     }
 ];

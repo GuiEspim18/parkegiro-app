@@ -1,0 +1,30 @@
+<app-page-header [icon]="'page-profile'" [title]="'Perfil'"></app-page-header>
+<section class="content">
+    <div class="content-scroll">
+        <div class="user-photo-div">
+            <button mat-button class="user-photo" (click)="photo.click()">
+                <mat-icon svgIcon="card-image"></mat-icon>
+                <input type="file" name="" id="" style="display: none;" #photo>
+            </button>
+            <div class="user-data">
+                <h2>Pedro Nascimento Espim</h2>
+                <h3>WM Vallet</h3>
+            </div>
+        </div>
+        <div class="main-title">
+            <h1>Edite o seu perfil</h1>
+        </div>
+        <div class="form">
+            <form>
+                <div *ngFor="let item of inputs" class="input-div">
+                    <app-text-input *ngIf="item.type==='text' || item.type === 'email'" [label]="item.label" [type]="item.type" [blurEvent]="item.blurEvent" (blurInput)="getBlurEvent($event)" [controlName]="item.controlName" (keyUpInput)="getKeyUpEvent($event)" [inputMak]="item.inputMak" [controlValidators]="item.validators"></app-text-input>
+                    <app-password-input *ngIf="item.type==='password'" [label]="item.label" [type]="item.type" [blurEvent]="item.blurEvent" (blurInput)="getBlurEvent($event)" [controlName]="item.controlName" (keyUpInput)="getKeyUpEvent($event)" [inputMak]="item.inputMak" [controlValidators]="item.validators"></app-password-input>
+                    <app-date-input *ngIf="item.type==='date'" [label]="item.label" [type]="item.type" [blurEvent]="item.blurEvent" (blurInput)="getBlurEvent($event)" [controlName]="item.controlName" (keyUpInput)="getKeyUpEvent($event)" [inputMak]="item.inputMak" [controlValidators]="item.validators"></app-date-input>
+                </div>
+                <div class="submit-div">
+                    <app-dark-button [text]="'Submit'"></app-dark-button>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>

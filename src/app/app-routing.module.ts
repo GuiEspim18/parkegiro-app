@@ -5,6 +5,7 @@ import { SignComponent } from './pages/sign/sign.component';
 import { CashClosingComponent } from './pages/cash-closing/cash-closing.component';
 import { DashBoardComponent } from './pages/dash-board/dash-board.component';
 import { UsersComponent } from './pages/users/users.component';
+import { ProfileComponent } from './pages/profile/profile.component';
 
 const routes: Routes = [
   {
@@ -54,6 +55,15 @@ const routes: Routes = [
       {
         path: "",
         component: UsersComponent
+      }
+    ]
+  },
+  {
+    path: "profile",
+    children: [
+      {
+        path: "",
+        component: ProfileComponent
       }
     ]
   },

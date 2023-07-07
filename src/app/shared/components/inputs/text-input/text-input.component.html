@@ -1,0 +1,5 @@
+<mat-form-field appearance="outline">
+    <mat-label>{{label}}</mat-label>
+    <input type="{{type}}" matInput mask="{{inputMak}}" (blur)="blur($event)" (keyup)="keyup($event)"
+        [formControl]="control">
+</mat-form-field>

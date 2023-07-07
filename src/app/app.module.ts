@@ -38,6 +38,10 @@ import { BasicBarChartComponent } from './shared/components/charts/basic-bar-cha
 import { SimpleDonutChartComponent } from './shared/components/charts/simple-donut-chart/simple-donut-chart.component';
 import { UsersComponent } from './pages/users/users.component';
 import { TableComponent } from './shared/components/table/table.component';
+import { ProfileComponent } from './pages/profile/profile.component';
+import { TextInputComponent } from './shared/components/inputs/text-input/text-input.component';
+import { PasswordInputComponent } from './shared/components/inputs/password-input/password-input.component';
+import { DateInputComponent } from './shared/components/inputs/date-input/date-input.component';
 
 const maskConfig: Partial<IConfig> = {
   validation: false,
@@ -75,7 +79,11 @@ const maskConfig: Partial<IConfig> = {
     BasicBarChartComponent,
     SimpleDonutChartComponent,
     UsersComponent,
-    TableComponent
+    TableComponent,
+    ProfileComponent,
+    TextInputComponent,
+    PasswordInputComponent,
+    DateInputComponent
   ],
   imports: [
     BrowserModule,

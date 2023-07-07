@@ -1,0 +1,7 @@
+<mat-form-field appearance="outline">
+    <mat-label>{{label}}</mat-label>
+    <input matInput [matDatepicker]="datepicker" (blur)="blur($event)" (keyup)="keyup($event)"
+    [formControl]="control">
+    <mat-datepicker-toggle matSuffix [for]="datepicker" #icon></mat-datepicker-toggle>
+    <mat-datepicker #datepicker></mat-datepicker>
+</mat-form-field>
