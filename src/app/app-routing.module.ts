@@ -6,6 +6,7 @@ import { CashClosingComponent } from './pages/cash-closing/cash-closing.componen
 import { DashBoardComponent } from './pages/dash-board/dash-board.component';
 import { UsersComponent } from './pages/users/users.component';
 import { ProfileComponent } from './pages/profile/profile.component';
+import { ConfigurationsComponent } from './pages/configurations/configurations.component';
 
 const routes: Routes = [
   {
@@ -64,6 +65,15 @@ const routes: Routes = [
       {
         path: "",
         component: ProfileComponent
+      }
+    ]
+  },
+  {
+    path: "config",
+    children: [
+      {
+        path: "",
+        component: ConfigurationsComponent
       }
     ]
   },

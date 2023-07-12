@@ -1,0 +1,39 @@
+<div class="system-colors-title">
+    <mat-icon svgIcon="colors"></mat-icon>
+    <h3>Cores do sistema</h3>
+</div>
+<div class="system-colors">
+    <div class="system-component-left">
+        <div class="system-component" *ngFor="let item of systemComponentLeft">
+            <h4>{{item.title}}</h4>
+            <div class="components">
+                <div class="component" *ngFor="let component of item.component">
+                    <h5>{{component.name}}</h5>
+                    <div class="inputs">
+                        <div class="input" *ngFor="let i of component.colors">
+                            <app-color-input [value]="i.color"></app-color-input>
+                            <h5>{{i.name}}</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <mat-divider [vertical]="true"></mat-divider>
+    <div class="system-component-right">
+        <div class="system-component" *ngFor="let item of systemComponentRight">
+            <h4>{{item.title}}</h4>
+            <div class="components">
+                <div class="component" *ngFor="let component of item.component">
+                    <h5>{{component.name}}</h5>
+                    <div class="inputs">
+                        <div class="input" *ngFor="let i of component.colors">
+                            <app-color-input [value]="i.color"></app-color-input>
+                            <h5>{{i.name}}</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

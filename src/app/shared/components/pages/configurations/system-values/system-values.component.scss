@@ -1,0 +1,29 @@
+@import "/src/assets/css/main.scss";
+
+.system-values-title {
+    display: flex;
+    align-items: center;
+
+    h3 {
+        font-size: 1.8rem;
+        font-weight: 500;
+        color: $dark_blue;
+        margin: 0;
+        margin-left: 10px;
+    }
+}
+
+.system-values {
+    width: 100%;
+    margin: 20px 0px;
+
+    .values-inputs {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+
+        app-text-input {
+            margin-right: 30px;
+        }
+    }
+}

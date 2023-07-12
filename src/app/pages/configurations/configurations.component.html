@@ -1,0 +1,13 @@
+<app-page-header [icon]="'page-config'" [title]="'Configurações'"></app-page-header>
+<section class="content">
+    <div class="content-scroll">
+        <app-system-colors></app-system-colors>
+        <app-change-background></app-change-background>
+        <app-system-values></app-system-values>
+    </div>
+    <mat-divider></mat-divider>
+    <div class="save-changes">
+        <app-dark-button class="button" [text]="'Salvar mudanças'"></app-dark-button>
+        <app-danger-buttons class="button" [text]="'Resetar mudanças'"></app-danger-buttons>
+    </div>
+</section>

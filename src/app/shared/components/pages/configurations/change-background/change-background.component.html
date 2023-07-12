@@ -1,0 +1,9 @@
+<div class="system-picture-title">
+    <mat-icon svgIcon="picture"></mat-icon>
+    <h3>Papel de parede</h3>
+</div>
+<div class="system-picture">
+    <div class="picture" matRipple (click)="picture.click()" [ngStyle]="{ background: 'url(' + image + ')' }">
+        <input type="file" class="file" #picture>
+    </div>
+</div>

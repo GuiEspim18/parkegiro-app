@@ -1,0 +1,16 @@
+@import "/src/assets/css/main.scss";
+
+.content {
+    overflow-y: auto;
+    height: 83%;
+    
+    .save-changes {
+        display: flex;
+        justify-content: flex-end;
+        margin: 20px 0px;
+
+        .button {
+            margin-left: 10px;
+        }
+    }
+}

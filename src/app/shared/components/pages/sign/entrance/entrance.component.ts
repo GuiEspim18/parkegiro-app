@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { AddSignDialogComponent } from '../../dialog/sign/add-sign-dialog/add-sign-dialog.component';
+import { AddSignDialogComponent } from '../../../dialog/sign/add-sign-dialog/add-sign-dialog.component';
 
 @Component({
   selector: 'app-entrance',

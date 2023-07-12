@@ -1,12 +1,14 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import { FormControl } from '@angular/forms';
 
 @Component({
-  selector: 'app-text-input',
-  templateUrl: './text-input.component.html',
-  styleUrls: ['./text-input.component.scss']
+  selector: 'app-color-input',
+  templateUrl: './color-input.component.html',
+  styleUrls: ['./color-input.component.scss']
 })
-export class TextInputComponent implements OnInit {
+export class ColorInputComponent implements OnInit {
+  
+  /* Vars */
 
   @Input() public label: string;
   @Input() public type: string;
@@ -16,13 +18,12 @@ export class TextInputComponent implements OnInit {
   @Input() public controlValidators: Array<any> = [];
   @Input() public controlName: string;
   @Input() public changeEvent: boolean = false;
+  @Input() public value: string = "#195A97";
 
-  @Output() private readonly blurInput: EventEmitter<any> = new EventEmitter();
-  @Output() private readonly keyUpInput: EventEmitter<any> = new EventEmitter();
   @Output() private readonly changeInput: EventEmitter<any> = new EventEmitter();
 
 
-  public control: FormControl = new FormControl("");
+  public control: FormControl;
 
   constructor() { }
 
@@ -30,20 +31,8 @@ export class TextInputComponent implements OnInit {
     this.setupControl();
   }
 
-
-  public blur(event: any): void {
-    if(this.blurEvent) {
-      const emitValue: string = `{"value": "${event.target.value}", "controlName": "${this.controlName}"}`;
-      this.blurInput.emit(JSON.parse(emitValue));
-    } 
-  }
-
-  public keyup(event: any): void {
-    const emitValue: string = `{"value": "${event.target.value}", "controlName": "${this.controlName}"}`;
-    this.keyUpInput.emit(JSON.parse(emitValue));
-  }
-
   public setupControl(): void {
+    this.control = new FormControl(this.value)
     if (this.controlValue) this.control.setValue(this.controlValue);
     if (this.controlValidators.length > 0) {
       this.control.setValidators(this.controlValidators);

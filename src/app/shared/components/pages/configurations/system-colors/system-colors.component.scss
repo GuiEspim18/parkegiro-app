@@ -1,0 +1,108 @@
+@import "/src/assets/css/main.scss";
+
+.system-colors-title {
+    display: flex;
+    align-items: center;
+
+    h3 {
+        font-size: 1.8rem;
+        font-weight: 500;
+        color: $dark_blue;
+        margin: 0;
+        margin-left: 10px;
+    }
+}
+
+.system-colors {
+    display: flex;
+    justify-content: space-evenly;
+    margin-bottom: 30px;
+
+    .system-component-left {
+        width: 40%;
+    
+        h4 {
+            font-size: 1.3rem;
+            color: $dark_blue;
+            margin-bottom: 12px;
+            margin-top: 20px;
+            font-weight: 500;
+        }
+    
+        .components {
+            display: flex;
+    
+            .component {
+                margin-right: 20px;
+                
+                h5 {
+                    font-size: 1rem;
+                    font-weight: 500;
+                    color: $dark_blue;
+                }
+            }
+        }
+    
+        .inputs {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+    
+            .input {
+                text-align: center;
+                margin-right: 10px;
+    
+                h5 {
+                    font-size: 1rem;
+                    font-weight: 400;
+                    color: $dark_blue;
+                }
+            }
+    
+        }
+    }
+
+    .system-component-right {
+        width: 40%;
+    
+        h4 {
+            font-size: 1.3rem;
+            color: $dark_blue;
+            margin-bottom: 12px;
+            margin-top: 20px;
+            font-weight: 500;
+        }
+    
+        .components {
+            display: flex;
+    
+            .component {
+                margin-right: 20px;
+                
+                h5 {
+                    font-size: 1rem;
+                    font-weight: 500;
+                    color: $dark_blue;
+                }
+            }
+        }
+    
+        .inputs {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+    
+            .input {
+                text-align: center;
+                margin-right: 10px;
+    
+                h5 {
+                    font-size: 1rem;
+                    font-weight: 400;
+                    color: $dark_blue;
+                }
+            }
+    
+        }
+    }
+}

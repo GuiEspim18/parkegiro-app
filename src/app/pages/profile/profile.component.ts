@@ -11,7 +11,22 @@ export class ProfileComponent implements OnInit {
   /* Vars */
 
   private form: FormGroup = new FormGroup({
-    "userName": new FormControl("", [Validators.required])
+    "userName": new FormControl("", [Validators.required]),
+    "name": new FormControl("", [Validators.required]),
+    "surname": new FormControl("", [Validators.required]),
+    "cpf": new FormControl("", [Validators.required]),
+    "zipCode": new FormControl("", [Validators.required]),
+    "street": new FormControl("", [Validators.required]),
+    "number": new FormControl("", [Validators.required]),
+    "compliment": new FormControl(""),
+    "password": new FormControl("", [Validators.required, Validators.minLength(8)]),
+    "passwordConfirm": new FormControl("", [Validators.required, Validators.minLength(8)]),
+    "email": new FormControl("", [Validators.required]),
+    "birthdate": new FormControl("", [Validators.required]),
+    "company": new FormControl("", [Validators.required]),
+    "cnpj": new FormControl("", [Validators.required]),
+    "cellphone": new FormControl("", [Validators.required]),
+    "telephone": new FormControl("")
   })
 
   public inputs: Array<any> = [
@@ -20,6 +35,7 @@ export class ProfileComponent implements OnInit {
       controlName: "userName",
       validators: [Validators.required],
       type: "text",
+      changeEvent: false,
       blurEvent: false,
       value: "",
       inputMak: ""
@@ -29,6 +45,7 @@ export class ProfileComponent implements OnInit {
       controlName: "name",
       validators: [Validators.required],
       type: "text",
+      changeEvent: false,
       blurEvent: false,
       value: "",
       inputMak: ""
@@ -38,6 +55,7 @@ export class ProfileComponent implements OnInit {
       controlName: "surname",
       validators: [Validators.required],
       type: "text",
+      changeEvent: false,
       blurEvent: false,
       value: "",
       inputMak: ""
@@ -47,15 +65,27 @@ export class ProfileComponent implements OnInit {
       controlName: "cpf",
       validators: [Validators.required],
       type: "text",
-      blurEvent: true,
+      changeEvent: false,
+      blurEvent: false,
       value: "",
       inputMak: "000.000.000-00"
+    },
+    {
+      label: "Data de nascimento",
+      controlName: "birthdate",
+      validators: [Validators.required],
+      type: "date",
+      changeEvent: true,
+      blurEvent: false,
+      value: "",
+      inputMak: ""
     },
     {
       label: "CEP",
       controlName: "zipCode",
       validators: [Validators.required],
       type: "text",
+      changeEvent: false,
       blurEvent: true,
       value: "",
       inputMak: "00000-000"
@@ -65,7 +95,8 @@ export class ProfileComponent implements OnInit {
       controlName: "street",
       validators: [Validators.required],
       type: "text",
-      blurEvent: true,
+      changeEvent: false,
+      blurEvent: false,
       value: "",
       inputMak: ""
     },
@@ -74,7 +105,8 @@ export class ProfileComponent implements OnInit {
       controlName: "number",
       validators: [Validators.required],
       type: "text",
-      blurEvent: true,
+      changeEvent: false,
+      blurEvent: false,
       value: "",
       inputMak: ""
     },
@@ -83,7 +115,38 @@ export class ProfileComponent implements OnInit {
       controlName: "compliment",
       validators: [],
       type: "text",
-      blurEvent: true,
+      changeEvent: false,
+      blurEvent: false,
+      value: "",
+      inputMak: ""
+    },
+    {
+      label: "Celular",
+      controlName: "cellphone",
+      validators: [Validators.required],
+      type: "text",
+      changeEvent: false,
+      blurEvent: false,
+      value: "",
+      inputMak: "(00)00000-0000"
+    },
+    {
+      label: "Telefone fixo",
+      controlName: "telephone",
+      validators: [],
+      type: "text",
+      changeEvent: false,
+      blurEvent: false,
+      value: "",
+      inputMak: "(00)0000-0000"
+    },
+    {
+      label: "Email",
+      controlName: "email",
+      validators: [Validators.required],
+      type: "email",
+      changeEvent: false,
+      blurEvent: false,
       value: "",
       inputMak: ""
     },
@@ -92,7 +155,8 @@ export class ProfileComponent implements OnInit {
       controlName: "password",
       validators: [Validators.required, Validators.minLength(8)],
       type: "password",
-      blurEvent: true,
+      changeEvent: false,
+      blurEvent: false,
       value: "",
       inputMak: ""
     },
@@ -101,25 +165,8 @@ export class ProfileComponent implements OnInit {
       controlName: "passwordConfirm",
       validators: [Validators.required, Validators.minLength(8)],
       type: "password",
-      blurEvent: true,
-      value: "",
-      inputMak: ""
-    },
-    {
-      label: "Email",
-      controlName: "passwordConfirm",
-      validators: [Validators.required],
-      type: "email",
-      blurEvent: true,
-      value: "",
-      inputMak: ""
-    },
-    {
-      label: "Data de nascimento",
-      controlName: "birthdate",
-      validators: [Validators.required],
-      type: "date",
-      blurEvent: true,
+      changeEvent: false,
+      blurEvent: false,
       value: "",
       inputMak: ""
     },
@@ -128,7 +175,8 @@ export class ProfileComponent implements OnInit {
       controlName: "company",
       validators: [Validators.required],
       type: "text",
-      blurEvent: true,
+      changeEvent: false,
+      blurEvent: false,
       value: "",
       inputMak: ""
     },
@@ -137,7 +185,8 @@ export class ProfileComponent implements OnInit {
       controlName: "cnpj",
       validators: [Validators.required],
       type: "text",
-      blurEvent: true,
+      changeEvent: false,
+      blurEvent: false,
       value: "",
       inputMak: "00.000.000/0000-00"
     },
@@ -151,10 +200,16 @@ export class ProfileComponent implements OnInit {
   }
 
   public getBlurEvent(event: any): void {
-    console.log(event)
+    if (event.controlName === "birthdate") this.form.get(event.controlName)?.setValue(event.value)
+    console.log(this.form.value)
   }
 
   public getKeyUpEvent(event: any): void {
+    this.form.get(event.controlName)?.setValue(event.value)
+    console.log(this.form.value)
+  }
+
+  public getChangeEvent(event: any): void {
     this.form.get(event.controlName)?.setValue(event.value)
     console.log(this.form.value)
   }

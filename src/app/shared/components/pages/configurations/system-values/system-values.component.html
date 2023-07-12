@@ -1,0 +1,10 @@
+<div class="system-values-title">
+    <mat-icon svgIcon="page-dollar"></mat-icon>
+    <h3>Valores a serem cobrados</h3>
+</div>
+<div class="system-values">
+    <div class="values-inputs">
+        <app-text-input *ngFor="let item of inputs" [label]="item.label" [type]="item.type" [blurEvent]="item.blurEvent" [changeEvent]="item.changeEvent" (blurInput)="getBlurEvent($event)" [controlName]="item.controlName" (keyUpInput)="getKeyUpEvent($event)" (changeInput)="getChangeEvent($event)" [inputMak]="item.inputMak" [controlValidators]="item.validators"></app-text-input>
+        <app-dark-button [text]="'Adicionar'"></app-dark-button>
+    </div>
+</div>

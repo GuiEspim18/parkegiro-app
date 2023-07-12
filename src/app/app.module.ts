@@ -21,15 +21,15 @@ import { HomePerformanceCardComponent } from './shared/components/cards/home/hom
 import { DistributedColumnsChartsComponent } from './shared/components/charts/distributed-columns-charts/distributed-columns-charts.component';
 import { NotificationComponent } from './shared/components/notification/notification.component';
 import { SignComponent } from './pages/sign/sign.component';
-import { EntranceComponent } from './shared/components/sign/entrance/entrance.component';
-import { DepartureComponent } from './shared/components/sign/departure/departure.component';
+import { EntranceComponent } from './shared/components/pages/sign/entrance/entrance.component';
+import { DepartureComponent } from './shared/components/pages/sign/departure/departure.component';
 import { EntranceCardComponent } from './shared/components/cards/sign/entrance-card/entrance-card.component';
 import { DepartureCardComponent } from './shared/components/cards/sign/departure-card/departure-card.component';
 import { AddSignDialogComponent } from './shared/components/dialog/sign/add-sign-dialog/add-sign-dialog.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DialogHeaderComponent } from './shared/components/dialog/dialog-header/dialog-header.component';
 import { IConfig, NgxMaskModule } from 'ngx-mask';
-import { ExpansionPanelComponent } from './shared/components/cash-closing/expansion-panel/expansion-panel.component';
+import { ExpansionPanelComponent } from './shared/components/pages/cash-closing/expansion-panel/expansion-panel.component';
 import { PdfButtonComponent } from './shared/components/buttons/pdf-button/pdf-button.component';
 import { ExcelButtonComponent } from './shared/components/buttons/excel-button/excel-button.component';
 import { CashClosingComponent } from './pages/cash-closing/cash-closing.component';
@@ -42,6 +42,12 @@ import { ProfileComponent } from './pages/profile/profile.component';
 import { TextInputComponent } from './shared/components/inputs/text-input/text-input.component';
 import { PasswordInputComponent } from './shared/components/inputs/password-input/password-input.component';
 import { DateInputComponent } from './shared/components/inputs/date-input/date-input.component';
+import { ConfigurationsComponent } from './pages/configurations/configurations.component';
+import { SystemColorsComponent } from './shared/components/pages/configurations/system-colors/system-colors.component';
+import { ColorInputComponent } from './shared/components/inputs/color-input/color-input.component';
+import { ChangeBackgroundComponent } from './shared/components/pages/configurations/change-background/change-background.component';
+import { SystemValuesComponent } from './shared/components/pages/configurations/system-values/system-values.component';
+import { DangerButtonsComponent } from './shared/components/buttons/danger-buttons/danger-buttons.component';
 
 const maskConfig: Partial<IConfig> = {
   validation: false,
@@ -83,7 +89,13 @@ const maskConfig: Partial<IConfig> = {
     ProfileComponent,
     TextInputComponent,
     PasswordInputComponent,
-    DateInputComponent
+    DateInputComponent,
+    ConfigurationsComponent,
+    SystemColorsComponent,
+    ColorInputComponent,
+    ChangeBackgroundComponent,
+    SystemValuesComponent,
+    DangerButtonsComponent
   ],
   imports: [
     BrowserModule,
