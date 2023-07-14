@@ -19,6 +19,49 @@ export class AddSignDialogComponent implements OnInit {
     'color': new FormControl('', [Validators.required])
   })
 
+  public inputs: Array<any> = [
+    {
+      label: "Placa",
+      controlName: "sign",
+      validators: [Validators.required],
+      type: "text",
+      changeEvent: false,
+      blurEvent: true,
+      value: "",
+      inputMak: "SSS-0A00"
+    },
+    {
+      label: "Marca",
+      controlName: "brand",
+      validators: [Validators.required],
+      type: "text",
+      changeEvent: false,
+      blurEvent: false,
+      value: "",
+      inputMak: ""
+    },
+    {
+      label: "Modelo",
+      controlName: "model",
+      validators: [Validators.required],
+      type: "text",
+      changeEvent: false,
+      blurEvent: false,
+      value: "",
+      inputMak: ""
+    },
+    {
+      label: "Cor",
+      controlName: "color",
+      validators: [Validators.required],
+      type: "text",
+      changeEvent: false,
+      blurEvent: false,
+      value: "",
+      inputMak: ""
+    },
+  ]
+
   public loader: boolean = false;
 
   private vehicle: any;
@@ -41,8 +84,8 @@ export class AddSignDialogComponent implements OnInit {
   }
 
 
-  public findVehicle(event: any): void {
-    const sign: string = event.target.value;
+  public findVehicle(value: any): void {
+    const sign: string = value;
     if (sign.length === 8) {
       this.loader = true
       const formatedSign: string = sign.toLocaleUpperCase().replace('-', '');
@@ -51,6 +94,9 @@ export class AddSignDialogComponent implements OnInit {
           this.form.get('brand')?.setValue(value.marca1);
           this.form.get('model')?.setValue(value.modelo1);
           this.form.get('color')?.setValue(value.cor);
+          this.inputs[1].value = value.marca1;
+          this.inputs[2].value = value.modelo1;
+          this.inputs[3].value = value.cor;
           const vehicle: any = {
             sign: formatedSign,
             brand: value.marca1,
@@ -64,6 +110,22 @@ export class AddSignDialogComponent implements OnInit {
         this.loader = false;
       })
     }
+  }
+
+
+  public getBlurEvent(event: any): void {
+    if (event.controlName === "sign") this.findVehicle(event.value);
+    console.log(this.form.value)
+  }
+
+  public getKeyUpEvent(event: any): void {
+    this.form.get(event.controlName)?.setValue(event.value)
+    console.log(this.form.value)
+  }
+
+  public getChangeEvent(event: any): void {
+    this.form.get(event.controlName)?.setValue(event.value)
+    console.log(this.form.value)
   }
 
 }

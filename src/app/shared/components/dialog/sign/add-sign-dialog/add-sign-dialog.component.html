@@ -1,21 +1,6 @@
 <app-dialog-header [title]="'Adicionar carro'"></app-dialog-header>
 <mat-progress-bar *ngIf="loader" mode="indeterminate"></mat-progress-bar>
 <form [formGroup]="form" (ngSubmit)="submit(form)" class="add-sign-form">
-    <mat-form-field appearance="outline">
-        <mat-label>Placa</mat-label>
-        <input type="text" matInput formControlName="sign" mask="SSS-0A00" (blur)="findVehicle($event)">
-    </mat-form-field>
-    <mat-form-field appearance="outline">
-        <mat-label>Marca</mat-label>
-        <input type="text" matInput formControlName="brand">
-    </mat-form-field>
-    <mat-form-field appearance="outline">
-        <mat-label>Modelo</mat-label>
-        <input type="text" matInput formControlName="model">
-    </mat-form-field>
-    <mat-form-field appearance="outline">
-        <mat-label>Cor</mat-label>
-        <input type="text" matInput formControlName="color">
-    </mat-form-field>
-    <app-dark-button [text]="'Adicionar'"></app-dark-button>
+    <app-text-input *ngFor="let item of inputs" [label]="item.label" [type]="item.type" [blurEvent]="item.blurEvent" [changeEvent]="item.changeEvent" (blurInput)="getBlurEvent($event)" [controlName]="item.controlName" (keyUpInput)="getKeyUpEvent($event)" (changeInput)="getChangeEvent($event)" [inputMak]="item.inputMak" [controlValidators]="item.validators" [value]="item.value"></app-text-input>
+    <app-dark-button [text]="'Adicionar'"></app-dark-button> 
 </form>

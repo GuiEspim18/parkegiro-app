@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, OnChanges, SimpleChanges } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 
 @Component({
@@ -16,6 +16,7 @@ export class TextInputComponent implements OnInit {
   @Input() public controlValidators: Array<any> = [];
   @Input() public controlName: string;
   @Input() public changeEvent: boolean = false;
+  @Input() public value: string = "";
 
   @Output() private readonly blurInput: EventEmitter<any> = new EventEmitter();
   @Output() private readonly keyUpInput: EventEmitter<any> = new EventEmitter();
@@ -26,8 +27,12 @@ export class TextInputComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.setupControl();
+  }
+
+  public ngOnChanges(changes: SimpleChanges): void {
+    this.valueChanges(changes.value.currentValue);
   }
 
 
@@ -54,6 +59,12 @@ export class TextInputComponent implements OnInit {
     if (this.changeEvent) {
       const emitValue: string = `{"value": "${event.target.value}", "controlName": "${this.controlName}"}`;
       this.changeInput.emit(JSON.parse(emitValue))
+    }
+  }
+
+  public valueChanges(change: string): void {
+    if (change.length > 0) {
+      this.control.setValue(change);
     }
   }
 

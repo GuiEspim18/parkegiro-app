@@ -37,7 +37,7 @@ export class EntranceComponent implements OnInit {
         const vehicle: any = {
           model: `${value.brand} ${value.model} - ${value.color}`,
           sign: value.sign,
-          entrance: `${currentDate.getHours()}:${currentDate.getMinutes()}`
+          entrance: `${currentDate.getHours()}:${Number(currentDate.getMinutes()) < 10 ? String("0" + currentDate.getMinutes()) : currentDate.getMinutes()}`
         }
         this.entrance.push(vehicle)
       }
