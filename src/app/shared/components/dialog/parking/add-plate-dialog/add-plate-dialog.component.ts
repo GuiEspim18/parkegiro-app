@@ -1,19 +1,19 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
-import { SignService } from 'src/app/shared/services/sign.service';
+import { PlateService } from 'src/app/shared/services/sign.service';
 
 @Component({
-  selector: 'app-add-sign-dialog',
-  templateUrl: './add-sign-dialog.component.html',
-  styleUrls: ['./add-sign-dialog.component.scss']
+  selector: 'app-add-plate-dialog',
+  templateUrl: './add-plate-dialog.component.html',
+  styleUrls: ['./add-plate-dialog.component.scss']
 })
-export class AddSignDialogComponent implements OnInit {
+export class AddPlateDialogComponent implements OnInit {
 
   /* Vars */
 
   public readonly form: FormGroup = new FormGroup({
-    'sign': new FormControl('', [Validators.required]),
+    'plate': new FormControl('', [Validators.required]),
     'brand': new FormControl('', [Validators.required]),
     'model': new FormControl('', [Validators.required]),
     'color': new FormControl('', [Validators.required])
@@ -22,7 +22,7 @@ export class AddSignDialogComponent implements OnInit {
   public inputs: Array<any> = [
     {
       label: "Placa",
-      controlName: "sign",
+      controlName: "plate",
       validators: [Validators.required],
       type: "text",
       changeEvent: false,
@@ -68,8 +68,8 @@ export class AddSignDialogComponent implements OnInit {
 
 
   constructor(
-    private readonly signService: SignService,
-    private readonly dialogRef: MatDialogRef<AddSignDialogComponent>
+    private readonly plateService: PlateService,
+    private readonly dialogRef: MatDialogRef<AddPlateDialogComponent>
   ) { }
 
 
@@ -85,11 +85,11 @@ export class AddSignDialogComponent implements OnInit {
 
 
   public findVehicle(value: any): void {
-    const sign: string = value;
-    if (sign.length === 8) {
+    const plate: string = value;
+    if (plate.length === 8) {
       this.loader = true
-      const formatedSign: string = sign.toLocaleUpperCase().replace('-', '');
-      this.signService.find(formatedSign).subscribe((value: any) => {
+      const formatedPlate: string = plate.toLocaleUpperCase().replace('-', '');
+      this.plateService.find(formatedPlate).subscribe((value: any) => {
         if (value) {
           this.form.get('brand')?.setValue(value.marca1);
           this.form.get('model')?.setValue(value.modelo1);
@@ -98,7 +98,7 @@ export class AddSignDialogComponent implements OnInit {
           this.inputs[2].value = value.modelo1;
           this.inputs[3].value = value.cor;
           const vehicle: any = {
-            sign: formatedSign,
+            sign: formatedPlate,
             brand: value.marca1,
             model: value.modelo1,
             color: value.cor
@@ -114,7 +114,7 @@ export class AddSignDialogComponent implements OnInit {
 
 
   public getBlurEvent(event: any): void {
-    if (event.controlName === "sign") this.findVehicle(event.value);
+    if (event.controlName === "plate") this.findVehicle(event.value);
     console.log(this.form.value)
   }
 

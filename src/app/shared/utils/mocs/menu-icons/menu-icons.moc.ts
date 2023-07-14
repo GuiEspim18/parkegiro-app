@@ -5,7 +5,7 @@ export const menuIcons: Array<any> = [
     },
     {
         icon: "vehicles",
-        path: "/sign"
+        path: "/parking"
     },
     {
         icon: "dollar",

@@ -32,7 +32,7 @@ export class TextInputComponent implements OnInit {
   }
 
   public ngOnChanges(changes: SimpleChanges): void {
-    this.valueChanges(changes.value.currentValue);
+    this.valueChanges(changes.value?.currentValue);
   }
 
 
@@ -63,7 +63,7 @@ export class TextInputComponent implements OnInit {
   }
 
   public valueChanges(change: string): void {
-    if (change.length > 0) {
+    if (change?.length > 0) {
       this.control.setValue(change);
     }
   }

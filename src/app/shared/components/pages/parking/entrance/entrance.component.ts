@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { AddSignDialogComponent } from '../../../dialog/sign/add-sign-dialog/add-sign-dialog.component';
+import { AddPlateDialogComponent } from '../../../dialog/parking/add-plate-dialog/add-plate-dialog.component';
 
 @Component({
   selector: 'app-entrance',
@@ -13,7 +13,7 @@ export class EntranceComponent implements OnInit {
 
   public entrance: Array<any> = [];
 
-  public dialogRef: MatDialogRef<AddSignDialogComponent>;
+  public dialogRef: MatDialogRef<AddPlateDialogComponent>;
 
   @Output() public getOut: EventEmitter<any> = new EventEmitter();
 
@@ -27,7 +27,7 @@ export class EntranceComponent implements OnInit {
 
 
   public openDialog(): void {
-    this.dialogRef = this.matDialogService.open(AddSignDialogComponent, {
+    this.dialogRef = this.matDialogService.open(AddPlateDialogComponent, {
       width: '400px',
       autoFocus: false,
     })

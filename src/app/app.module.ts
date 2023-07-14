@@ -20,12 +20,12 @@ import { DarkButtonComponent } from './shared/components/buttons/dark-button/dar
 import { HomePerformanceCardComponent } from './shared/components/cards/home/home-performance-card/home-performance-card.component';
 import { DistributedColumnsChartsComponent } from './shared/components/charts/distributed-columns-charts/distributed-columns-charts.component';
 import { NotificationComponent } from './shared/components/notification/notification.component';
-import { SignComponent } from './pages/sign/sign.component';
-import { EntranceComponent } from './shared/components/pages/sign/entrance/entrance.component';
-import { DepartureComponent } from './shared/components/pages/sign/departure/departure.component';
-import { EntranceCardComponent } from './shared/components/cards/sign/entrance-card/entrance-card.component';
-import { DepartureCardComponent } from './shared/components/cards/sign/departure-card/departure-card.component';
-import { AddSignDialogComponent } from './shared/components/dialog/sign/add-sign-dialog/add-sign-dialog.component';
+import { ParkingComponent } from './pages/parking/parking.component';
+import { EntranceComponent } from './shared/components/pages/parking/entrance/entrance.component';
+import { DepartureComponent } from './shared/components/pages/parking/departure/departure.component';
+import { EntranceCardComponent } from './shared/components/cards/parking/entrance-card/entrance-card.component';
+import { DepartureCardComponent } from './shared/components/cards/parking/departure-card/departure-card.component';
+import { AddPlateDialogComponent } from './shared/components/dialog/parking/add-plate-dialog/add-plate-dialog.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DialogHeaderComponent } from './shared/components/dialog/dialog-header/dialog-header.component';
 import { IConfig, NgxMaskModule } from 'ngx-mask';
@@ -70,12 +70,12 @@ const maskConfig: Partial<IConfig> = {
     HomePerformanceCardComponent,
     DistributedColumnsChartsComponent,
     NotificationComponent,
-    SignComponent,
+    ParkingComponent,
     EntranceComponent,
     DepartureComponent,
     EntranceCardComponent,
     DepartureCardComponent,
-    AddSignDialogComponent,
+    AddPlateDialogComponent,
     DialogHeaderComponent,
     ExpansionPanelComponent,
     PdfButtonComponent,
