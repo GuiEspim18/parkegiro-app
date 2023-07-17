@@ -2,6 +2,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { PlateService } from 'src/app/shared/services/plate.service';
+import { Alerts } from 'src/app/shared/utils/alerts/alerts';
 
 @Component({
   selector: 'app-add-plate-dialog',
@@ -68,6 +69,7 @@ export class AddPlateDialogComponent implements OnInit {
   constructor(
     private readonly plateService: PlateService,
     private readonly dialogRef: MatDialogRef<AddPlateDialogComponent>,
+    private readonly alerts: Alerts
   ) { }
 
 
@@ -83,6 +85,9 @@ export class AddPlateDialogComponent implements OnInit {
       this.plateService.create(form.value).subscribe((element) => {
         this.dialogRef.close();
       });
+    } else {
+      const msg: string = "Preencha os campos que são obrigatórios!";
+      this.alerts.error(msg);
     }
   }
 
@@ -110,6 +115,8 @@ export class AddPlateDialogComponent implements OnInit {
         this.loader = false;
       }, (err: any) => {
         this.loader = false;
+        const msg: string = "Placa inválida!";
+        this.alerts.error(msg);
       })
     }
   }

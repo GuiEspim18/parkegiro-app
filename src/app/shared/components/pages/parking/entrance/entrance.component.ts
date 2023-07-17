@@ -2,6 +2,9 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { AddPlateDialogComponent } from '../../../dialog/parking/add-plate-dialog/add-plate-dialog.component';
 import { PlateService } from 'src/app/shared/services/plate.service';
+import { Alerts } from 'src/app/shared/utils/alerts/alerts';
+import { SweetAlertResult } from 'sweetalert2';
+import { TMessage } from 'src/app/shared/utils/types/alert-question/alert-question.types';
 
 @Component({
   selector: 'app-entrance',
@@ -15,9 +18,9 @@ export class EntranceComponent implements OnInit {
    */
 
   @Input() public entrance: Array<any> = [];
-  
+
   public dialogRef: MatDialogRef<AddPlateDialogComponent>;
-  
+
   @Output() public getOut: EventEmitter<any> = new EventEmitter();
 
 
@@ -27,7 +30,8 @@ export class EntranceComponent implements OnInit {
 
   constructor(
     private readonly matDialogService: MatDialog,
-    private readonly plateService: PlateService
+    private readonly plateService: PlateService,
+    private readonly alerts: Alerts
   ) { }
 
 
@@ -51,6 +55,8 @@ export class EntranceComponent implements OnInit {
       autoFocus: false,
     });
     this.dialogRef.afterClosed().subscribe(() => {
+      const msg: string = "Veículo adicionado ao pátio";
+      this.alerts.success(msg);
       this.populate();
     })
   }
@@ -64,14 +70,26 @@ export class EntranceComponent implements OnInit {
   public getOutEvent(event: any): void {
     const index: number = this.findIndex(event);
     if (index !== -1) {
-      const id: number = this.entrance[index].id;
-      let data: any = this.entrance[index];
-      const currentDate: Date = new Date();
-      data.stage = 1;
-      data.departure = `${currentDate.getHours()}:${Number(currentDate.getMinutes()) < 10 ? String("0" + currentDate.getMinutes()) : currentDate.getMinutes()}`;
-      this.plateService.update(id, data).subscribe(() => {
-        this.populate();
-        this.getOut.emit();
+      const message: TMessage = {
+        title: "Deseja tirar este veículo?",
+        message: "Ao tirar o veículo do pátio ele saíra da lista de entradas e irá para a lista de saída!",
+        confirm: "Sim",
+        cancel: "Não"
+      };
+      this.alerts.question(message).then((result: SweetAlertResult<any>) => {
+        if (result.isConfirmed) {
+          const id: number = this.entrance[index].id;
+          let data: any = this.entrance[index];
+          const currentDate: Date = new Date();
+          data.stage = 1;
+          data.departure = `${currentDate.getHours()}:${Number(currentDate.getMinutes()) < 10 ? String("0" + currentDate.getMinutes()) : currentDate.getMinutes()}`;
+          this.plateService.update(id, data).subscribe(() => {
+            const msg: string = "Veículo retirado do pátio";
+            this.populate();
+            this.alerts.success(msg);
+            this.getOut.emit();
+          });
+        }
       });
     }
   }
@@ -97,7 +115,21 @@ export class EntranceComponent implements OnInit {
     const index: number = this.findIndex(event);
     if (index !== -1) {
       const id: number = this.entrance[index].id;
-      this.plateService.delete(id).subscribe(() => this.populate());
+      const message: TMessage = {
+        title: "Deseja cancelar esta entrada?",
+        message: "Ao cancelar esta entrada você excluirá ela do pátio definitivamente!",
+        confirm: "Sim",
+        cancel: "Não"
+      };
+      this.alerts.question(message).then((result: SweetAlertResult<any>) => {
+        if (result.isConfirmed) {
+          this.plateService.delete(id).subscribe(() => {
+            const msg: string = "Entrada cancelada";
+            this.alerts.success(msg);
+            this.populate();
+          });
+        }
+      });
     }
   }
 

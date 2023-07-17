@@ -1,5 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { PlateService } from 'src/app/shared/services/plate.service';
+import { Alerts } from 'src/app/shared/utils/alerts/alerts';
+import { TMessage } from 'src/app/shared/utils/types/alert-question/alert-question.types';
+import { SweetAlertResult } from 'sweetalert2';
 
 @Component({
   selector: 'app-departure',
@@ -21,7 +24,8 @@ export class DepartureComponent implements OnInit {
    */
 
   constructor(
-    private readonly plateService: PlateService
+    private readonly plateService: PlateService,
+    private readonly alerts: Alerts
   ) { }
 
 
@@ -40,19 +44,29 @@ export class DepartureComponent implements OnInit {
    */
 
   public cancelDeparture(event: any): void {
-    const index: number = this.departure.findIndex((element: any) => {
-      return element.plate === event
-    });
-    if (index !== -1) {
-      let data: any = this.departure[index];
-      const id: number = this.departure[index].id;
-      data.departure = null;
-      data.stage = 0;
-      this.plateService.update(id, data).subscribe(() => {
-        this.populate();
-        this.cancel.emit();
-      })
-    }
+    const message: TMessage = {
+      title: "Deseja cancelar a saída deste veículo?",
+      message: "Ao cancelar a saída deste veículo ele voltará a lista do pátio de entradas!",
+      confirm: "Sim",
+      cancel: "Não"
+    };
+    this.alerts.question(message).then((result: SweetAlertResult<any>) => {
+      if (result.isConfirmed) {
+        const index: number = this.departure.findIndex((element: any) => {
+          return element.plate === event
+        });
+        if (index !== -1) {
+          let data: any = this.departure[index];
+          const id: number = this.departure[index].id;
+          data.departure = null;
+          data.stage = 0;
+          this.plateService.update(id, data).subscribe(() => {
+            this.populate();
+            this.cancel.emit();
+          })
+        }
+      }
+    })
   }
 
 
