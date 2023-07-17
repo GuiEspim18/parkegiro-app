@@ -7,24 +7,52 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 })
 export class EntranceCardComponent implements OnInit {
 
-  /* Vars */
+  /**
+   * Global properties
+   */
 
   @Input() public model: string;
-  @Input() public sign: string;
+  @Input() public plate: string;
+  @Input() public color: string;
   @Input() public entrance: string;
 
 
-  @Output() public getOutVehicle: EventEmitter<any> = new EventEmitter()
+  @Output() private readonly getOutVehicle: EventEmitter<any> = new EventEmitter();
+  @Output() private readonly cancel: EventEmitter<any> = new EventEmitter();
 
+
+  /** 
+   * Class constructor
+   */
 
   constructor() { }
+
+
+  /** 
+   * On init method
+   */
 
   ngOnInit(): void {
   }
 
 
+  /** 
+   * Method to get out a vehicle
+   * @param value
+   */
+
   public getOut(value: string): void {
-    this.getOutVehicle.emit(value)
+    this.getOutVehicle.emit(value);
+  }
+
+
+  /** 
+   * Method to cancel an entrance
+   * @param plate
+   */
+
+  public cancelEntrance(plate: string): void {
+    this.cancel.emit(plate);
   }
 
 }

@@ -1,6 +1,7 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { AddPlateDialogComponent } from '../../../dialog/parking/add-plate-dialog/add-plate-dialog.component';
+import { PlateService } from 'src/app/shared/services/plate.service';
 
 @Component({
   selector: 'app-entrance',
@@ -9,51 +10,109 @@ import { AddPlateDialogComponent } from '../../../dialog/parking/add-plate-dialo
 })
 export class EntranceComponent implements OnInit {
 
-  /* Vars */
+  /** 
+   * Global properties 
+   */
 
-  public entrance: Array<any> = [];
-
+  @Input() public entrance: Array<any> = [];
+  
   public dialogRef: MatDialogRef<AddPlateDialogComponent>;
-
+  
   @Output() public getOut: EventEmitter<any> = new EventEmitter();
+
+
+  /** 
+   * Class constructor
+   */
 
   constructor(
     private readonly matDialogService: MatDialog,
+    private readonly plateService: PlateService
   ) { }
 
 
+  /** 
+   * On init method
+   */
+
   public ngOnInit(): void {
+    this.populate();
   }
 
+
+
+  /** 
+   * Method that open the matdialog
+   */
 
   public openDialog(): void {
     this.dialogRef = this.matDialogService.open(AddPlateDialogComponent, {
       width: '400px',
       autoFocus: false,
-    })
-    this.dialogRef.afterClosed().subscribe((value: any) => {
-      if (value) {
-        const currentDate: Date = new Date();
-        const vehicle: any = {
-          model: `${value.brand} ${value.model} - ${value.color}`,
-          sign: value.sign,
-          entrance: `${currentDate.getHours()}:${Number(currentDate.getMinutes()) < 10 ? String("0" + currentDate.getMinutes()) : currentDate.getMinutes()}`
-        }
-        this.entrance.push(vehicle)
-      }
+    });
+    this.dialogRef.afterClosed().subscribe(() => {
+      this.populate();
     })
   }
 
 
+  /** 
+   * Method that get the event getOut from a component
+   * @param event
+   */
+
   public getOutEvent(event: any): void {
-    const index: number = this.entrance.findIndex((element: any) => {
-      return element.sign === event;
-    });
+    const index: number = this.findIndex(event);
     if (index !== -1) {
-      this.getOut.emit(this.entrance[index])
-      this.entrance.splice(index, 1)
+      const id: number = this.entrance[index].id;
+      let data: any = this.entrance[index];
+      const currentDate: Date = new Date();
+      data.stage = 1;
+      data.departure = `${currentDate.getHours()}:${Number(currentDate.getMinutes()) < 10 ? String("0" + currentDate.getMinutes()) : currentDate.getMinutes()}`;
+      this.plateService.update(id, data).subscribe(() => {
+        this.populate();
+        this.getOut.emit();
+      });
     }
   }
 
+
+  /** 
+   * Method to populate the entrance array
+   */
+
+  private populate(): void {
+    this.plateService.findByStage(0).subscribe((element: Array<any>) => {
+      this.entrance = element;
+    });
+  }
+
+
+  /** 
+   * Method to cancel an entrance
+   * @param event
+   */
+
+  public cancel(event: any): void {
+    const index: number = this.findIndex(event);
+    if (index !== -1) {
+      const id: number = this.entrance[index].id;
+      this.plateService.delete(id).subscribe(() => this.populate());
+    }
+  }
+
+
+  /** 
+   * Method to find an index on entrance array
+   * @param plate
+   * @returns number
+   */
+
+  private findIndex(plate: string): number {
+    const index: number = this.entrance.findIndex((element: any) => {
+      return element.plate === plate;
+    });
+    return index
+  }
 
 }

@@ -1,7 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
-import { PlateService } from 'src/app/shared/services/sign.service';
+import { PlateService } from 'src/app/shared/services/plate.service';
 
 @Component({
   selector: 'app-add-plate-dialog',
@@ -64,12 +64,10 @@ export class AddPlateDialogComponent implements OnInit {
 
   public loader: boolean = false;
 
-  private vehicle: any;
-
 
   constructor(
     private readonly plateService: PlateService,
-    private readonly dialogRef: MatDialogRef<AddPlateDialogComponent>
+    private readonly dialogRef: MatDialogRef<AddPlateDialogComponent>,
   ) { }
 
 
@@ -79,7 +77,12 @@ export class AddPlateDialogComponent implements OnInit {
 
   public submit(form: FormGroup): void {
     if (form.valid) {
-      this.dialogRef.close(this.vehicle)
+      const currentDate: Date = new Date();
+      form.value.entrance = `${currentDate.getHours()}:${Number(currentDate.getMinutes()) < 10 ? String("0" + currentDate.getMinutes()) : currentDate.getMinutes()}`;
+      form.value.departure = null;
+      this.plateService.create(form.value).subscribe((element) => {
+        this.dialogRef.close();
+      });
     }
   }
 
@@ -98,12 +101,11 @@ export class AddPlateDialogComponent implements OnInit {
           this.inputs[2].value = value.modelo1;
           this.inputs[3].value = value.cor;
           const vehicle: any = {
-            sign: formatedPlate,
+            plate: formatedPlate,
             brand: value.marca1,
             model: value.modelo1,
             color: value.cor
           }
-          this.vehicle = vehicle
         }
         this.loader = false;
       }, (err: any) => {
@@ -115,17 +117,14 @@ export class AddPlateDialogComponent implements OnInit {
 
   public getBlurEvent(event: any): void {
     if (event.controlName === "plate") this.findVehicle(event.value);
-    console.log(this.form.value)
   }
 
   public getKeyUpEvent(event: any): void {
     this.form.get(event.controlName)?.setValue(event.value)
-    console.log(this.form.value)
   }
 
   public getChangeEvent(event: any): void {
     this.form.get(event.controlName)?.setValue(event.value)
-    console.log(this.form.value)
   }
 
 }

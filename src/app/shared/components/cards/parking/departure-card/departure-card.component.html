@@ -7,7 +7,7 @@
                 <div class="parking-data">
                     <div class="sign">
                         <h3>Placa:</h3>
-                        <p>{{sign}}</p>
+                        <p>{{plate}}</p>
                     </div>
                     <div class="departure">
                         <h3>Saída:</h3>
@@ -17,7 +17,7 @@
             </div>
             <div>
                 <div class="button-card">
-                    <app-dark-button text="Excluir" (click)="deleteDeparture(sign)"></app-dark-button>
+                    <app-dark-button text="Cancelar saída" (click)="cancelDeparture(plate)"></app-dark-button>
                 </div>
             </div>
         </div>

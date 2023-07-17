@@ -2,12 +2,12 @@
     <app-light-card>
         <div class="card-content">
             <div class="card-data">
-                <h2 class="light-card-title">{{model}}</h2>
+                <h2 class="light-card-title">{{model}} - {{color}}</h2>
                 <mat-divider></mat-divider>
                 <div class="parking-data">
                     <div class="sign">
                         <h3>Placa:</h3>
-                        <p>{{sign}}</p>
+                        <p>{{plate}}</p>
                     </div>
                     <div class="entrance">
                         <h3>Entrada:</h3>
@@ -17,10 +17,10 @@
             </div>
             <div>
                 <div class="button-card">
-                    <app-dark-button text="Tirar" (click)="getOut(sign)"></app-dark-button>
+                    <app-dark-button text="Tirar" (click)="getOut(plate)"></app-dark-button>
                 </div>
                 <div class="button-card">
-                    <app-dark-button text="Cancelar"></app-dark-button>
+                    <app-dark-button text="Cancelar" (click)="cancelEntrance(plate)"></app-dark-button>
                 </div>
             </div>
         </div>

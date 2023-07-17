@@ -10,10 +10,10 @@ export class DepartureCardComponent implements OnInit {
   /* Vars */
 
   @Input() public model: string;
-  @Input() public sign: string;
+  @Input() public plate: string;
   @Input() public departure: string;
 
-  @Output() public delete: EventEmitter<any> = new EventEmitter()
+  @Output() public cancel: EventEmitter<any> = new EventEmitter()
 
 
   constructor() { }
@@ -23,8 +23,8 @@ export class DepartureCardComponent implements OnInit {
   }
 
 
-  public deleteDeparture(value: any): void {
-    this.delete.emit(value)
+  public cancelDeparture(value: any): void {
+    this.cancel.emit(value)
   }
 
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PlateService } from 'src/app/shared/services/plate.service';
 
 @Component({
   selector: 'app-parking',
@@ -7,21 +8,60 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ParkingComponent implements OnInit {
 
-  /* Vars */
+  /** 
+   * Global properties 
+   */
 
   public departure: Array<any> = [];
+  public entrance: Array<any> = [];
 
 
-  constructor() { }
+  /** 
+   * Class constructor
+   */
+
+  constructor(
+    private readonly plateService: PlateService
+  ) { }
+
+
+  /** 
+   * On init method
+   */
 
   ngOnInit(): void {
+    for (let control = 0; control <= 1; control ++) this.populate(control);
   }
 
 
-  public getOut(event: any): void {
-    const currentDate: Date = new Date()
-    event.departure = `${currentDate.getHours()}:${currentDate.getMinutes()}`
-    this.departure.push(event)
+  /** 
+   * Method to getOut a vehicle
+   */
+
+  public getOut(): void {
+    this.populate(1);
+  }
+
+
+  /** 
+   * Method to populate the entrance or departure
+   * @param stage
+   */
+
+  public populate(stage: number): void {
+    this.plateService.findByStage(stage).subscribe((element: Array<any>) => {
+      if (stage === 0) this.entrance = element
+      if (stage === 1) this.departure = element
+    });
+  }
+
+
+  /** 
+   * Method to cancel a departing
+   */
+
+  public cancel(): void {
+    this.populate(0);
   }
 
 }

@@ -7,7 +7,7 @@
                     <h4>Entradas</h4>
                 </ng-template>
                 <div class="inside-content">
-                    <app-entrance (getOut)="getOut($event)"></app-entrance>
+                    <app-entrance [entrance]="entrance" (getOut)="getOut()"></app-entrance>
                 </div>
             </mat-tab>
             <mat-tab label="Second">
@@ -15,7 +15,7 @@
                     <h4>Saídas</h4>
                 </ng-template>
                 <div class="inside-content">
-                    <app-departure [departure]="departure" ></app-departure>
+                    <app-departure [departure]="departure" (cancel)="cancel()"></app-departure>
                 </div>
             </mat-tab>
         </mat-tab-group>
