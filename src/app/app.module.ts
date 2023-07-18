@@ -48,6 +48,7 @@ import { ColorInputComponent } from './shared/components/inputs/color-input/colo
 import { ChangeBackgroundComponent } from './shared/components/pages/configurations/change-background/change-background.component';
 import { SystemValuesComponent } from './shared/components/pages/configurations/system-values/system-values.component';
 import { DangerButtonsComponent } from './shared/components/buttons/danger-buttons/danger-buttons.component';
+import { ViewPlateDialogComponent } from './shared/components/dialog/parking/view-plate-dialog/view-plate-dialog.component';
 
 const maskConfig: Partial<IConfig> = {
   validation: false,
@@ -95,7 +96,8 @@ const maskConfig: Partial<IConfig> = {
     ColorInputComponent,
     ChangeBackgroundComponent,
     SystemValuesComponent,
-    DangerButtonsComponent
+    DangerButtonsComponent,
+    ViewPlateDialogComponent
   ],
   imports: [
     BrowserModule,

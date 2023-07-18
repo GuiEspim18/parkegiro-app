@@ -9,9 +9,7 @@ export class DepartureCardComponent implements OnInit {
 
   /* Vars */
 
-  @Input() public model: string;
-  @Input() public plate: string;
-  @Input() public departure: string;
+  @Input() public departure: any;
 
   @Output() public cancel: EventEmitter<any> = new EventEmitter()
 

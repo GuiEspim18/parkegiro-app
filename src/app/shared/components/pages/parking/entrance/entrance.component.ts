@@ -54,10 +54,12 @@ export class EntranceComponent implements OnInit {
       width: '400px',
       autoFocus: false,
     });
-    this.dialogRef.afterClosed().subscribe(() => {
-      const msg: string = "Veículo adicionado ao pátio";
-      this.alerts.success(msg);
-      this.populate();
+    this.dialogRef.afterClosed().subscribe((element: any) => {
+      if (typeof(element) === 'object') {
+        const msg: string = "Veículo adicionado ao pátio";
+        this.alerts.success(msg);
+        this.populate();
+      }
     })
   }
 

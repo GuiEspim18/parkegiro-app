@@ -1,4 +1,4 @@
-<app-departure-card *ngFor="let item of departure" [model]="item.model" [plate]="item.plate" [departure]="item.departure" (cancel)="cancelDeparture($event)"></app-departure-card>
+<app-departure-card *ngFor="let item of departure" [departure]="item" (cancel)="cancelDeparture($event)"></app-departure-card>
 <div *ngIf="departure.length === 0" class="no-departure-length">
     <mat-icon svgIcon="ghost"></mat-icon>
     <h1>Nenhum carro saiu do pátio!</h1>

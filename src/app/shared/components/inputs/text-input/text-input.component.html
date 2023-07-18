@@ -1,5 +1,5 @@
 <mat-form-field appearance="outline">
     <mat-label>{{label}}</mat-label>
     <input type="{{type}}" matInput mask="{{inputMak}}" (blur)="blur($event)" (keyup)="keyup($event)" (change)="change($event)"
-        [formControl]="control">
+        [formControl]="control" readonly="{{readonly}}">
 </mat-form-field>

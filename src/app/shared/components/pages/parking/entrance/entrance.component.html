@@ -2,7 +2,7 @@
     <h2>Pátio: {{entrance.length}}/25 vagas ocupadas</h2>
     <app-dark-button [text]="'Adicionar'" (click)="openDialog()"></app-dark-button>
 </div>
-<app-entrance-card *ngFor="let item of entrance" [model]="item.model" [color]="item.color" [plate]="item.plate" [entrance]="item.entrance" (getOutVehicle)="getOutEvent($event)" (cancel)="cancel($event)"></app-entrance-card>
+<app-entrance-card *ngFor="let item of entrance" [entrance]="item" (getOutVehicle)="getOutEvent($event)" (cancel)="cancel($event)"></app-entrance-card>
 <div *ngIf="entrance.length === 0" class="no-entrance-length">
     <mat-icon svgIcon="ghost"></mat-icon>
     <h1>Nenhum carro no pátio!</h1>

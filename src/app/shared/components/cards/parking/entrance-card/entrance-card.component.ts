@@ -1,4 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { ViewPlateDialogComponent } from '../../../dialog/parking/view-plate-dialog/view-plate-dialog.component';
 
 @Component({
   selector: 'app-entrance-card',
@@ -11,10 +13,9 @@ export class EntranceCardComponent implements OnInit {
    * Global properties
    */
 
-  @Input() public model: string;
-  @Input() public plate: string;
-  @Input() public color: string;
-  @Input() public entrance: string;
+  @Input() public entrance: any;
+
+  public dialogRef: MatDialogRef<ViewPlateDialogComponent>;
 
 
   @Output() private readonly getOutVehicle: EventEmitter<any> = new EventEmitter();
@@ -25,7 +26,9 @@ export class EntranceCardComponent implements OnInit {
    * Class constructor
    */
 
-  constructor() { }
+  constructor(
+    private readonly matDialogService: MatDialog,
+  ) { }
 
 
   /** 
@@ -53,6 +56,20 @@ export class EntranceCardComponent implements OnInit {
 
   public cancelEntrance(plate: string): void {
     this.cancel.emit(plate);
+  }
+
+
+  /** 
+   * Method to view all informations of an entrance
+   * @param plate
+   */
+
+  public viewEntrance(entrance: any): void {
+    this.dialogRef = this.matDialogService.open(ViewPlateDialogComponent, {
+      width: '400px',
+      autoFocus: false,
+      data: entrance
+    });
   }
 
 }

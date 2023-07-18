@@ -1,0 +1,4 @@
+<app-dialog-header [title]="'Vizualizar entrada'"></app-dialog-header>
+<div class="view-entrance">
+    <app-text-input *ngFor="let item of data" [value]="item.value" [label]="item.name" [readonly]="true"></app-text-input>
+</div>

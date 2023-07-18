@@ -2,26 +2,36 @@
     <app-light-card>
         <div class="card-content">
             <div class="card-data">
-                <h2 class="light-card-title">{{model}} - {{color}}</h2>
+                <h2 class="light-card-title">{{entrance.brand}} {{entrance.model}} - {{entrance.color}}</h2>
                 <mat-divider></mat-divider>
                 <div class="parking-data">
                     <div class="sign">
                         <h3>Placa:</h3>
-                        <p>{{plate}}</p>
+                        <p>{{entrance.plate}}</p>
                     </div>
                     <div class="entrance">
                         <h3>Entrada:</h3>
-                        <p>{{entrance}}</p>
+                        <p>{{entrance.entrance}}</p>
                     </div>
                 </div>
             </div>
             <div>
-                <div class="button-card">
-                    <app-dark-button text="Tirar" (click)="getOut(plate)"></app-dark-button>
-                </div>
-                <div class="button-card">
-                    <app-dark-button text="Cancelar" (click)="cancelEntrance(plate)"></app-dark-button>
-                </div>
+                <button mat-icon-button class="more-options" [matMenuTriggerFor]="menu">
+                    <mat-icon svgIcon="more_options"></mat-icon>
+                </button>
+                <mat-menu #menu="matMenu" class="menu">   
+                    <div class="options" (click)="$event.stopPropagation();">
+                        <div class="button-card">
+                            <app-dark-button text="Tirar" (click)="getOut(entrance.plate)"></app-dark-button>
+                        </div>
+                        <div class="button-card">
+                            <app-dark-button text="Cancelar" (click)="cancelEntrance(entrance.plate)"></app-dark-button>
+                        </div>
+                        <div class="button-card">
+                            <app-dark-button text="Ver Mais" (click)="viewEntrance(entrance)"></app-dark-button>
+                        </div>
+                    </div> 
+                </mat-menu>
             </div>
         </div>
     </app-light-card>

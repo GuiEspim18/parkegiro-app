@@ -8,10 +8,19 @@ import { DomSanitizer } from "@angular/platform-browser";
 })
 export class Icons {
 
+  /** 
+   * Class constructor
+   */
+
   constructor(
     private matIconRegistry: MatIconRegistry,
     private domSanitizer: DomSanitizer
   ) { }
+
+
+  /** 
+   * Method to register svg icons on angular material svg icons
+   */
 
   public registerIcon(): void {
     for (let item of icons) {

@@ -17,6 +17,7 @@ export class TextInputComponent implements OnInit {
   @Input() public controlName: string;
   @Input() public changeEvent: boolean = false;
   @Input() public value: string = "";
+  @Input() public readonly: boolean = false;
 
   @Output() private readonly blurInput: EventEmitter<any> = new EventEmitter();
   @Output() private readonly keyUpInput: EventEmitter<any> = new EventEmitter();
@@ -63,9 +64,7 @@ export class TextInputComponent implements OnInit {
   }
 
   public valueChanges(change: string): void {
-    if (change?.length > 0) {
-      this.control.setValue(change);
-    }
+    this.control.setValue(change);
   }
 
 }

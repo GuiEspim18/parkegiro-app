@@ -7,7 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NotificationComponent implements OnInit {
 
-  /* Vars */
+  /** 
+   * Global properties 
+   */
 
   public notifications: Array<any> = [
     {
@@ -30,11 +32,21 @@ export class NotificationComponent implements OnInit {
       title: "Saída do BMW 320i",
       content: "Saída as 18:00"
     }
-  ]
+  ];
+
+
+  /** 
+   * Class constructor
+   */
 
   constructor() { }
 
-  ngOnInit(): void {
+
+  /** 
+   * On init method
+   */
+
+  public ngOnInit(): void {
   }
 
 }
