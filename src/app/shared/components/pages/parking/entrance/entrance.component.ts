@@ -73,8 +73,8 @@ export class EntranceComponent implements OnInit {
     const index: number = this.findIndex(event);
     if (index !== -1) {
       const message: TMessage = {
-        title: "Deseja tirar este veículo?",
-        message: "Ao tirar o veículo do pátio ele saíra da lista de entradas e irá para a lista de saída!",
+        title: "Deseja retirar este veículo?",
+        message: "Ao retirar o veículo do pátio ele saíra da lista de entradas e irá para a lista de saída!",
         confirm: "Sim",
         cancel: "Não"
       };

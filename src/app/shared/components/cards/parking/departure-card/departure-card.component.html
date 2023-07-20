@@ -16,9 +16,19 @@
                 </div>
             </div>
             <div>
-                <div class="button-card">
-                    <app-dark-button text="Cancelar saída" (click)="cancelDeparture(departure.plate)"></app-dark-button>
-                </div>
+                <button mat-icon-button class="more-options" [matMenuTriggerFor]="menu">
+                    <mat-icon svgIcon="more_options"></mat-icon>
+                </button>
+                <mat-menu #menu="matMenu" class="menu">   
+                    <div class="options" (click)="$event.stopPropagation();">
+                        <div class="button-card">
+                            <app-dark-button text="Cancelar saída" (click)="cancelDeparture(departure.plate)"></app-dark-button>
+                        </div>
+                        <div class="button-card">
+                            <app-dark-button text="Ver Mais" (click)="viewDeparture(departure)"></app-dark-button>
+                        </div>
+                    </div> 
+                </mat-menu>
             </div>
         </div>
     </app-light-card>

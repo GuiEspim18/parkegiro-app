@@ -38,16 +38,46 @@ export class ViewPlateDialogComponent implements OnInit {
    */
 
   private populate(): void {
-    for (let item in this.dataDialog) {
-      if (item !== "id" && item !== "departure" && item !== "stage" && item !== "price" && item !== "departureDate") {
-        const obj: any = {
-          name: this.nameEntrance(item),
-          value: this.format(item, this.dataDialog[item])
-        };
-        if (this.dataDialog[item] !== null) this.data.push(obj);
+    for (let item in this.dataDialog.content) {
+      if (this.dataDialog.stage === 0) {
+        this.entrance(item);
+      } else {
+        this.departure(item);
       }
+      
     }
-    console.log(this.data)
+  }
+
+
+  /** 
+   * Method to populate in case stage iquals 0
+   * @param item
+   */
+
+  private entrance(item: any): void {
+    if (item !== "id" && item !== "departure" && item !== "stage" && item !== "price" && item !== "departureDate") {
+      const obj: any = {
+        name: this.nameEntrance(item),
+        value: this.format(item, this.dataDialog.content[item])
+      };
+      if (this.dataDialog[item] !== null) this.data.push(obj);
+    }
+  }
+
+
+  /** 
+   * Method to populate in case stage iquals 1
+   * @param item
+   */
+
+  private departure(item: any): void {
+    if (item !== "id" && item !== "entrance" && item !== "stage" && item !== "price" && item !== "entranceDate") {
+      const obj: any = {
+        name: this.nameEntrance(item),
+        value: this.format(item, this.dataDialog.content[item])
+      };
+      if (this.dataDialog[item] !== null) this.data.push(obj);
+    }
   }
 
 
@@ -65,6 +95,8 @@ export class ViewPlateDialogComponent implements OnInit {
       case "color": return "Cor";
       case "entrance": return "Entrada";
       case "entranceDate": return "Data de entrada";
+      case "departure": return "Saída";
+      case "departureDate": return "Data de saída";
       default: return "";
     }
   }
@@ -78,7 +110,7 @@ export class ViewPlateDialogComponent implements OnInit {
    */
 
   private format(item: string, value: any): any {
-    if (item === "entranceDate") {
+    if (item === "entranceDate" || item === "departureDate") {
       const date: Date = new Date(value);
       const yyyy: any = date.getFullYear();
       let mm: any = date.getMonth() + 1;

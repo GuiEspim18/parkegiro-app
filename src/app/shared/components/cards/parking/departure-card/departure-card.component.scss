@@ -60,6 +60,17 @@ app-light-card {
 }
 
 
-.button-card {
-    margin-bottom: 20px;
+.more-options {
+    background: $blue_1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.options {
+    padding: 20px;
+
+    .button-card {
+        margin-bottom: 10px;
+    }
 }

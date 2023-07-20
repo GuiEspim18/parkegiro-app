@@ -68,7 +68,10 @@ export class EntranceCardComponent implements OnInit {
     this.dialogRef = this.matDialogService.open(ViewPlateDialogComponent, {
       width: '400px',
       autoFocus: false,
-      data: entrance
+      data: {
+        content: entrance,
+        stage: 0
+      }
     });
   }
 
