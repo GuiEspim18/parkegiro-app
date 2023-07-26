@@ -1,0 +1,22 @@
+<app-dialog-header [title]="'Adicionar usuário'"></app-dialog-header>
+<mat-progress-bar *ngIf="loader" mode="indeterminate"></mat-progress-bar>
+<div class="user-photo-div">
+    <button mat-button class="user-photo" (click)="photo.click()" [ngStyle]="{ background: backGroundImage.length>0? 'url(' + backGroundImage + ')':'' }">
+        <mat-icon svgIcon="card-image" *ngIf="backGroundImage.length === 0"></mat-icon>
+        <input type="file" name="" id="" style="display: none;" accept="image/*" #photo (change)="upload($event)">
+    </button>
+    <div class="user-data">
+        <h2>{{ username.length === 0 ? "Nome do usuário" : username }}</h2>
+        <h3>WM Vallet</h3>
+    </div>
+</div>
+<form [formGroup]="form" (ngSubmit)="submit(form)" class="add-user-form">
+    <div *ngFor="let item of inputs" class="input-div">
+        <app-text-input *ngIf="item.type==='text' || item.type === 'email'" [label]="item.label" [type]="item.type" [blurEvent]="item.blurEvent" [changeEvent]="item.changeEvent" (blurInput)="getBlurEvent($event)" [controlName]="item.controlName" (keyUpInput)="getKeyUpEvent($event)" (changeInput)="getChangeEvent($event)" [inputMak]="item.inputMak" [controlValidators]="item.validators" [value]="item.value"></app-text-input>
+        <app-password-input *ngIf="item.type==='password'" [label]="item.label" [type]="item.type" [blurEvent]="item.blurEvent" [changeEvent]="item.changeEvent" (blurInput)="getBlurEvent($event)" (changeInput)="getChangeEvent($event)" [controlName]="item.controlName" (keyUpInput)="getKeyUpEvent($event)" [inputMak]="item.inputMak" [controlValidators]="item.validators"></app-password-input>
+        <app-date-input *ngIf="item.type==='date'" [label]="item.label" [type]="item.type" [blurEvent]="item.blurEvent" [changeEvent]="item.changeEvent" (blurInput)="getBlurEvent($event)" (changeInput)="getChangeEvent($event)" [controlName]="item.controlName" (keyUpInput)="getKeyUpEvent($event)" [inputMak]="item.inputMak" [controlValidators]="item.validators"></app-date-input>
+    </div>
+    <div class="submit-div">
+        <app-dark-button [text]="'Submit'"></app-dark-button>
+    </div>
+</form>

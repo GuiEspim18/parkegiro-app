@@ -6,7 +6,18 @@ import { environment } from 'src/environments/environment';
 })
 export class ApiUrlService {
 
+  /** 
+   * Class constructor
+   */
+
   constructor() { }
+
+
+  /** 
+   * Method to return the api url
+   * @param data Array<string>
+   * @returns string
+   */
 
   public url(data: Array<string>): string {
     let url: string = environment.apiUrl;

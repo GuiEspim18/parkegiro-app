@@ -8,6 +8,11 @@ import { ApiUrlService } from './api-url.service';
 })
 export class PlateService {
 
+
+  /** 
+   * Class constructor
+   */
+
   constructor(
     private readonly http: HttpClient,
     private readonly apiUrlService: ApiUrlService
@@ -62,7 +67,7 @@ export class PlateService {
 
 
   /** 
-   * Method to create a plate on database
+   * Method to update a plate on database
    * @param id
    * @param data
    * @returns Observable<Object>

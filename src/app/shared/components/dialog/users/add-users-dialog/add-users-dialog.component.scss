@@ -1,0 +1,78 @@
+@import "/src/assets/css/main.scss";
+
+h4 {
+    color: $dark_blue;
+    font-weight: 500;
+    font-size: 1rem;
+}
+
+.add-user-form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 10px;
+
+    .input-div {
+        width: 45%;
+        margin: 0px 2px;
+    }
+
+    .submit-div {
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 20px;
+    }
+
+    
+}
+
+.user-photo-div {
+    width: 100%;
+    padding: 15px 20px;
+    border-radius: 5px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+
+    .user-photo {
+        width: 100px;
+        height: 100px;
+        background: $light_grey2;
+        border-radius: 100px;
+        border: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-size: cover !important;
+        background-position: center !important;
+        background-repeat: no-repeat !important;
+        transition: 0.3s;
+
+        mat-icon {
+            width: 2rem;
+            height: 2rem;
+        }
+
+        &:hover {
+            background: $light_grey2;
+        }
+    }
+
+    .user-data {
+        margin-left: 30px;
+
+        h2 {
+            margin: 0;
+            color: $dark_blue;
+            font-size: 2rem;
+        }
+
+        h3 {
+            margin: 0;
+            color: $dark_blue;
+            font-size: 1.2rem;
+        }
+    }
+
+}

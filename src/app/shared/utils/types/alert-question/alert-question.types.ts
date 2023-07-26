@@ -3,4 +3,4 @@ export type TMessage = {
     message: string;
     confirm?: string ;
     cancel?: string
-}
+};

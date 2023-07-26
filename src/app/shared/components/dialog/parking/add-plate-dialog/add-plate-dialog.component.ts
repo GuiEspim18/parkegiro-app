@@ -1,9 +1,10 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { PlateService } from 'src/app/shared/services/plate.service';
 import { Alerts } from 'src/app/shared/utils/alerts/alerts';
+import { inputs } from './add-plate.inputs';
 
 @Component({
   selector: 'app-add-plate-dialog',
@@ -21,50 +22,9 @@ export class AddPlateDialogComponent implements OnInit {
     'brand': new FormControl('', [Validators.required]),
     'model': new FormControl('', [Validators.required]),
     'color': new FormControl('', [Validators.required])
-  })
+  });
 
-  public inputs: Array<any> = [
-    {
-      label: "Placa",
-      controlName: "plate",
-      validators: [Validators.required],
-      type: "text",
-      changeEvent: false,
-      blurEvent: true,
-      value: "",
-      inputMak: "SSS-0A00"
-    },
-    {
-      label: "Marca",
-      controlName: "brand",
-      validators: [Validators.required],
-      type: "text",
-      changeEvent: false,
-      blurEvent: false,
-      value: "",
-      inputMak: ""
-    },
-    {
-      label: "Modelo",
-      controlName: "model",
-      validators: [Validators.required],
-      type: "text",
-      changeEvent: false,
-      blurEvent: false,
-      value: "",
-      inputMak: ""
-    },
-    {
-      label: "Cor",
-      controlName: "color",
-      validators: [Validators.required],
-      type: "text",
-      changeEvent: false,
-      blurEvent: false,
-      value: "",
-      inputMak: ""
-    },
-  ]
+  public inputs: Array<any> = inputs;
 
   public loader: boolean = false;
 

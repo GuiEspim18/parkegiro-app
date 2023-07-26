@@ -6,7 +6,16 @@ import { systemColors } from '../utils/mocs/system-colors/system-colors.moc';
 })
 export class SystemColorsService {
 
+  /** 
+   * Global properties
+   */
+
   private readonly systemColors: any = systemColors;
+
+
+  /** 
+   * Class constructor
+   */
 
   constructor() { }
 

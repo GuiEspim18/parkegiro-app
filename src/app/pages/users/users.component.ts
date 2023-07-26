@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { AddUsersDialogComponent } from 'src/app/shared/components/dialog/users/add-users-dialog/add-users-dialog.component';
+import { UsersService } from 'src/app/shared/services/users.service';
 
 @Component({
   selector: 'app-users',
@@ -7,44 +10,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UsersComponent implements OnInit {
 
-  public dataSource: Array<any> = [
-    {
-      id: 1,
-      name: "Heloisa",
-      email: "santosnascimentoheloisa@gmail.com",
-      lastAcess: "Hoje",
-    },
-    {
-      id: 2,
-      name: "Guilherme",
-      email: "guilherme.monteiro.espim@gmail.com",
-      lastAcess: "Hoje",
-    },
-    {
-      id: 3,
-      name: "Reafael",
-      email: "rafael.espim@gmail.com",
-      lastAcess: "Hoje",
-    },
-    {
-      id: 4,
-      name: "Rafael",
-      email: "nasciementoespimpedro@gmail.com",
-      lastAcess: "Hoje",
-    },
-    {
-      id: 5,
-      name: "Maria Júlia",
-      email: "nascimentoespimmaju@gmail.com",
-      lastAcess: "Hoje",
-    },
-    {
-      id: 6,
-      name: "Felipe",
-      email: "nasicmentoespimfelipe@gmail.com",
-      lastAcess: "Hoje",
-    },
-  ];
+
+  /** 
+   * Global properties
+   */
+
+  public dataSource: Array<any> = [];
 
   public displayedColumns: Array<any> = [
     {
@@ -59,22 +30,42 @@ export class UsersComponent implements OnInit {
       type: "email",
       name: "Email"
     },
-    {
-      type: "lastAcess",
-      name: "Último acesso"
-    },
+    // {
+    //   type: "lastAcess",
+    //   name: "Último acesso"
+    // },
     {
       type: "actions",
       name: "Ações"
     }
   ];
 
-  constructor() { }
+  public dialogRef: MatDialogRef<AddUsersDialogComponent>;
+
+
+  /** 
+   * Class constructor
+   */
+
+  constructor(
+    private readonly matDialogService: MatDialog,
+    private readonly userService: UsersService
+  ) { }
+
+
+  /** 
+   * On init method
+   */
 
   ngOnInit(): void {
-   this.formatData()
+    this.populate();
   }
 
+
+
+  /** 
+   * Format data method
+   */
 
   private formatData(): void {
     for (let item of this.dataSource) {
@@ -82,12 +73,51 @@ export class UsersComponent implements OnInit {
     }
   }
 
+
+  /** 
+   * Delete user method
+   * @param event
+   */
+
   public delete(event: any): void {
     // delete from array
   }
 
+
+  /** 
+   * Edit user method
+   * @param event
+   */
+
   public edit(event: any): void {
     // edit from array
   }
+
+
+  /** 
+   * Open dialog method
+   */
+
+  public openDialog(): void {
+    this.dialogRef = this.matDialogService.open(AddUsersDialogComponent, {
+      width: '600px',
+      autoFocus: false,
+    });
+    this.dialogRef.afterClosed().subscribe(() => {
+      this.populate();
+    });
+  }
+
+
+  /** 
+   * Populate the users list
+   */
+
+  private populate(): void {
+    this.userService.getAll().subscribe((element: Array<any>) => {
+      this.dataSource = element;
+      this.formatData();
+    })
+  } 
 
 }

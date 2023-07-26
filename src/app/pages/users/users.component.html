@@ -2,7 +2,7 @@
 <section class="content">
     <div class="content-scroll">
         <div class="add-new-user">
-            <app-dark-button [text]="'Adicionar usuário'"></app-dark-button>
+            <app-dark-button [text]="'Adicionar usuário'" (click)="openDialog()"></app-dark-button>
         </div>
         <app-table [dataSource]="dataSource" [displayedColumns]="displayedColumns" (delete)="delete($event)" (edit)="edit($event)"></app-table>
     </div>
