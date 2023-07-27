@@ -6,6 +6,7 @@ import { PhotoService } from 'src/app/shared/services/photo.service';
 import { UsersService } from 'src/app/shared/services/users.service';
 import { CepService } from 'src/app/shared/services/cep.service';
 import { MatDialogRef } from '@angular/material/dialog';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-add-users-dialog',
@@ -36,7 +37,9 @@ export class AddUsersDialogComponent implements OnInit {
     "telephone": new FormControl(''),
     "email": new FormControl('', [Validators.required]),
     "password": new FormControl('', [Validators.required]),
+    "passwordConfirm": new FormControl('', [Validators.required]),
     "photo": new FormControl(null),
+    "lastAccess": new FormControl(null)
   });
 
   public inputs: Array<any> = inputs;
@@ -76,19 +79,28 @@ export class AddUsersDialogComponent implements OnInit {
 
   public submit(form: FormGroup): void {
     if (form.valid) {
-      this.loader =  true;
-      this.photoService.create(this.userPhoto).subscribe((element: any) => {
-        form.value.photo = element.id;
-        this.userService.create(form.value).subscribe(() => {
-          const message: string = "Usuário adicionado com sucesso!";
-          this.alerts.success(message);
-          this.dialogRef.close();
+      if (form.value.password === form.value.passwordConfirm) {
+        this.loader = true;
+        this.userService.create(form.value).subscribe((element: any) => {
+          if (this.userPhoto) {
+            let userPhoto: any = this.userPhoto;
+            userPhoto.user = element.id;
+            this.photoService.create(userPhoto).subscribe(() => {
+              const message: string = "Usuário adicionado com sucesso!";
+              this.alerts.success(message);
+              this.dialogRef.close();
+              this.loader = false;
+            });
+          }
+        }, (err: HttpErrorResponse) => {
+          this.alerts.error(err.error.message);
           this.loader = false;
         });
-      })
-      this
+      } else {
+        const message: string = "A repetição da senha e a senha precisam ser iguais!";
+        this.alerts.error(message);
+      }
     } else {
-      console.log(form.value)
       const message: string = "Preencha todos os campos obrigatórios!";
       this.alerts.error(message);
     }
@@ -129,8 +141,6 @@ export class AddUsersDialogComponent implements OnInit {
       case "birthdate": this.form.get(event.controlName)?.setValue(event.value); break;
       case "zipCode": this.findCep(event.value); break;
     }
-    // if (event.controlName === "birthdate") this.form.get(event.controlName)?.setValue(event.value)
-    
   }
 
 

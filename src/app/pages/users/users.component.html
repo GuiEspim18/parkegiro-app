@@ -1,9 +1,14 @@
 <app-page-header [icon]="'page-users'" [title]="'Usuários'"></app-page-header>
 <section class="content">
     <div class="content-scroll">
-        <div class="add-new-user">
-            <app-dark-button [text]="'Adicionar usuário'" (click)="openDialog()"></app-dark-button>
+        <div class="user-buttons">
+            <app-dark-button [text]="'Filtrar usuário'" (click)="openDialog(1)"></app-dark-button>
+            <app-dark-button [text]="'Adicionar usuário'" (click)="openDialog(0)"></app-dark-button>
         </div>
-        <app-table [dataSource]="dataSource" [displayedColumns]="displayedColumns" (delete)="delete($event)" (edit)="edit($event)"></app-table>
+        <app-table *ngIf="dataSource.length > 0" [dataSource]="dataSource" [displayedColumns]="displayedColumns" (delete)="delete($event)"></app-table>
+        <div *ngIf="dataSource.length === 0" class="no-user-length">
+            <mat-icon svgIcon="ghost"></mat-icon>
+            <h1>Nenum usuário foi adicionado ainda!</h1>
+        </div>
     </div>
 </section>

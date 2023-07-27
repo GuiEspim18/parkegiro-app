@@ -27,7 +27,7 @@ export class PhotoService {
   public create(data: any): Observable<Object> {
     const formData: FormData = new FormData();
     formData.append('file', data, data.name);
-    const path: Array<any> = ['photo'];
+    const path: Array<any> = ['photo', data.user];
     return this.http.post(this.apiUrlService.url(path), formData);
   }
 

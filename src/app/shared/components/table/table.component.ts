@@ -7,7 +7,9 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 })
 export class TableComponent implements OnInit {
 
-  /* Vars */
+  /** 
+   * Global properties
+   */
 
   @Input() public dataSource: Array<any> = [];
   @Input() public displayedColumns: Array<any> = [];
@@ -18,15 +20,38 @@ export class TableComponent implements OnInit {
   public formatedColumns: Array<string> = [];
 
 
+  /** 
+   * Class constructor
+   */
+
   constructor() { }
 
-  ngOnInit(): void {
+
+  /** 
+   * On init method
+   */
+
+  public ngOnInit(): void {
     this.formatColumns();
   }
 
+
+  /** 
+   * Method to return an element from an object inside an array
+   * @param value
+   * @param element
+   * @returns any
+   */
+
   public returnElement(value: any, element: string): any {
-    return value[`${element}`]
+    if (value[element] === undefined || value[element] === null) return "-"
+    return value[element]
   }
+
+
+  /** 
+   * Method to format columns from the table
+   */
 
   private formatColumns(): void {
     let formated: Array<string> = [];
@@ -36,9 +61,16 @@ export class TableComponent implements OnInit {
     this.formatedColumns = formated
   }
 
+
+  /** 
+   * Method to set the actions of the row
+   * @param icon
+   * @param element
+   */
+
   public action(icon: string, element: any): void {
-    if (icon == 'delete') this.delete.emit(element);
-    if (icon == 'edit') this.edit.emit(element);
+    if (icon == 'delete') this.delete.emit(element.id);
+    if (icon == 'edit') this.edit.emit(element.id);
   }
 
 }

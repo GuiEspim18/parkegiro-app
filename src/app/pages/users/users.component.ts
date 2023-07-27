@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { AddUsersDialogComponent } from 'src/app/shared/components/dialog/users/add-users-dialog/add-users-dialog.component';
+import { FilterUsersDialogComponent } from 'src/app/shared/components/dialog/users/filter-users-dialog/filter-users-dialog.component';
 import { UsersService } from 'src/app/shared/services/users.service';
+import { Alerts } from 'src/app/shared/utils/alerts/alerts';
+import { TMessage } from 'src/app/shared/utils/types/alert-question/alert-question.types';
+import { SweetAlertResult } from 'sweetalert2';
 
 @Component({
   selector: 'app-users',
@@ -30,10 +34,10 @@ export class UsersComponent implements OnInit {
       type: "email",
       name: "Email"
     },
-    // {
-    //   type: "lastAcess",
-    //   name: "Último acesso"
-    // },
+    {
+      type: "lastAcess",
+      name: "Último acesso"
+    },
     {
       type: "actions",
       name: "Ações"
@@ -42,6 +46,8 @@ export class UsersComponent implements OnInit {
 
   public dialogRef: MatDialogRef<AddUsersDialogComponent>;
 
+  public dialogRefFilter: MatDialogRef<FilterUsersDialogComponent>;
+
 
   /** 
    * Class constructor
@@ -49,7 +55,8 @@ export class UsersComponent implements OnInit {
 
   constructor(
     private readonly matDialogService: MatDialog,
-    private readonly userService: UsersService
+    private readonly userService: UsersService,
+    private readonly alerts: Alerts
   ) { }
 
 
@@ -69,7 +76,7 @@ export class UsersComponent implements OnInit {
 
   private formatData(): void {
     for (let item of this.dataSource) {
-      item.actions = ['delete', 'edit'];
+      item.actions = ['delete'];
     }
   }
 
@@ -80,17 +87,21 @@ export class UsersComponent implements OnInit {
    */
 
   public delete(event: any): void {
-    // delete from array
-  }
-
-
-  /** 
-   * Edit user method
-   * @param event
-   */
-
-  public edit(event: any): void {
-    // edit from array
+    const message: TMessage = {
+      title: "Deseja deletar este usuário?",
+      message: "Ao deletar este usuário você excluirá ele do sistema definitivamente!",
+      confirm: "Sim",
+      cancel: "Não"
+    };
+    this.alerts.question(message).then((result: SweetAlertResult<any>) => {
+      if (result.isConfirmed) {
+        this.userService.delete(event).subscribe(() => {
+          this.populate();
+          const message: string = "Usuário deletado com sucesso!";
+          this.alerts.success(message);
+        });
+      }
+    });
   }
 
 
@@ -98,14 +109,28 @@ export class UsersComponent implements OnInit {
    * Open dialog method
    */
 
-  public openDialog(): void {
-    this.dialogRef = this.matDialogService.open(AddUsersDialogComponent, {
-      width: '600px',
-      autoFocus: false,
-    });
-    this.dialogRef.afterClosed().subscribe(() => {
-      this.populate();
-    });
+  public openDialog(stage: number): void {
+    switch (stage) {
+      case 0:
+        this.dialogRef = this.matDialogService.open(AddUsersDialogComponent, {
+          width: '600px',
+          autoFocus: false,
+        });
+        this.dialogRef.afterClosed().subscribe(() => {
+          this.populate();
+        });
+        break;
+      case 1:
+        this.dialogRefFilter = this.matDialogService.open(FilterUsersDialogComponent, {
+          width: '400px',
+          autoFocus: false
+        });
+        this.dialogRef.afterClosed().subscribe(() => {
+          this.populate();
+        });
+        break;
+    }
+    
   }
 
 
@@ -116,8 +141,9 @@ export class UsersComponent implements OnInit {
   private populate(): void {
     this.userService.getAll().subscribe((element: Array<any>) => {
       this.dataSource = element;
+      console.log(element)
       this.formatData();
-    })
+    });
   } 
 
 }

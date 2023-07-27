@@ -50,6 +50,7 @@ import { SystemValuesComponent } from './shared/components/pages/configurations/
 import { DangerButtonsComponent } from './shared/components/buttons/danger-buttons/danger-buttons.component';
 import { ViewPlateDialogComponent } from './shared/components/dialog/parking/view-plate-dialog/view-plate-dialog.component';
 import { AddUsersDialogComponent } from './shared/components/dialog/users/add-users-dialog/add-users-dialog.component';
+import { FilterUsersDialogComponent } from './shared/components/dialog/users/filter-users-dialog/filter-users-dialog.component';
 
 const maskConfig: Partial<IConfig> = {
   validation: false,
@@ -99,7 +100,8 @@ const maskConfig: Partial<IConfig> = {
     SystemValuesComponent,
     DangerButtonsComponent,
     ViewPlateDialogComponent,
-    AddUsersDialogComponent
+    AddUsersDialogComponent,
+    FilterUsersDialogComponent
   ],
   imports: [
     BrowserModule,
