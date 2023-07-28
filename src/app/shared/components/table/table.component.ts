@@ -16,6 +16,7 @@ export class TableComponent implements OnInit {
 
   @Output() public readonly delete: EventEmitter<any> = new EventEmitter()
   @Output() public readonly edit: EventEmitter<any> = new EventEmitter()
+  @Output() public readonly view: EventEmitter<any> = new EventEmitter()
 
   public formatedColumns: Array<string> = [];
 
@@ -69,8 +70,11 @@ export class TableComponent implements OnInit {
    */
 
   public action(icon: string, element: any): void {
-    if (icon == 'delete') this.delete.emit(element.id);
-    if (icon == 'edit') this.edit.emit(element.id);
+    switch (icon) {
+      case "delete": this.delete.emit(element.id); break;
+      case "edit": this.delete.emit(element.id); break;
+      case "eye": this.view.emit(element); break;
+    }
   }
 
 }

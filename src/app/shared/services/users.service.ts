@@ -64,5 +64,17 @@ export class UsersService {
     const path: Array<any> = ['users', id];
     return this.http.delete(this.apiUrlService.url(path));
   } 
+
+
+  /** 
+   * Method to find an user photo on database
+   * @param name
+   * @returns Observable<Object> 
+   */
+
+  public getUserPhoto(name: string): string {
+    const path: Array<any> = ['photo', 'download', name];
+    return this.apiUrlService.url(path);
+  }
   
 }

@@ -1,0 +1,16 @@
+<app-dialog-header [title]="'Visualizar usuário'"></app-dialog-header>
+<div class="user-photo-div">
+    <button mat-button class="user-photo" [ngStyle]="{ background: backGroundImage.length>0? 'url(' + backGroundImage + ')':'' }">
+        <mat-icon svgIcon="page-profile" *ngIf="backGroundImage.length === 0"></mat-icon>
+    </button>
+    <div class="user-data">
+        <h2>{{ username.length === 0 ? "Nome do usuário" : username }}</h2>
+        <h3>WM Vallet</h3>
+    </div>
+</div>
+<form class="view-user-form">
+    <div *ngFor="let item of inputs" class="input-div">
+        <app-text-input *ngIf="item.type==='text' || item.type === 'email'" [label]="item.label" [type]="item.type" [blurEvent]="item.blurEvent" [changeEvent]="item.changeEvent" [controlName]="item.controlName" [inputMak]="item.inputMak" [value]="item.value" [readonly]="true"></app-text-input>
+        <app-date-input *ngIf="item.type==='date'" [label]="item.label" [type]="item.type" [blurEvent]="item.blurEvent" [changeEvent]="item.changeEvent" [inputMak]="item.inputMak" [controlValidators]="item.validators" [value]="item.value" [disabled]="true"></app-date-input>
+    </div>
+</form>

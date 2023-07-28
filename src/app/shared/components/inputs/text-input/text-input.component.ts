@@ -4,9 +4,13 @@ import { FormControl, Validators } from '@angular/forms';
 @Component({
   selector: 'app-text-input',
   templateUrl: './text-input.component.html',
-  styleUrls: ['./text-input.component.scss']
+  styles: ['@import "/src/assets/css/input.scss";']
 })
 export class TextInputComponent implements OnInit {
+
+  /** 
+   * Global properties
+   */
 
   @Input() public label: string;
   @Input() public type: string;
@@ -26,28 +30,60 @@ export class TextInputComponent implements OnInit {
 
   public control: FormControl = new FormControl("");
 
+
+  /** 
+   * Class constructor
+   */
+
   constructor() { }
+
+
+  /** 
+   * On init method
+   */
 
   public ngOnInit(): void {
     this.setupControl();
   }
+
+
+  /** 
+   * Method to get the changes
+   * @param changes
+   */
 
   public ngOnChanges(changes: SimpleChanges): void {
     this.valueChanges(changes.value?.currentValue);
   }
 
 
+  /** 
+   * Method to emit blur event
+   * @param event
+   */
+
   public blur(event: any): void {
-    if(this.blurEvent) {
+    if (this.blurEvent) {
       const emitValue: string = `{"value": "${event.target.value}", "controlName": "${this.controlName}"}`;
       this.blurInput.emit(JSON.parse(emitValue));
-    } 
+    }
   }
+
+
+  /** 
+   * Method to emit keyuo event
+   * @param event
+   */
 
   public keyup(event: any): void {
     const emitValue: string = `{"value": "${event.target.value}", "controlName": "${this.controlName}"}`;
     this.keyUpInput.emit(JSON.parse(emitValue));
   }
+
+
+  /** 
+   * Method to setup control
+   */
 
   public setupControl(): void {
     if (this.controlValue) this.control.setValue(this.controlValue);
@@ -56,12 +92,24 @@ export class TextInputComponent implements OnInit {
     }
   }
 
+
+  /** 
+   * Method to emit change event
+   * @param event
+   */
+
   public change(event: any): void {
     if (this.changeEvent) {
       const emitValue: string = `{"value": "${event.target.value}", "controlName": "${this.controlName}"}`;
       this.changeInput.emit(JSON.parse(emitValue))
     }
   }
+
+
+  /** 
+   * Method to change the value of a control
+   * @param change
+   */
 
   public valueChanges(change: string): void {
     this.control.setValue(change);

@@ -2,10 +2,10 @@
 <section class="content">
     <div class="content-scroll">
         <div class="user-buttons">
-            <app-dark-button [text]="'Filtrar usuário'" (click)="openDialog(1)"></app-dark-button>
-            <app-dark-button [text]="'Adicionar usuário'" (click)="openDialog(0)"></app-dark-button>
+            <app-search-input [label]="'Pesquisar'" (keyUpInput)="filter($event)" [controlName]="'search'"></app-search-input>
+            <app-dark-button [text]="'Adicionar usuário'" (click)="openDialog()"></app-dark-button>
         </div>
-        <app-table *ngIf="dataSource.length > 0" [dataSource]="dataSource" [displayedColumns]="displayedColumns" (delete)="delete($event)"></app-table>
+        <app-table *ngIf="dataSource.length > 0" [dataSource]="dataSource" [displayedColumns]="displayedColumns" (delete)="delete($event)" (view)="view($event)"></app-table>
         <div *ngIf="dataSource.length === 0" class="no-user-length">
             <mat-icon svgIcon="ghost"></mat-icon>
             <h1>Nenum usuário foi adicionado ainda!</h1>

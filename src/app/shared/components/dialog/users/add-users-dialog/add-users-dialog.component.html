@@ -17,6 +17,6 @@
         <app-date-input *ngIf="item.type==='date'" [label]="item.label" [type]="item.type" [blurEvent]="item.blurEvent" [changeEvent]="item.changeEvent" (blurInput)="getBlurEvent($event)" (changeInput)="getChangeEvent($event)" [controlName]="item.controlName" (keyUpInput)="getKeyUpEvent($event)" [inputMak]="item.inputMak" [controlValidators]="item.validators"></app-date-input>
     </div>
     <div class="submit-div">
-        <app-dark-button [text]="'Submit'"></app-dark-button>
+        <app-dark-button [text]="'Adicionar'"></app-dark-button>
     </div>
 </form>

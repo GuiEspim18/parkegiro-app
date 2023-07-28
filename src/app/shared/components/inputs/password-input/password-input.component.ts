@@ -4,11 +4,14 @@ import { FormControl } from '@angular/forms';
 @Component({
   selector: 'app-password-input',
   templateUrl: './password-input.component.html',
-  styleUrls: ['./password-input.component.scss']
+  // styleUrls: ['./password-input.component.scss']
+  styles: ['@import "/src/assets/css/input.scss";']
 })
 export class PasswordInputComponent implements OnInit {
 
-  /* Vars */
+  /** 
+   * Global properties
+   */
 
   public hide: boolean = true;
 
@@ -28,13 +31,27 @@ export class PasswordInputComponent implements OnInit {
   public control: FormControl = new FormControl("");
 
 
+
+  /** 
+   * Class constructor
+   */
+
   constructor() { }
   
 
-  ngOnInit(): void {
+  /** 
+   * On init method
+   */
+
+  public ngOnInit(): void {
     this.setupControl();
   }
 
+
+  /** 
+   * Method to emit blur event
+   * @param event
+   */
 
   public blur(event: any): void {
     if(this.blurEvent) {
@@ -43,10 +60,21 @@ export class PasswordInputComponent implements OnInit {
     } 
   }
 
+
+  /** 
+   * Method to emit keyup event
+   * @param event
+   */
+
   public keyup(event: any): void {
     const emitValue: string = `{"value": "${event.target.value}", "controlName": "${this.controlName}"}`;
     this.keyUpInput.emit(JSON.parse(emitValue));
   }
+  
+
+  /** 
+   * Method to setup the controls
+   */
 
   public setupControl(): void {
     if (this.controlValue) this.control.setValue(this.controlValue);
@@ -54,6 +82,12 @@ export class PasswordInputComponent implements OnInit {
       this.control.setValidators(this.controlValidators);
     }
   }
+
+
+  /** 
+   * Method to emit change event
+   * @param event
+   */
 
   public change(event: any): void {
     if (this.changeEvent) {

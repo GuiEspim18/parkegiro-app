@@ -4,11 +4,13 @@ import { FormControl } from '@angular/forms';
 @Component({
   selector: 'app-color-input',
   templateUrl: './color-input.component.html',
-  styleUrls: ['./color-input.component.scss']
+  styles: ['@import "/src/assets/css/input.scss";']
 })
 export class ColorInputComponent implements OnInit {
   
-  /* Vars */
+  /** 
+   * Global properties
+   */
 
   @Input() public label: string;
   @Input() public type: string;
@@ -25,11 +27,26 @@ export class ColorInputComponent implements OnInit {
 
   public control: FormControl;
 
+
+  /** 
+   * Class constructor
+   */
+
   constructor() { }
 
-  ngOnInit(): void {
+
+  /** 
+   * On init method
+   */
+
+  public ngOnInit(): void {
     this.setupControl();
   }
+
+
+  /** 
+   * Method to setup the controls
+   */
 
   public setupControl(): void {
     this.control = new FormControl(this.value)
@@ -38,6 +55,12 @@ export class ColorInputComponent implements OnInit {
       this.control.setValidators(this.controlValidators);
     }
   }
+
+
+  /** 
+   * Method to emit the change event
+   * @param event
+   */
 
   public change(event: any): void {
     if (this.changeEvent) {

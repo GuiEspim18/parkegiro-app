@@ -1,19 +1,16 @@
-import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { DateAdapter } from '@angular/material/core';
 
 @Component({
-  selector: 'app-date-input',
-  templateUrl: './date-input.component.html',
+  selector: 'app-search-input',
+  templateUrl: './search-input.component.html',
   styles: ['@import "/src/assets/css/input.scss";']
 })
-export class DateInputComponent implements OnInit {
+export class SearchInputComponent implements OnInit {
 
-  /**
+  /** 
    * Global properties
    */
-
-  public hide: boolean = true;
 
   @Input() public label: string;
   @Input() public type: string;
@@ -23,25 +20,16 @@ export class DateInputComponent implements OnInit {
   @Input() public controlValidators: Array<any> = [];
   @Input() public controlName: string;
   @Input() public changeEvent: boolean = false;
-  @Input() public value: string;
-  @Input() public disabled: boolean = false;
 
   @Output() private readonly blurInput: EventEmitter<any> = new EventEmitter();
   @Output() private readonly keyUpInput: EventEmitter<any> = new EventEmitter();
   @Output() private readonly changeInput: EventEmitter<any> = new EventEmitter();
 
-
   public control: FormControl = new FormControl("");
 
+  public icon: string = "search";
 
-
-  /** 
-   * Class constructor
-   */
-
-  constructor(private dateAdapter: DateAdapter<Date>) {
-    this.dateAdapter.setLocale('en-GB');
-  }
+  constructor() { }
 
 
   /** 
@@ -50,28 +38,6 @@ export class DateInputComponent implements OnInit {
 
   public ngOnInit(): void {
     this.setupControl();
-  }
-
-
-  /** 
-   * Method to get the changes
-   * @param changes
-   */
-
-  public ngOnChanges(changes: SimpleChanges): void {
-    this.valueChanges(changes.value?.currentValue);
-  }
-
-
-  /** 
-   * Method to change the value of a control
-   * @param change
-   */
-
-  public valueChanges(change: string): void {
-    const date: Date = new Date(change);
-    const curretnDate: string = date.toISOString();
-    this.control.setValue(curretnDate);
   }
 
 
@@ -94,8 +60,25 @@ export class DateInputComponent implements OnInit {
    */
 
   public keyup(event: any): void {
-    const emitValue: string = `{"value": "${event.target.value}", "controlName": "${this.controlName}"}`;
+    const str: string = event.target.value;
+    if (str.length > 0) this.icon = "reset";
+    else this.icon = "search";
+    const emitValue: string = `{"value": "${str}", "controlName": "${this.controlName}"}`;
     this.keyUpInput.emit(JSON.parse(emitValue));
+  }
+
+
+  /** 
+   * Method to clear the control
+   */
+
+  public clear(): void {
+    if (this.icon === "reset") {
+      this.control.setValue("");
+      this.icon = "search";
+      const emitValue: string = `{"value": "", "controlName": "${this.controlName}"}`;
+      this.keyUpInput.emit(JSON.parse(emitValue));
+    }
   }
 
 
@@ -108,7 +91,6 @@ export class DateInputComponent implements OnInit {
     if (this.controlValidators.length > 0) {
       this.control.setValidators(this.controlValidators);
     }
-    if (this.disabled) this.control.disable();
   }
 
 
@@ -123,6 +105,5 @@ export class DateInputComponent implements OnInit {
       this.changeInput.emit(JSON.parse(emitValue))
     }
   }
-
 
 }

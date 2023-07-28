@@ -150,20 +150,22 @@ export class AddUsersDialogComponent implements OnInit {
    */
 
   public findCep(cep: string): void {
-    this.loader = true;
-    this.cepService.find(cep).subscribe((element: any) => {
-      this.form.get('street')?.setValue(element.logradouro);
-      this.form.get('state')?.setValue(element.uf);
-      this.form.get('city')?.setValue(element.localidade);
-      this.inputs.forEach((street: any) => {
-        switch (street.controlName) {
-          case "street": street.value = element.logradouro; break;
-          case "state": street.value = element.uf; break;
-          case "city": street.value = element.localidade; break;
-        }
+    if (cep.length > 0) {
+      this.loader = true;
+      this.cepService.find(cep).subscribe((element: any) => {
+        this.form.get('street')?.setValue(element.logradouro);
+        this.form.get('state')?.setValue(element.uf);
+        this.form.get('city')?.setValue(element.localidade);
+        this.inputs.forEach((street: any) => {
+          switch (street.controlName) {
+            case "street": street.value = element.logradouro; break;
+            case "state": street.value = element.uf; break;
+            case "city": street.value = element.localidade; break;
+          }
+        })
+        this.loader = false;
       })
-      this.loader = false;
-    })
+    }
   }
 
 
