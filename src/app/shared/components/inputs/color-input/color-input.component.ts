@@ -27,6 +27,8 @@ export class ColorInputComponent implements OnInit {
 
   public control: FormControl;
 
+  private emitValue: any;
+
 
   /** 
    * Class constructor
@@ -54,6 +56,10 @@ export class ColorInputComponent implements OnInit {
     if (this.controlValidators.length > 0) {
       this.control.setValidators(this.controlValidators);
     }
+    this.emitValue = {
+      value: "",
+      controlName: this.controlName
+    };
   }
 
 
@@ -63,9 +69,10 @@ export class ColorInputComponent implements OnInit {
    */
 
   public change(event: any): void {
+    const str: string = event.target.value;
     if (this.changeEvent) {
-      const emitValue: string = `{"value": "${event.target.value}", "controlName": "${this.controlName}"}`;
-      this.changeInput.emit(JSON.parse(emitValue))
+      this.emitValue.value = str;
+      this.changeInput.emit(this.emitValue)
     }
   }
 

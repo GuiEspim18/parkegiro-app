@@ -29,6 +29,8 @@ export class SearchInputComponent implements OnInit {
 
   public icon: string = "search";
 
+  private emitValue: any;
+
   constructor() { }
 
 
@@ -47,9 +49,10 @@ export class SearchInputComponent implements OnInit {
    */
 
   public blur(event: any): void {
+    const str: string = event.target.value;
     if (this.blurEvent) {
-      const emitValue: string = `{"value": "${event.target.value}", "controlName": "${this.controlName}"}`;
-      this.blurInput.emit(JSON.parse(emitValue));
+      this.emitValue.value = str
+      this.blurInput.emit(this.emitValue);
     }
   }
 
@@ -63,8 +66,8 @@ export class SearchInputComponent implements OnInit {
     const str: string = event.target.value;
     if (str.length > 0) this.icon = "reset";
     else this.icon = "search";
-    const emitValue: string = `{"value": "${str}", "controlName": "${this.controlName}"}`;
-    this.keyUpInput.emit(JSON.parse(emitValue));
+    this.emitValue.value = str;
+    this.keyUpInput.emit(this.emitValue);
   }
 
 
@@ -76,8 +79,8 @@ export class SearchInputComponent implements OnInit {
     if (this.icon === "reset") {
       this.control.setValue("");
       this.icon = "search";
-      const emitValue: string = `{"value": "", "controlName": "${this.controlName}"}`;
-      this.keyUpInput.emit(JSON.parse(emitValue));
+      this.emitValue.value = ""
+      this.keyUpInput.emit(this.emitValue);
     }
   }
 
@@ -91,6 +94,10 @@ export class SearchInputComponent implements OnInit {
     if (this.controlValidators.length > 0) {
       this.control.setValidators(this.controlValidators);
     }
+    this.emitValue = {
+      value: "",
+      controlName: this.controlName
+    };
   }
 
 
@@ -100,9 +107,10 @@ export class SearchInputComponent implements OnInit {
    */
 
   public change(event: any): void {
+    const str: string = event.target.value;
     if (this.changeEvent) {
-      const emitValue: string = `{"value": "${event.target.value}", "controlName": "${this.controlName}"}`;
-      this.changeInput.emit(JSON.parse(emitValue))
+      this.emitValue.value = str;
+      this.changeInput.emit(this.emitValue)
     }
   }
 

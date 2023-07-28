@@ -30,6 +30,8 @@ export class TextInputComponent implements OnInit {
 
   public control: FormControl = new FormControl("");
 
+  private emitValue: any;
+
 
   /** 
    * Class constructor
@@ -63,9 +65,10 @@ export class TextInputComponent implements OnInit {
    */
 
   public blur(event: any): void {
+    const str: string = event.target.value;
     if (this.blurEvent) {
-      const emitValue: string = `{"value": "${event.target.value}", "controlName": "${this.controlName}"}`;
-      this.blurInput.emit(JSON.parse(emitValue));
+      this.emitValue.value = str
+      this.blurInput.emit(this.emitValue);
     }
   }
 
@@ -76,8 +79,9 @@ export class TextInputComponent implements OnInit {
    */
 
   public keyup(event: any): void {
-    const emitValue: string = `{"value": "${event.target.value}", "controlName": "${this.controlName}"}`;
-    this.keyUpInput.emit(JSON.parse(emitValue));
+    const str: string = event.target.value;
+    this.emitValue.value = str;
+    this.keyUpInput.emit(this.emitValue);
   }
 
 
@@ -90,6 +94,10 @@ export class TextInputComponent implements OnInit {
     if (this.controlValidators.length > 0) {
       this.control.setValidators(this.controlValidators);
     }
+    this.emitValue = {
+      value: "",
+      controlName: this.controlName
+    };
   }
 
 
@@ -99,9 +107,10 @@ export class TextInputComponent implements OnInit {
    */
 
   public change(event: any): void {
+    const str: string = event.target.value;
     if (this.changeEvent) {
-      const emitValue: string = `{"value": "${event.target.value}", "controlName": "${this.controlName}"}`;
-      this.changeInput.emit(JSON.parse(emitValue))
+      this.emitValue.value = str;
+      this.changeInput.emit(this.emitValue)
     }
   }
 
