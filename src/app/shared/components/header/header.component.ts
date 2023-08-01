@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { UsersService } from '../../services/users.service';
+import { User } from '../../utils/types/user/user.types';
 
 @Component({
   selector: 'app-header',
@@ -7,24 +9,43 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  /* Vars */
+  /** 
+   * Global properties
+   */
 
   public visible: boolean = true;
 
-  constructor() { }
+  public user: any;
 
-  ngOnInit(): void {
-    // this.visibility()
+  public backGroundImage: string;
+
+
+  /** 
+   * Class constructor
+   */
+
+  constructor(
+    private readonly userService: UsersService
+  ) { }
+
+
+  /** 
+   * On init method
+   */
+
+  public ngOnInit(): void {
+    this.populate();
   }
 
 
-  private visibility(): void {
-    const path: string = window.location.pathname;
-    if (path === "/profile") {
-      this.visible = false;
-    } else {
-      this.visible = false
-    }
+  /** 
+   * Methos to populate the header inf
+   */
+
+  private populate(): void {
+    const user: User = JSON.parse(localStorage.getItem('user') as string);
+    this.user = user;
+    this.backGroundImage = this.userService.getUserPhoto(user.photo.name);
   }
 
 }

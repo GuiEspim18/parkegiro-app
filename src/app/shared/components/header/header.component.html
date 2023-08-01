@@ -4,13 +4,14 @@
             <button mat-icon-button [matMenuTriggerFor]="menu">
                 <mat-icon svgIcon="bell" matBadge="5" matBadgeColor="warn"></mat-icon>
             </button>
-            <div class="user-name" *ngIf="visible">
-                <h4>Pedro Santos</h4>
+            <div class="user-name">
+                <h4>{{user.username}}</h4>
                 <p>WM Vallet</p>
             </div>
-            <div class="user-image" *ngIf="visible">
+            <div class="user-image" [ngStyle]="{ background: backGroundImage.length>0? 'url(' + backGroundImage + ')':'' }">
+                <mat-icon svgIcon="page-profile" *ngIf="backGroundImage.length === 0"></mat-icon>
             </div>
-        </div>
+        </div> 
     </div>
 </header>
 <mat-menu #menu="matMenu" class="menu">

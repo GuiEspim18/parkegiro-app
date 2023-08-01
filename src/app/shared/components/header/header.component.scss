@@ -42,6 +42,9 @@ header {
                 background: $light_grey;
                 border-radius: 50px;
                 margin-left: 15px;
+                background-position: center !important;
+                background-size: cover !important;
+                background-repeat: no-repeat !important;
             }
         }
     }
