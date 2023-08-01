@@ -48,8 +48,10 @@ export class HeaderComponent implements OnInit {
 
   private populate(): void {
     const user: User = JSON.parse(localStorage.getItem('user') as string);
-    this.user = user;
-    this.backGroundImage = this.userService.getUserPhoto(user.photo.name);
+    if (user) {
+      this.user = user;
+      this.backGroundImage = this.userService.getUserPhoto(user.photo.name);
+    }
   }
 
 

@@ -8,6 +8,7 @@ import { UsersComponent } from './pages/users/users.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { ConfigurationsComponent } from './pages/configurations/configurations.component';
 import { LoginComponent } from './pages/login/login.component';
+import { RegisterComponent } from './pages/register/register.component';
 
 const routes: Routes = [
   {
@@ -84,6 +85,15 @@ const routes: Routes = [
       {
         path: "",
         component: LoginComponent
+      }
+    ]
+  },
+  {
+    path: "register",
+    children: [
+      {
+        path: "",
+        component: RegisterComponent
       }
     ]
   }

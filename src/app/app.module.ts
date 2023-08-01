@@ -55,6 +55,9 @@ import { ViewUsersDialogComponent } from './shared/components/dialog/users/view-
 import { LoginComponent } from './pages/login/login.component';
 import { LoginCardComponent } from './shared/components/cards/login/login-card/login-card.component';
 import { UltraLightCardComponent } from './shared/utils/cards/ultra-light-card/ultra-light-card.component';
+import { RegisterComponent } from './pages/register/register.component';
+import { RegisterCardComponent } from './shared/components/cards/register/register-card/register-card.component';
+import { AboutYouComponent } from './shared/components/pages/register/about-you/about-you.component';
 
 const maskConfig: Partial<IConfig> = {
   validation: false,
@@ -109,7 +112,10 @@ const maskConfig: Partial<IConfig> = {
     ViewUsersDialogComponent,
     LoginComponent,
     LoginCardComponent,
-    UltraLightCardComponent
+    UltraLightCardComponent,
+    RegisterComponent,
+    RegisterCardComponent,
+    AboutYouComponent
   ],
   imports: [
     BrowserModule,

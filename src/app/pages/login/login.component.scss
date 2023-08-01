@@ -4,4 +4,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
+
+    app-login-card {
+        width: 100%;
+        max-width: 340px;
+    }
 }
