@@ -102,9 +102,9 @@ export class UsersService {
     const path: Array<any> = ['auth', 'login'];
     this.http.patch(this.apiUrlService.url(path), data).subscribe((element: any) => {
       this.authService.save(element);
+      window.location.href = "/home";
       const message : string = `Olá, ${element.user.username}!`;
       this.alerts.success(message);
-      this.router.navigate(['home']);
     }, (err: HttpErrorResponse) => {
       const message: string = err.error.message;
       this.alerts.error(message);
