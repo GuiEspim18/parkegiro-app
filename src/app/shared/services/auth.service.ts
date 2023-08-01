@@ -4,6 +4,9 @@ import { Observable } from "rxjs";
 import { ApiUrlService } from "./api-url.service";
 import { HttpClient } from "@angular/common/http";
 import { Router } from "@angular/router";
+import { Message } from "../utils/types/alert-question/alert-question.types";
+import { Alerts } from "../utils/alerts/alerts";
+import { SweetAlertResult } from "sweetalert2";
 
 @Injectable({
     providedIn: 'root'
@@ -13,7 +16,8 @@ export class AuthService {
     constructor(
         private readonly apiUrlService: ApiUrlService,
         private readonly http: HttpClient,
-        private readonly router: Router
+        private readonly router: Router,
+        private readonly alerts: Alerts
     ) { }
 
 
@@ -50,6 +54,25 @@ export class AuthService {
         this.http.patch(this.apiUrlService.url(path), this.token()).subscribe((element: any) => {
             if (!element) this.router.navigateByUrl('/login');
         });
+    }
+
+
+    /** 
+     * Method to execute the logout
+     */
+
+    public logout(): void {
+        const message: Message = {
+            title: "Deseja sair do seu perfil?",
+            confirm: "Sim",
+            cancel: "Não"
+        };
+        this.alerts.question(message).then((result: SweetAlertResult<any>) => {
+            if (result.isConfirmed) {
+                localStorage.clear();
+                this.router.navigate(['login']);
+            }
+        })
     }
 
 }

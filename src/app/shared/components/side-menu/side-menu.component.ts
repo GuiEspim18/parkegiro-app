@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { menuIcons } from '../../utils/mocs/menu-icons/menu-icons.moc';
 import { SystemColorsService } from '../../services/system-colors.service';
 import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-side-menu',
@@ -23,7 +24,8 @@ export class SideMenuComponent implements OnInit {
 
   constructor(
     private readonly systemColorsService: SystemColorsService,
-    private readonly router: Router
+    private readonly router: Router,
+    public readonly authService: AuthService
   ) { }
 
 

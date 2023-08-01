@@ -1,6 +1,6 @@
 export type Message = {
     title: string;
-    message: string;
+    message?: string;
     confirm?: string ;
     cancel?: string
 };

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UsersService } from '../../services/users.service';
 import { User } from '../../utils/types/user/user.types';
+import { NavigationEnd, Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -25,8 +26,11 @@ export class HeaderComponent implements OnInit {
    */
 
   constructor(
-    private readonly userService: UsersService
-  ) { }
+    private readonly userService: UsersService,
+    private readonly router: Router
+  ) {
+    this.detect();
+  }
 
 
   /** 
@@ -46,6 +50,17 @@ export class HeaderComponent implements OnInit {
     const user: User = JSON.parse(localStorage.getItem('user') as string);
     this.user = user;
     this.backGroundImage = this.userService.getUserPhoto(user.photo.name);
+  }
+
+
+  /** 
+   * Method to detect the routes
+   */
+
+  private detect(): void {
+    this.router.events.subscribe((element: any) => {
+      if (element instanceof NavigationEnd) this.visible = !(element.url === "/profile");
+    });
   }
 
 }
