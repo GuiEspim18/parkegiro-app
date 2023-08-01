@@ -4,7 +4,7 @@ import { FormControl } from '@angular/forms';
 @Component({
   selector: 'app-color-input',
   templateUrl: './color-input.component.html',
-  styles: ['@import "/src/assets/css/input.scss";']
+  styleUrls: ['./color-input.component.scss']
 })
 export class ColorInputComponent implements OnInit {
   
