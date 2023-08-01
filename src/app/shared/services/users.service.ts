@@ -1,7 +1,11 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ApiUrlService } from './api-url.service';
 import { Observable } from 'rxjs';
+import { AuthService } from './auth.service';
+import { Token } from '../utils/types/token/token.types';
+import { Alerts } from '../utils/alerts/alerts';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -9,12 +13,22 @@ import { Observable } from 'rxjs';
 export class UsersService {
 
   /** 
+   * Global properties
+   */
+
+  private readonly token: Token = this.authService.token();
+
+
+  /** 
    * Class constructor
    */
 
   constructor(
     private readonly http: HttpClient,
-    private readonly apiUrlService: ApiUrlService
+    private readonly apiUrlService: ApiUrlService,
+    private readonly authService: AuthService,
+    private readonly alerts: Alerts,
+    private readonly router: Router
   ) { }
 
 
@@ -26,7 +40,7 @@ export class UsersService {
 
    public create(data: any): Observable<Object> {
     const path: Array<any> = ['users'];
-    return this.http.post(this.apiUrlService.url(path), data);
+    return this.http.post(this.apiUrlService.url(path), data, this.token);
   }
 
 
@@ -37,7 +51,7 @@ export class UsersService {
 
   public getAll(): Observable<any> {
     const path: Array<any> = ['users'];
-    return this.http.get(this.apiUrlService.url(path))
+    return this.http.get(this.apiUrlService.url(path), this.token)
   }
 
 
@@ -50,7 +64,7 @@ export class UsersService {
 
   public update(id: number, data: any): Observable<Object & Object> {
     const path: Array<any> = ['users', id];
-    return this.http.patch(this.apiUrlService.url(path), data);
+    return this.http.patch(this.apiUrlService.url(path), data, this.token);
   }
 
 
@@ -62,7 +76,7 @@ export class UsersService {
 
   public delete(id: number): Observable<Object> {
     const path: Array<any> = ['users', id];
-    return this.http.delete(this.apiUrlService.url(path));
+    return this.http.delete(this.apiUrlService.url(path), this.token);
   } 
 
 
@@ -75,6 +89,26 @@ export class UsersService {
   public getUserPhoto(name: string): string {
     const path: Array<any> = ['photo', 'download', name];
     return this.apiUrlService.url(path);
+  }
+
+
+  /** 
+   * Method to execute the login on api
+   * @param data
+   * @returns Observable<Object>
+   */
+
+  public login(data: any): void {
+    const path: Array<any> = ['auth', 'login'];
+    this.http.patch(this.apiUrlService.url(path), data).subscribe((element: any) => {
+      this.authService.save(element);
+      const message : string = `Olá, ${element.user.username}!`;
+      this.alerts.success(message);
+      this.router.navigate(['home']);
+    }, (err: HttpErrorResponse) => {
+      const message: string = err.error.message;
+      this.alerts.error(message);
+    });
   }
   
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/shared/services/auth.service';
 import { PlateService } from 'src/app/shared/services/plate.service';
 
 @Component({
@@ -21,7 +22,8 @@ export class ParkingComponent implements OnInit {
    */
 
   constructor(
-    private readonly plateService: PlateService
+    private readonly plateService: PlateService,
+    private readonly authService: AuthService
   ) { }
 
 
@@ -31,6 +33,7 @@ export class ParkingComponent implements OnInit {
 
   ngOnInit(): void {
     for (let control = 0; control <= 1; control ++) this.populate(control);
+    this.authService.verify();
   }
 
 

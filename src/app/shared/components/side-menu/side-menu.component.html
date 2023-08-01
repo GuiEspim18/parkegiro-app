@@ -5,7 +5,7 @@
     <mat-divider></mat-divider>
     <div class="navs">
         <nav>
-            <button mat-button *ngFor="let item of icons" class="icon-div" routerLink="{{item.path}}">
+            <button mat-button *ngFor="let item of icons" class="icon-div" (click)="navigate(item.path)">
                 <mat-icon svgIcon="{{item.icon}}"></mat-icon>
             </button>
         </nav>

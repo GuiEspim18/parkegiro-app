@@ -1,6 +1,6 @@
-import { TInput } from "src/app/shared/utils/types/input/input.type";
+import { Input } from "src/app/shared/utils/types/input/input.type";
 
-export const inputs: Array<TInput> = [
+export const inputs: Array<Input> = [
     {
         label: "Nome de usuário",
         controlName: "username",

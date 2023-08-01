@@ -1,0 +1,57 @@
+@import "/src/assets/css/main.scss";
+
+.card-header {
+    width: 100%;
+    height: 50px;
+    border-bottom: solid 1px $dark_blue;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 0px;
+}
+
+app-ultra-light-card {
+    width: 350px;
+    display: block;
+    overflow: hidden;
+
+    .form {
+        padding: 20px;
+
+        h1 {
+            color: $blue_2;
+            font-weight: 400;
+            font-size: 2rem;
+            text-align: center;
+        }
+
+        .submit-div {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .register {
+            padding-top: 20px;
+
+            p {
+                font-size: 1.1rem;
+                color: $dark_blue;
+
+                a {
+                    color: $blue_1;
+                    cursor: pointer;
+                    text-decoration: none;
+                    font-weight: 600;
+                    transition: 0.3s;
+
+                    &:hover {
+                        text-decoration: underline;
+                    }
+                }
+            }
+        }
+
+    }
+}

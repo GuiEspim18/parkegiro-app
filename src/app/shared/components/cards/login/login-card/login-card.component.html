@@ -1,0 +1,22 @@
+<div class="card-login">
+    <app-ultra-light-card>
+        <div class="card-header">
+            <img src="../../../../../../assets/img/logo/logo-legend.svg" alt="">
+        </div>
+        <div class="form">
+            <h1>Login</h1>
+            <form [formGroup]="form" (ngSubmit)="submit(form)">
+                <div *ngFor="let item of inputs" class="input-div">
+                    <app-text-input *ngIf="item.type==='text' || item.type === 'email'" [label]="item.label" [type]="item.type" [blurEvent]="item.blurEvent" [changeEvent]="item.changeEvent" [controlName]="item.controlName" (keyUpInput)="getKeyUpEvent($event)" (changeInput)="getChangeEvent($event)" [inputMak]="item.inputMak" [controlValidators]="item.validators" [value]="item.value"></app-text-input>
+                    <app-password-input *ngIf="item.type==='password'" [label]="item.label" [type]="item.type" [blurEvent]="item.blurEvent" [changeEvent]="item.changeEvent" (changeInput)="getChangeEvent($event)" [controlName]="item.controlName" (keyUpInput)="getKeyUpEvent($event)" [inputMak]="item.inputMak" [controlValidators]="item.validators"></app-password-input>
+                </div>
+                <div class="submit-div">
+                    <app-dark-button [text]="'Entrar'"></app-dark-button>
+                </div>
+                <div class="register">
+                    <p>Ou <a>cadastre-se!</a></p>
+                </div>
+            </form>
+        </div>
+    </app-ultra-light-card>
+</div>

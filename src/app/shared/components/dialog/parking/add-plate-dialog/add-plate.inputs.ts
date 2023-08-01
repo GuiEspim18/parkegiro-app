@@ -1,7 +1,7 @@
 import { Validators } from "@angular/forms";
-import { TInput } from "src/app/shared/utils/types/input/input.type";
+import { Input } from "src/app/shared/utils/types/input/input.type";
 
-export const inputs: Array<TInput> = [
+export const inputs: Array<Input> = [
     {
         label: "Placa",
         controlName: "plate",

@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { AddUsersDialogComponent } from 'src/app/shared/components/dialog/users/add-users-dialog/add-users-dialog.component';
 import { ViewUsersDialogComponent } from 'src/app/shared/components/dialog/users/view-users-dialog/view-users-dialog.component';
+import { AuthService } from 'src/app/shared/services/auth.service';
 import { UsersService } from 'src/app/shared/services/users.service';
 import { Alerts } from 'src/app/shared/utils/alerts/alerts';
-import { TMessage } from 'src/app/shared/utils/types/alert-question/alert-question.types';
+import { Message } from 'src/app/shared/utils/types/alert-question/alert-question.types';
 import { SweetAlertResult } from 'sweetalert2';
 
 @Component({
@@ -57,7 +58,8 @@ export class UsersComponent implements OnInit {
   constructor(
     private readonly matDialogService: MatDialog,
     private readonly userService: UsersService,
-    private readonly alerts: Alerts
+    private readonly alerts: Alerts,
+    private readonly authService: AuthService
   ) { }
 
 
@@ -67,6 +69,7 @@ export class UsersComponent implements OnInit {
 
   ngOnInit(): void {
     this.populate();
+    this.authService.verify();
   }
 
 
@@ -88,7 +91,7 @@ export class UsersComponent implements OnInit {
    */
 
   public delete(event: any): void {
-    const message: TMessage = {
+    const message: Message = {
       title: "Deseja deletar este usuário?",
       message: "Ao deletar este usuário você excluirá ele do sistema definitivamente!",
       confirm: "Sim",

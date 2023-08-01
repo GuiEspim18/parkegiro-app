@@ -4,7 +4,7 @@ import { AddPlateDialogComponent } from '../../../dialog/parking/add-plate-dialo
 import { PlateService } from 'src/app/shared/services/plate.service';
 import { Alerts } from 'src/app/shared/utils/alerts/alerts';
 import { SweetAlertResult } from 'sweetalert2';
-import { TMessage } from 'src/app/shared/utils/types/alert-question/alert-question.types';
+import { Message } from 'src/app/shared/utils/types/alert-question/alert-question.types';
 
 @Component({
   selector: 'app-entrance',
@@ -72,7 +72,7 @@ export class EntranceComponent implements OnInit {
   public getOutEvent(event: any): void {
     const index: number = this.findIndex(event);
     if (index !== -1) {
-      const message: TMessage = {
+      const message: Message = {
         title: "Deseja retirar este veículo?",
         message: "Ao retirar o veículo do pátio ele saíra da lista de entradas e irá para a lista de saída!",
         confirm: "Sim",
@@ -117,7 +117,7 @@ export class EntranceComponent implements OnInit {
     const index: number = this.findIndex(event);
     if (index !== -1) {
       const id: number = this.entrance[index].id;
-      const message: TMessage = {
+      const message: Message = {
         title: "Deseja cancelar esta entrada?",
         message: "Ao cancelar esta entrada você excluirá ela do pátio definitivamente!",
         confirm: "Sim",

@@ -2,11 +2,19 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ApiUrlService } from './api-url.service';
+import { AuthService } from './auth.service';
+import { Token } from '../utils/types/token/token.types';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PlateService {
+
+  /** 
+   * Global constructor
+   */
+
+  private readonly token: Token = this.authService.token();
 
 
   /** 
@@ -15,7 +23,8 @@ export class PlateService {
 
   constructor(
     private readonly http: HttpClient,
-    private readonly apiUrlService: ApiUrlService
+    private readonly apiUrlService: ApiUrlService,
+    private readonly authService: AuthService
   ) { }
 
 
@@ -39,7 +48,7 @@ export class PlateService {
 
   public findByStage(num: number): Observable<any> {
     const path: Array<any> = ['plates', 'stage', num];
-    return this.http.get(this.apiUrlService.url(path));
+    return this.http.get(this.apiUrlService.url(path), this.token);
   }
 
 
@@ -51,7 +60,7 @@ export class PlateService {
 
   public create(data: any): Observable<Object> {
     const path: Array<any> = ['plates'];
-    return this.http.post(this.apiUrlService.url(path), data);
+    return this.http.post(this.apiUrlService.url(path), data, this.token);
   }
 
 
@@ -62,7 +71,7 @@ export class PlateService {
 
   public getAll(): Observable<any> {
     const path: Array<any> = ['plates'];
-    return this.http.get(this.apiUrlService.url(path))
+    return this.http.get(this.apiUrlService.url(path), this.token)
   }
 
 
@@ -75,7 +84,7 @@ export class PlateService {
 
   public update(id: number, data: any): Observable<Object & Object> {
     const path: Array<any> = ['plates', id];
-    return this.http.patch(this.apiUrlService.url(path), data);
+    return this.http.patch(this.apiUrlService.url(path), data, this.token);
   }
 
 
@@ -87,7 +96,7 @@ export class PlateService {
 
   public delete(id: number): Observable<Object> {
     const path: Array<any> = ['plates', id];
-    return this.http.delete(this.apiUrlService.url(path));
+    return this.http.delete(this.apiUrlService.url(path),this.token);
   } 
 
 }

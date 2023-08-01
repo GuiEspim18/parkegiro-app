@@ -71,9 +71,11 @@ export class DateInputComponent implements OnInit {
    */
 
   public valueChanges(change: string): void {
-    const date: Date = new Date(change);
-    const curretnDate: string = date.toISOString();
-    this.control.setValue(curretnDate);
+    if (change) {
+      const date: Date = new Date(change);
+      const curretnDate: string = date.toISOString();
+      this.control.setValue(curretnDate);
+    }
   }
 
 

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { inputs } from './profile.inputs';
+import { AuthService } from 'src/app/shared/services/auth.service';
 
 @Component({
   selector: 'app-profile',
@@ -33,10 +34,10 @@ export class ProfileComponent implements OnInit {
   public inputs: Array<any> = inputs;
 
 
-  constructor() { }
+  constructor(private readonly authService: AuthService) { }
 
-
-  ngOnInit(): void {
+  public ngOnInit(): void {
+    this.authService.verify();
   }
 
   public getBlurEvent(event: any): void {

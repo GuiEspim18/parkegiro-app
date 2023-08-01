@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/shared/services/auth.service';
 
 @Component({
   selector: 'app-configurations',
@@ -7,9 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ConfigurationsComponent implements OnInit {
 
-  constructor() { }
+  constructor(private readonly authService: AuthService) { }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
+    this.authService.verify();
   }
 
 }

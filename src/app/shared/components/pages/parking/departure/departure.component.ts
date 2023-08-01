@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { PlateService } from 'src/app/shared/services/plate.service';
 import { Alerts } from 'src/app/shared/utils/alerts/alerts';
-import { TMessage } from 'src/app/shared/utils/types/alert-question/alert-question.types';
+import { Message } from 'src/app/shared/utils/types/alert-question/alert-question.types';
 import { SweetAlertResult } from 'sweetalert2';
 
 @Component({
@@ -44,7 +44,7 @@ export class DepartureComponent implements OnInit {
    */
 
   public cancelDeparture(event: any): void {
-    const message: TMessage = {
+    const message: Message = {
       title: "Deseja cancelar a saída deste veículo?",
       message: "Ao cancelar a saída deste veículo ele voltará a lista do pátio de entradas!",
       confirm: "Sim",

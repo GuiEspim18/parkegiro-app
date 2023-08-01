@@ -52,6 +52,9 @@ import { ViewPlateDialogComponent } from './shared/components/dialog/parking/vie
 import { AddUsersDialogComponent } from './shared/components/dialog/users/add-users-dialog/add-users-dialog.component';
 import { SearchInputComponent } from './shared/components/inputs/search-input/search-input.component';
 import { ViewUsersDialogComponent } from './shared/components/dialog/users/view-users-dialog/view-users-dialog.component';
+import { LoginComponent } from './pages/login/login.component';
+import { LoginCardComponent } from './shared/components/cards/login/login-card/login-card.component';
+import { UltraLightCardComponent } from './shared/utils/cards/ultra-light-card/ultra-light-card.component';
 
 const maskConfig: Partial<IConfig> = {
   validation: false,
@@ -103,7 +106,10 @@ const maskConfig: Partial<IConfig> = {
     ViewPlateDialogComponent,
     AddUsersDialogComponent,
     SearchInputComponent,
-    ViewUsersDialogComponent
+    ViewUsersDialogComponent,
+    LoginComponent,
+    LoginCardComponent,
+    UltraLightCardComponent
   ],
   imports: [
     BrowserModule,

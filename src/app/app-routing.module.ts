@@ -7,6 +7,7 @@ import { DashBoardComponent } from './pages/dash-board/dash-board.component';
 import { UsersComponent } from './pages/users/users.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { ConfigurationsComponent } from './pages/configurations/configurations.component';
+import { LoginComponent } from './pages/login/login.component';
 
 const routes: Routes = [
   {
@@ -77,6 +78,15 @@ const routes: Routes = [
       }
     ]
   },
+  {
+    path: "login",
+    children: [
+      {
+        path: "",
+        component: LoginComponent
+      }
+    ]
+  }
 ];
 
 @NgModule({

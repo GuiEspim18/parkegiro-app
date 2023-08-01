@@ -1,7 +1,7 @@
 import { Validators } from "@angular/forms";
-import { TInput } from "src/app/shared/utils/types/input/input.type";
+import { Input } from "src/app/shared/utils/types/input/input.type";
 
-export const inputs: Array<TInput> = [
+export const inputs: Array<Input> = [
     {
         label: "Nome de usuário",
         controlName: "username",
@@ -135,7 +135,7 @@ export const inputs: Array<TInput> = [
     {
         label: "Email",
         controlName: "email",
-        validators: [Validators.required],
+        validators: [Validators.required, Validators.email],
         type: "email",
         changeEvent: false,
         blurEvent: false,

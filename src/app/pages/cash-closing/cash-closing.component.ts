@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/shared/services/auth.service';
 
 @Component({
   selector: 'app-cash-closing',
@@ -44,9 +45,10 @@ export class CashClosingComponent implements OnInit {
     },
   ]
 
-  constructor() { }
+  constructor(private readonly authService: AuthService) { }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
+    this.authService.verify();
   }
 
 }

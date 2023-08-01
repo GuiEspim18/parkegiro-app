@@ -1,4 +1,4 @@
-<main class="app-content">
+<main class="app-content" *ngIf="currentUrl !== '/login' && currentUrl !== '/register'">
     <section>
         <app-side-menu></app-side-menu>
     </section>
@@ -11,3 +11,8 @@
         </div>
     </section>
 </main>
+
+<!-- In case the route is login or register -->
+<section class="system-content system-content--form" *ngIf="currentUrl === '/login' || currentUrl === '/register'">
+    <router-outlet></router-outlet>
+</section>

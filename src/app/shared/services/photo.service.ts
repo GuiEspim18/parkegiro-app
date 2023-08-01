@@ -2,6 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ApiUrlService } from './api-url.service';
+import { AuthService } from './auth.service';
+import { Token } from '../utils/types/token/token.types';
 
 @Injectable({
   providedIn: 'root'
@@ -9,12 +11,19 @@ import { ApiUrlService } from './api-url.service';
 export class PhotoService {
 
   /** 
+   * Global properties
+   */
+
+  private readonly token: Token = this.authService.token();
+
+  /** 
    * Class constructor
    */
 
   constructor(
     private readonly http: HttpClient,
-    private readonly apiUrlService: ApiUrlService
+    private readonly apiUrlService: ApiUrlService, 
+    private readonly authService: AuthService
   ) { }
 
 
@@ -28,7 +37,7 @@ export class PhotoService {
     const formData: FormData = new FormData();
     formData.append('file', data, data.name);
     const path: Array<any> = ['photo', data.user];
-    return this.http.post(this.apiUrlService.url(path), formData);
+    return this.http.post(this.apiUrlService.url(path), formData, this.token);
   }
 
 
@@ -39,7 +48,7 @@ export class PhotoService {
 
   public getAll(): Observable<any> {
     const path: Array<any> = ['photo'];
-    return this.http.get(this.apiUrlService.url(path))
+    return this.http.get(this.apiUrlService.url(path), this.token)
   }
 
 
@@ -52,7 +61,7 @@ export class PhotoService {
 
   public update(id: number, data: any): Observable<Object & Object> {
     const path: Array<any> = ['photo', id];
-    return this.http.patch(this.apiUrlService.url(path), data);
+    return this.http.patch(this.apiUrlService.url(path), data, this.token);
   }
 
 
@@ -64,6 +73,6 @@ export class PhotoService {
 
   public delete(id: number): Observable<Object> {
     const path: Array<any> = ['photo', id];
-    return this.http.delete(this.apiUrlService.url(path));
+    return this.http.delete(this.apiUrlService.url(path), this.token);
   }
 }
