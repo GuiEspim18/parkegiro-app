@@ -25,6 +25,7 @@ export class DateInputComponent implements OnInit {
   @Input() public changeEvent: boolean = false;
   @Input() public value: string;
   @Input() public disabled: boolean = false;
+  @Input() public max_date: number;
 
   @Output() private readonly blurInput: EventEmitter<any> = new EventEmitter();
   @Output() private readonly keyUpInput: EventEmitter<any> = new EventEmitter();
@@ -35,6 +36,7 @@ export class DateInputComponent implements OnInit {
 
   private emitValue: any;
 
+  public maxDate: Date;
 
 
   /** 
@@ -52,6 +54,7 @@ export class DateInputComponent implements OnInit {
 
   public ngOnInit(): void {
     this.setupControl();
+    this.setMaxDate();
   }
 
 
@@ -131,6 +134,18 @@ export class DateInputComponent implements OnInit {
     if (this.changeEvent) {
       this.emitValue.value = str;
       this.changeInput.emit(this.emitValue)
+    }
+  }
+
+
+  /** 
+   * Method to set a maxDate date to datepicker
+   */
+
+  private setMaxDate(): void {
+    if (this.max_date) {
+      const currentYear = new Date().getFullYear();
+      this.maxDate = new Date(currentYear -this.max_date, 11, 31);
     }
   }
 

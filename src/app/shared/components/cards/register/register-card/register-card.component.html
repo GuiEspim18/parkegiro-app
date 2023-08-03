@@ -3,7 +3,11 @@
         <h1>Cadastro</h1>
         <img src="../../../../../../assets/img/logo/logo-legend.svg" alt="">
     </div>
-    <div class="progress"> 
-        <mat-progress-bar mode="determinate" value="10"  class="progressBar"></mat-progress-bar>
+    <div class="progress">
+        <mat-progress-bar mode="determinate" value="{{value}}" class="progressBar"></mat-progress-bar>
+    </div>
+    <div class="forms">
+        <app-about-you *ngIf="stage === 0" (skip)="skip($event)"></app-about-you>
+        <app-address *ngIf="stage === 1" (skip)="skip($event)"></app-address>
     </div>
 </app-ultra-light-card>

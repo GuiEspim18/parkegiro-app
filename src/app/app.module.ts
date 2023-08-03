@@ -58,6 +58,8 @@ import { UltraLightCardComponent } from './shared/utils/cards/ultra-light-card/u
 import { RegisterComponent } from './pages/register/register.component';
 import { RegisterCardComponent } from './shared/components/cards/register/register-card/register-card.component';
 import { AboutYouComponent } from './shared/components/pages/register/about-you/about-you.component';
+import { RegisterHeaderComponent } from './shared/components/pages/register/register-header/register-header.component';
+import { AddressComponent } from './shared/components/pages/register/address/address.component';
 
 const maskConfig: Partial<IConfig> = {
   validation: false,
@@ -115,7 +117,9 @@ const maskConfig: Partial<IConfig> = {
     UltraLightCardComponent,
     RegisterComponent,
     RegisterCardComponent,
-    AboutYouComponent
+    AboutYouComponent,
+    RegisterHeaderComponent,
+    AddressComponent
   ],
   imports: [
     BrowserModule,

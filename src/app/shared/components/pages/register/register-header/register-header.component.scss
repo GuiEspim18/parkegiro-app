@@ -1,0 +1,17 @@
+@import "/src/assets/css/main.scss";
+
+.register-header {
+    display: flex;
+    align-items: center;
+    padding-bottom: 10px;
+
+    h2 {
+        font-size: 1.7rem;
+        margin: 0 10px;
+    }
+}
+
+mat-divider {
+    background: $dark_blue;
+    margin-bottom: 10px;
+}
