@@ -28,7 +28,7 @@ export class AboutYouComponent implements OnInit {
     "cpf": new FormControl("", [Validators.required]),
     "birthdate": new FormControl("", [Validators.required]),
   });
-  
+
   @Output() private readonly skip: EventEmitter<any> = new EventEmitter();
 
   private readonly value: number = 25;
@@ -54,12 +54,12 @@ export class AboutYouComponent implements OnInit {
     this.populate();
   }
 
-   /** 
-   * Method to get keyup event from inputs
-   * @param event
-   */
+  /** 
+  * Method to get keyup event from inputs
+  * @param event
+  */
 
-   public getKeyUpEvent(event: any): void {
+  public getKeyUpEvent(event: any): void {
     this.form.get(event.controlName)?.setValue(event.value);
     for (let item of this.inputs) {
       if (item.controlName === event.controlName) item.value = event.value;
@@ -123,7 +123,12 @@ export class AboutYouComponent implements OnInit {
   private populate(): void {
     this.saveDataService.aboutYou.subscribe((element: any) => {
       const controls: { [key: string]: AbstractControl; } = this.form.controls;
-      for (let item in element) if (element[item] || element[item]?.length > 0) controls[item] = element[item];
+      for (let item in element) if (element[item] || element[item]?.length > 0) {
+        controls[item].patchValue(element[item]);
+        this.inputs.forEach((input: any) => {
+          if (input.controlName === item) input.value = element[item];
+        });
+      }
     });
   }
 
