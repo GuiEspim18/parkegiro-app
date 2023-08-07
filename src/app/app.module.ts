@@ -62,6 +62,7 @@ import { RegisterHeaderComponent } from './shared/components/pages/register/regi
 import { AddressComponent } from './shared/components/pages/register/address/address.component';
 import { CompanyComponent } from './shared/components/pages/register/company/company.component';
 import { ValidationComponent } from './shared/components/pages/register/validation/validation.component';
+import { ValidateEmailComponent } from './shared/components/pages/register/validate-email/validate-email.component';
 
 const maskConfig: Partial<IConfig> = {
   validation: false,
@@ -123,7 +124,8 @@ const maskConfig: Partial<IConfig> = {
     RegisterHeaderComponent,
     AddressComponent,
     CompanyComponent,
-    ValidationComponent
+    ValidationComponent,
+    ValidateEmailComponent
   ],
   imports: [
     BrowserModule,

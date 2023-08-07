@@ -20,7 +20,7 @@ export const inputs: Array<Input> = [
         changeEvent: false,
         blurEvent: false,
         value: "",
-        inputMak: "00.000.000/0000-00"
+        inputMak: ""
     },
     {
         label: "Senha",

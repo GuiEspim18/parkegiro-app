@@ -1,0 +1,24 @@
+.validate-email {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px; 
+
+    div {
+        text-align: center;
+        padding: 50px;
+
+        mat-icon {
+            width: 100px;
+            height: 100px;
+        }
+    }
+
+}
+
+.submit-div {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+}

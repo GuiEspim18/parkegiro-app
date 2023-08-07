@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
 @Component({
@@ -23,6 +23,7 @@ export class PasswordInputComponent implements OnInit {
   @Input() public controlValidators: Array<any> = [];
   @Input() public controlName: string;
   @Input() public changeEvent: boolean = false;
+  @Input() public value: string = "";
 
   @Output() private readonly blurInput: EventEmitter<any> = new EventEmitter();
   @Output() private readonly keyUpInput: EventEmitter<any> = new EventEmitter();
@@ -37,7 +38,7 @@ export class PasswordInputComponent implements OnInit {
    */
 
   constructor() { }
-  
+
 
   /** 
    * On init method
@@ -45,6 +46,16 @@ export class PasswordInputComponent implements OnInit {
 
   public ngOnInit(): void {
     this.setupControl();
+  }
+
+
+  /** 
+   * Method to get the changes
+   * @param changes
+   */
+
+  public ngOnChanges(changes: SimpleChanges): void {
+    this.valueChanges(changes.value?.currentValue);
   }
 
 
@@ -72,7 +83,7 @@ export class PasswordInputComponent implements OnInit {
     this.emitValue.value = str;
     this.keyUpInput.emit(this.emitValue);
   }
-  
+
 
   /** 
    * Method to setup the controls
@@ -101,6 +112,16 @@ export class PasswordInputComponent implements OnInit {
       this.emitValue.value = str;
       this.changeInput.emit(this.emitValue)
     }
+  }
+
+
+  /** 
+   * Method to change the value of a control
+   * @param change
+   */
+
+  public valueChanges(change: string): void {
+    this.control.setValue(change);
   }
 
 }

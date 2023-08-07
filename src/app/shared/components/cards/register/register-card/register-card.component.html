@@ -11,5 +11,6 @@
         <app-address *ngIf="stage === 1" (skip)="skip($event)"></app-address>
         <app-company *ngIf="stage === 2" (skip)="skip($event)"></app-company>
         <app-validation *ngIf="stage === 3" (skip)="skip($event)"></app-validation>
+        <app-validate-email *ngIf="stage === 4" (skip)="skip($event)"></app-validate-email>
     </div>
 </app-ultra-light-card>

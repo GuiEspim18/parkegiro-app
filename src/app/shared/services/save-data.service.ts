@@ -69,12 +69,14 @@ export class SaveDataService {
      */
 
     public save(where: Where, data: any ): void {
+        let obs: Observable<any> = new Observable();
         switch (where) {
-            case "aboutYou": this.saveData(this.aboutYou, data); break;
-            case "address": this.saveData(this.address, data); break;
-            case "company": this.saveData(this.company, data); break;
-            case "validation": this.saveData(this.validation, data); break;
+            case "aboutYou": obs = this.aboutYou; break;
+            case "address": obs = this.address; break;
+            case "company": obs = this.company; break;
+            case "validation": obs = this.validation; break;
         }
+        this.saveData(obs, data)
     }
 
 

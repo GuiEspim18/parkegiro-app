@@ -1,7 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Input } from 'src/app/shared/utils/types/input/input.type';
 import { inputs } from './validation.inputs';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 import { SaveDataService } from 'src/app/shared/services/save-data.service';
 import { Alerts } from 'src/app/shared/utils/alerts/alerts';
 
@@ -45,6 +45,7 @@ export class ValidationComponent implements OnInit {
    */
 
   public ngOnInit(): void {
+    this.populate();
   }
 
 
@@ -77,7 +78,7 @@ export class ValidationComponent implements OnInit {
 
   public back(): void {
     const value: any = {
-      stage: 1, 
+      stage: 1,
       value: 75
     };
     this.skip.emit(value);
@@ -90,16 +91,38 @@ export class ValidationComponent implements OnInit {
 
   public submit(form: FormGroup): void {
     if (form.valid) {
-      this.saveDataService.save("validation", form.value);
-      const skipObj: any = {
-        stage: 4,
-        value: this.value * 4
-      };
-      this.skip.emit(skipObj);
+      if (form.value.email === form.value.emailConfirm) {
+        if (form.value.password === form.value.passwordConfirm) {
+          this.saveDataService.save("validation", form.value);
+          const skipObj: any = {
+            stage: 4,
+            value: this.value * 4
+          };
+          this.skip.emit(skipObj);
+        } else {
+          const message: string = "A senha confirmada precisa ser igual a senha digitada!";
+          this.alerts.error(message);
+        }
+      } else {
+        const message: string = "O email confirmado precisa ser igual ao email digitado!";
+        this.alerts.error(message);
+      }
     } else {
       const message: string = "Preencha todos os campos obrigatórios!";
       this.alerts.error(message);
     }
+  }
+
+
+  /** 
+   * Method to populate de form
+   */
+
+  private populate(): void {
+    this.saveDataService.validation.subscribe((element: any) => {
+      const controls: { [key: string]: AbstractControl; } = this.form.controls;
+      for (let item in element) if (element[item] || element[item]?.length > 0) controls[item].patchValue(element[item]);
+    });
   }
 
 

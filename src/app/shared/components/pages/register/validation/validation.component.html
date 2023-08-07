@@ -1,8 +1,8 @@
 <app-register-header [icon]="'padlock'" [title]="'Validação'"></app-register-header>
-<form>
+<form [formGroup]="form" (ngSubmit)="submit(form)">
     <div *ngFor="let item of inputs" class="input-div">
         <app-text-input *ngIf="item.type==='text' || item.type === 'email'" [label]="item.label" [type]="item.type" [blurEvent]="item.blurEvent" [changeEvent]="item.changeEvent" [controlName]="item.controlName" (keyUpInput)="getKeyUpEvent($event)" (changeInput)="getChangeEvent($event)" [inputMak]="item.inputMak" [controlValidators]="item.validators" [value]="item.value"></app-text-input>
-        <app-password-input *ngIf="item.type==='password'" [label]="item.label" [type]="item.type" [blurEvent]="item.blurEvent" [changeEvent]="item.changeEvent" (changeInput)="getChangeEvent($event)" [controlName]="item.controlName" (keyUpInput)="getKeyUpEvent($event)" [inputMak]="item.inputMak" [controlValidators]="item.validators"></app-password-input>
+        <app-password-input *ngIf="item.type==='password'" [label]="item.label" [type]="item.type" [blurEvent]="item.blurEvent" [changeEvent]="item.changeEvent" (changeInput)="getChangeEvent($event)" [controlName]="item.controlName" (keyUpInput)="getKeyUpEvent($event)" [inputMak]="item.inputMak" [controlValidators]="item.validators" [value]="item.value"></app-password-input>
     </div>
     <div class="submit-div">
         <app-dark-button class="back" [text]="'Anterior'" (click)="back()"></app-dark-button>
