@@ -23,26 +23,6 @@ export const inputs: Array<Input> = [
         inputMak: ""
     },
     {
-        label: "Estado",
-        controlName: "state",
-        validators: [Validators.required],
-        type: "text",
-        changeEvent: false,
-        blurEvent: true,
-        value: "",
-        inputMak: ""
-    },
-    {
-        label: "Cidade",
-        controlName: "city",
-        validators: [Validators.required],
-        type: "text",
-        changeEvent: false,
-        blurEvent: true,
-        value: "",
-        inputMak: ""
-    },
-    {
         label: "Número",
         controlName: "number",
         validators: [Validators.required],
@@ -62,4 +42,24 @@ export const inputs: Array<Input> = [
         value: "",
         inputMak: ""
     },
+    {
+        label: "Estado",
+        controlName: "state",
+        validators: [Validators.required],
+        type: "text",
+        changeEvent: false,
+        blurEvent: true,
+        value: "",
+        inputMak: ""
+    },
+    {
+        label: "Cidade",
+        controlName: "city",
+        validators: [Validators.required],
+        type: "text",
+        changeEvent: false,
+        blurEvent: true,
+        value: "",
+        inputMak: ""
+    }
 ];

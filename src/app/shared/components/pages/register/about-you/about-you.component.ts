@@ -103,7 +103,7 @@ export class AboutYouComponent implements OnInit {
 
   public submit(form: FormGroup): void {
     if (form.valid) {
-      this.saveDataService.saveAboutYou(form.value);
+      this.saveDataService.save("aboutYou", form.value);
       const skipObj: any = {
         stage: 1,
         value: this.value * 2

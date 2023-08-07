@@ -14,7 +14,7 @@ export class RegisterCardComponent implements OnInit {
    */
 
   public value: number;
-  public stage: number = 0;
+  public stage: number = 3;
 
 
   /** 

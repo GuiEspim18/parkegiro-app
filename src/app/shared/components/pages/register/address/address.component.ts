@@ -5,6 +5,7 @@ import { FormGroup, FormControl, Validators, AbstractControl } from '@angular/fo
 import { ValueService } from 'src/app/shared/services/value.service';
 import { Alerts } from 'src/app/shared/utils/alerts/alerts';
 import { SaveDataService } from 'src/app/shared/services/save-data.service';
+import { CepService } from 'src/app/shared/services/cep.service';
 
 @Component({
   selector: 'app-address',
@@ -20,7 +21,7 @@ export class AddressComponent implements OnInit {
   public readonly inputs: Array<Input> = inputs;
 
   public readonly form: FormGroup = new FormGroup({
-    "cep": new FormControl("", [Validators.required]),
+    "zipCode": new FormControl("", [Validators.required]),
     "street": new FormControl("", [Validators.required]),
     "state": new FormControl("", [Validators.required]),
     "city": new FormControl("", [Validators.required]),
@@ -32,6 +33,8 @@ export class AddressComponent implements OnInit {
 
   private readonly value: number = 25;
 
+  public loader: boolean = false;
+
 
   /** 
    * Class constructor
@@ -40,7 +43,8 @@ export class AddressComponent implements OnInit {
   constructor(
     private readonly valueService: ValueService,
     private readonly alerts: Alerts,
-    private readonly saveDataService: SaveDataService
+    private readonly saveDataService: SaveDataService,
+    private readonly cepService: CepService
   ) { }
 
 
@@ -53,13 +57,13 @@ export class AddressComponent implements OnInit {
   }
 
 
-  
-   /** 
-   * Method to get keyup event from inputs
-   * @param event
-   */
 
-   public getKeyUpEvent(event: any): void {
+  /** 
+  * Method to get keyup event from inputs
+  * @param event
+  */
+
+  public getKeyUpEvent(event: any): void {
     this.form.get(event.controlName)?.setValue(event.value);
     for (let item of this.inputs) {
       if (item.controlName === event.controlName) item.value = event.value;
@@ -83,7 +87,7 @@ export class AddressComponent implements OnInit {
   */
 
   public getBlurEvent(event: any): void {
-    if (event.controlName === "birthdate") this.form.get(event.controlName)?.setValue(event.value);
+    if (event.controlName === "zipCode") this.findCep(event.value);;
   }
 
   /** 
@@ -93,9 +97,7 @@ export class AddressComponent implements OnInit {
   private populate(): void {
     this.saveDataService.address.subscribe((element: any) => {
       const controls: { [key: string]: AbstractControl; } = this.form.controls;
-      for (let item in element) if (element[item] || element[item]?.length > 0) {
-        controls[item] = element[item];
-      }
+      for (let item in element) if (element[item] || element[item]?.length > 0) controls[item].patchValue(element[item]);
     });
   }
 
@@ -106,7 +108,7 @@ export class AddressComponent implements OnInit {
 
   public back(): void {
     const value: any = {
-      stage: 0, 
+      stage: 0,
       value: 25
     };
     this.skip.emit(value);
@@ -118,18 +120,40 @@ export class AddressComponent implements OnInit {
    * @param form
    */
 
-    public submit(form: FormGroup): void {
-      if (form.valid) {
-        this.saveDataService.saveAddress(form.value);
-        const skipObj: any = {
-          stage: 2,
-          value: this.value * 3
-        };
-        this.skip.emit(skipObj);
-      } else {
-        const message: string = "Preencha todos os campos obrigatórios!";
-        this.alerts.error(message);
-      }
+  public submit(form: FormGroup): void {
+    if (form.valid) {
+      this.saveDataService.save("address", form.value);
+      const skipObj: any = {
+        stage: 2,
+        value: this.value * 3
+      };
+      this.skip.emit(skipObj);
+    } else {
+      const message: string = "Preencha todos os campos obrigatórios!";
+      this.alerts.error(message);
     }
+  }
+
+
+  /** 
+   * Method to find a cep on via cep api and populate all the fields
+   * @param cep
+   */
+
+  public findCep(cep: string): void {
+    if (cep.length > 0) {
+      this.loader = true;
+      const fields: Array<{name: string, field: string}> = [{ name: 'street', field: 'logradouro' }, { name: 'state', field: 'uf' }, { name: 'city', field: 'localidade' }];
+      this.cepService.find(cep).subscribe((element: any) => {
+        for (let item of fields) {
+          this.form.get(item.name)?.setValue(element[item.field]);
+          this.inputs.forEach((input: Input) => {
+            if (input.controlName === item.name) input.value = element[item.field];
+          });
+        }
+        this.loader = false;
+      })
+    }
+  }
 
 }

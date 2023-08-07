@@ -1,5 +1,4 @@
-<app-register-header [icon]="'location'" [title]="'Seu endereço'"></app-register-header>
-<mat-progress-bar *ngIf="loader" mode="indeterminate"></mat-progress-bar>
+<app-register-header [icon]="'company'" [title]="'Seu estacionameto'"></app-register-header>
 <form [formGroup]="form" (ngSubmit)="submit(form)">
     <div *ngFor="let item of inputs" class="input-div">
         <app-text-input *ngIf="item.type==='text' || item.type === 'email'" [label]="item.label" [type]="item.type" [blurEvent]="item.blurEvent" [changeEvent]="item.changeEvent" (blurInput)="getBlurEvent($event)" [controlName]="item.controlName" (keyUpInput)="getKeyUpEvent($event)" (changeInput)="getChangeEvent($event)" [inputMak]="item.inputMak" [controlValidators]="item.validators" [value]="item.value"></app-text-input>

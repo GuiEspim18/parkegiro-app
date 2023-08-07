@@ -60,6 +60,8 @@ import { RegisterCardComponent } from './shared/components/cards/register/regist
 import { AboutYouComponent } from './shared/components/pages/register/about-you/about-you.component';
 import { RegisterHeaderComponent } from './shared/components/pages/register/register-header/register-header.component';
 import { AddressComponent } from './shared/components/pages/register/address/address.component';
+import { CompanyComponent } from './shared/components/pages/register/company/company.component';
+import { ValidationComponent } from './shared/components/pages/register/validation/validation.component';
 
 const maskConfig: Partial<IConfig> = {
   validation: false,
@@ -119,7 +121,9 @@ const maskConfig: Partial<IConfig> = {
     RegisterCardComponent,
     AboutYouComponent,
     RegisterHeaderComponent,
-    AddressComponent
+    AddressComponent,
+    CompanyComponent,
+    ValidationComponent
   ],
   imports: [
     BrowserModule,
