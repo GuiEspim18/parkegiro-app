@@ -21,8 +21,8 @@ export class CompanyComponent implements OnInit {
   public readonly form: FormGroup = new FormGroup({
     name: new FormControl("", [Validators.required]),
     cnpj: new FormControl("", [Validators.required]),
-    companyEmail: new FormControl("", [Validators.required]),
-    companyPhone: new FormControl("", [Validators.required])
+    email: new FormControl("", [Validators.required]),
+    phone: new FormControl("", [Validators.required])
   });
 
   @Output() private readonly skip: EventEmitter<number> = new EventEmitter();
@@ -101,7 +101,7 @@ export class CompanyComponent implements OnInit {
 
   public submit(form: FormGroup): void {
     if (form.valid) {
-      this.saveDataService.save("company", form.value);
+      this.saveDataService.save(form.value, true);
       const skipObj: any = {
         stage: 3,
         value: this.value * 3.5
@@ -119,9 +119,9 @@ export class CompanyComponent implements OnInit {
    */
 
   private populate(): void {
-    this.saveDataService.company.subscribe((element: any) => {
+    this.saveDataService.data.subscribe((element: any) => {
       const controls: { [key: string]: AbstractControl; } = this.form.controls;
-      for (let item in element) if (element[item] || element[item]?.length > 0) controls[item].patchValue(element[item]);
+      for (let item in element.company) if (controls[item]) controls[item]?.patchValue(element.company[item]);
     });
   }
 

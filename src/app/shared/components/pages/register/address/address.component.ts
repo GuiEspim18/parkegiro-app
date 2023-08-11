@@ -26,7 +26,7 @@ export class AddressComponent implements OnInit {
     "state": new FormControl("", [Validators.required]),
     "city": new FormControl("", [Validators.required]),
     "number": new FormControl("", [Validators.required]),
-    "comoliment": new FormControl(""),
+    "compliment": new FormControl(""),
   });
 
   @Output() private readonly skip: EventEmitter<number> = new EventEmitter();
@@ -65,9 +65,7 @@ export class AddressComponent implements OnInit {
 
   public getKeyUpEvent(event: any): void {
     this.form.get(event.controlName)?.setValue(event.value);
-    for (let item of this.inputs) {
-      if (item.controlName === event.controlName) item.value = event.value;
-    }
+    for (let item of this.inputs) if (item.controlName === event.controlName) item.value = event.value;
   }
 
 
@@ -95,9 +93,9 @@ export class AddressComponent implements OnInit {
    */
 
   private populate(): void {
-    this.saveDataService.address.subscribe((element: any) => {
+    this.saveDataService.data.subscribe((element: any) => {
       const controls: { [key: string]: AbstractControl; } = this.form.controls;
-      for (let item in element) if (element[item] || element[item]?.length > 0) controls[item].patchValue(element[item]);
+      for (let item in element) if (controls[item]) controls[item]?.patchValue(element[item]);
     });
   }
 
@@ -122,7 +120,7 @@ export class AddressComponent implements OnInit {
 
   public submit(form: FormGroup): void {
     if (form.valid) {
-      this.saveDataService.save("address", form.value);
+      this.saveDataService.save(form.value);
       const skipObj: any = {
         stage: 2,
         value: this.value * 3

@@ -52,4 +52,24 @@ export const inputs: Array<Input> = [
         value: "",
         inputMak: ""
     },
+    {
+        label: "Celular",
+        controlName: "cellphone",
+        validators: [Validators.required],
+        type: "text",
+        changeEvent: true,
+        blurEvent: false,
+        value: "",
+        inputMak: "(00)00000-0000"
+    },
+    {
+        label: "Telefone",
+        controlName: "telephone",
+        validators: [],
+        type: "text",
+        changeEvent: true,
+        blurEvent: false,
+        value: "",
+        inputMak: "(00)0000-0000 || (00)00000-0000"
+    }
 ];

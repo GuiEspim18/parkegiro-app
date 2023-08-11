@@ -26,7 +26,9 @@ export class AboutYouComponent implements OnInit {
     "name": new FormControl("", [Validators.required]),
     "surname": new FormControl("", [Validators.required]),
     "cpf": new FormControl("", [Validators.required]),
-    "birthdate": new FormControl("", [Validators.required]),
+    "birthdate": new FormControl(null, [Validators.required]),
+    "cellphone": new FormControl("", [Validators.required]),
+    "telephone": new FormControl("",)
   });
 
   @Output() private readonly skip: EventEmitter<any> = new EventEmitter();
@@ -103,7 +105,7 @@ export class AboutYouComponent implements OnInit {
 
   public submit(form: FormGroup): void {
     if (form.valid) {
-      this.saveDataService.save("aboutYou", form.value);
+      this.saveDataService.save(form.value);
       const skipObj: any = {
         stage: 1,
         value: this.value * 2
@@ -121,10 +123,10 @@ export class AboutYouComponent implements OnInit {
    */
 
   private populate(): void {
-    this.saveDataService.aboutYou.subscribe((element: any) => {
+    this.saveDataService.data.subscribe((element: any) => {
       const controls: { [key: string]: AbstractControl; } = this.form.controls;
-      for (let item in element) if (element[item] || element[item]?.length > 0) {
-        controls[item].patchValue(element[item]);
+      for (let item in element) if (controls[item]) {
+        controls[item]?.patchValue(element[item]);
         this.inputs.forEach((input: any) => {
           if (input.controlName === item) input.value = element[item];
         });

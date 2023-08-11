@@ -24,7 +24,7 @@ export const inputs: Array<Input> = [
     },
     {
         label: "Email do estacionamento",
-        controlName: "companyEmail",
+        controlName: "email",
         validators: [Validators.required],
         type: "text",
         changeEvent: false,
@@ -34,7 +34,7 @@ export const inputs: Array<Input> = [
     },
     {
         label: "Contato do estacionamento",
-        controlName: "companyPhone",
+        controlName: "phone",
         validators: [Validators.required],
         type: "text",
         changeEvent: false,

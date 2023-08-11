@@ -4,6 +4,8 @@ import { inputs } from './validation.inputs';
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 import { SaveDataService } from 'src/app/shared/services/save-data.service';
 import { Alerts } from 'src/app/shared/utils/alerts/alerts';
+import { AdminService } from 'src/app/shared/services/admin.service';
+import { CompanyService } from 'src/app/shared/services/company.service';
 
 @Component({
   selector: 'app-validation',
@@ -36,7 +38,9 @@ export class ValidationComponent implements OnInit {
 
   constructor(
     private readonly saveDataService: SaveDataService,
-    private readonly alerts: Alerts
+    private readonly alerts: Alerts,
+    private readonly adminService: AdminService,
+    private readonly companyService: CompanyService
   ) { }
 
 
@@ -78,8 +82,8 @@ export class ValidationComponent implements OnInit {
 
   public back(): void {
     const value: any = {
-      stage: 1,
-      value: 75
+      stage: 2,
+      value: this.value * 3.5
     };
     this.skip.emit(value);
   }
@@ -93,12 +97,17 @@ export class ValidationComponent implements OnInit {
     if (form.valid) {
       if (form.value.email === form.value.emailConfirm) {
         if (form.value.password === form.value.passwordConfirm) {
-          this.saveDataService.save("validation", form.value);
+          this.saveDataService.save(form.value);
           const skipObj: any = {
             stage: 4,
             value: this.value * 4
           };
-          this.skip.emit(skipObj);
+          this.saveDataService.data.subscribe((element: any) => {
+            this.adminService.create(element).subscribe((result: any) => {
+              element.company.admin = result.id;
+              this.companyService.create(element.company).subscribe(() => this.skip.emit(skipObj));
+            })
+          });
         } else {
           const message: string = "A senha confirmada precisa ser igual a senha digitada!";
           this.alerts.error(message);
@@ -119,9 +128,9 @@ export class ValidationComponent implements OnInit {
    */
 
   private populate(): void {
-    this.saveDataService.validation.subscribe((element: any) => {
+    this.saveDataService.data.subscribe((element: any) => {
       const controls: { [key: string]: AbstractControl; } = this.form.controls;
-      for (let item in element) if (element[item] || element[item]?.length > 0) controls[item].patchValue(element[item]);
+      for (let item in element) if (controls[item]) controls[item].patchValue(element[item]);
     });
   }
 
