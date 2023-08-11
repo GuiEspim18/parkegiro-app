@@ -37,7 +37,7 @@ export class UsersComponent implements OnInit {
       name: "Email"
     },
     {
-      type: "lastAcess",
+      type: "lastAccess",
       name: "Último acesso"
     },
     {

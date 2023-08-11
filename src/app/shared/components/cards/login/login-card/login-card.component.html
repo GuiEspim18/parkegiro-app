@@ -15,6 +15,7 @@
                     [blurEvent]="item.blurEvent" [changeEvent]="item.changeEvent" (changeInput)="getChangeEvent($event)"
                     [controlName]="item.controlName" (keyUpInput)="getKeyUpEvent($event)" [inputMak]="item.inputMak"
                     [controlValidators]="item.validators"></app-password-input>
+                <app-select-input *ngIf="item.type === 'select'" [options]="options" [label]="item.label" [changeEvent]="item.changeEvent" [controlName]="item.controlName" (changeInput)="getChangeEvent($event)"></app-select-input>
             </div>
             <div class="submit-div">
                 <app-dark-button [text]="'Entrar'"></app-dark-button>

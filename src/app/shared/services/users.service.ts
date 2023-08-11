@@ -98,11 +98,14 @@ export class UsersService {
    * @returns Observable<Object>
    */
 
-  public login(data: any): void {
-    const path: Array<any> = ['auth', 'login'];
+  public login(data: any, type: number): void {
+    const path: Array<any> = ['auth', 'login', type];
+    delete data.typeLogin;
     this.http.patch(this.apiUrlService.url(path), data).subscribe((element: any) => {
       this.authService.save(element);
-      const message : string = `Olá, ${element.user.username}!`;
+      let message : string;
+      if (element.user) message = `Olá, ${element.user.username}!`
+      else message = `Olá, ${element.admin.username}!`
       this.alerts.success(message);
       window.location.href = "/home";
     }, (err: HttpErrorResponse) => {

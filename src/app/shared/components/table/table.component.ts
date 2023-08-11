@@ -46,7 +46,23 @@ export class TableComponent implements OnInit {
 
   public returnElement(value: any, element: string): any {
     if (value[element] === undefined || value[element] === null) return "-"
-    return value[element]
+    if (Date.parse(value[element])) return this.formatDate(value[element]);
+    return value[element];
+  }
+
+
+  /** 
+   * Method to format date
+   * @param value
+   * @returns string
+   */
+
+  private formatDate(value: any): string {
+    const date: Date = new Date(value);
+    const currentDate: string = date.toLocaleDateString();
+    const hours: string = `${date.getHours()}:${date.getMinutes()}`;
+    const formatedDate: string = `${currentDate} ${hours}`;
+    return formatedDate;
   }
 
 
@@ -59,7 +75,7 @@ export class TableComponent implements OnInit {
     for (let item of this.displayedColumns) {
       formated.push(item.type);
     }
-    this.formatedColumns = formated
+    this.formatedColumns = formated;
   }
 
 

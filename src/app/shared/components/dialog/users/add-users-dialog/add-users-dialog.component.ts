@@ -81,6 +81,9 @@ export class AddUsersDialogComponent implements OnInit {
     if (form.valid) {
       if (form.value.password === form.value.passwordConfirm) {
         this.loader = true;
+        const admin: any = JSON.parse(localStorage.getItem("admin") as string);
+        form.value.admin = admin.id;
+        form.value.company = admin.company.id
         this.userService.create(form.value).subscribe((element: any) => {
           if (this.userPhoto) {
             let userPhoto: any = this.userPhoto;

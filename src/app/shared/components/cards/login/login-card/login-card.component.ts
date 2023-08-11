@@ -5,6 +5,7 @@ import { Alerts } from 'src/app/shared/utils/alerts/alerts';
 import { UsersService } from 'src/app/shared/services/users.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { AuthService } from 'src/app/shared/services/auth.service';
+import { Options } from 'src/app/shared/utils/types/options/options.types';
 
 @Component({
   selector: 'app-login-card',
@@ -21,8 +22,20 @@ export class LoginCardComponent implements OnInit {
 
   public readonly form: FormGroup = new FormGroup({
     "email": new FormControl('', [Validators.required]),
-    "password": new FormControl('', [Validators.required])
+    "password": new FormControl('', [Validators.required]),
+    "typeLogin": new FormControl(null, [Validators.required])
   });
+
+  public readonly options: Array<Options> = [
+    {
+      name: "Administrador",
+      value: 0
+    },
+    {
+      name: "Usuário",
+      value: 1
+    }
+  ];
 
 
   /** 
@@ -74,7 +87,7 @@ export class LoginCardComponent implements OnInit {
 
   public submit(form: FormGroup): void {
     if (form.valid) {
-      this.userService.login(form.value)
+      this.userService.login(form.value, form.value.typeLogin)
     } else {
       const message: string = "Preencha os campos obrigatórios!";
       this.alerts.error(message);

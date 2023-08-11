@@ -51,6 +51,9 @@ export class HeaderComponent implements OnInit {
     if (user) {
       this.user = user;
       this.backGroundImage = this.userService.getUserPhoto(user.photo.name);
+    } else {
+      const admin: User = JSON.parse(localStorage.getItem('admin') as string);
+      this.user = admin;
     }
   }
 
