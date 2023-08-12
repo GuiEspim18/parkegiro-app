@@ -70,6 +70,7 @@ export class UsersComponent implements OnInit {
   ngOnInit(): void {
     this.populate();
     this.authService.verify();
+    this.authService.verifyAdmin();
   }
 
 

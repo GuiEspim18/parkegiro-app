@@ -75,4 +75,18 @@ export class AuthService {
         })
     }
 
+
+    /** 
+     * Method to verify the admin
+     */
+
+    public async verifyAdmin(): Promise<boolean> {
+        console.log("admin")
+        const admin: any = JSON.parse(localStorage.getItem('admin') as string);
+        if (!admin) return false
+        const path: Array<any> = ['auth', 'admin'];
+        console.log(await this.http.patch(this.apiUrlService.url(path), admin).toPromise())
+        return true
+    }
+
 }
